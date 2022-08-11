@@ -27,4 +27,4 @@ task:
   build_script:
     - cd ~/efidroid
     - source build/envsetup.sh
-    - echo 1 && echo 3 | lunch
+    - echo 1 | echo 3 | lunch
