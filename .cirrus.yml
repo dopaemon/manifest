@@ -1,7 +1,7 @@
 env:
     CIRRUS_CLONE_DEPTH: 1
     BUILD_HOSTNAME: "CirrusCI"
-    CIRRUS_WORKING_DIR: "/tmp/ci"
+    CIRRUS_WORKING_DIR: "/home/doraemon/"
 
 task:
   name: EFIDroid - Xiaomi Mi 4 (Cancro)
@@ -20,11 +20,13 @@ task:
     - git clone https://git.savannah.gnu.org/git/parted.git modules/parted
     - git clone https://git.savannah.gnu.org/git/gnulib.git modules/gnulib
     - git clone https://git.savannah.gnu.org/git/grub.git uefi/apps/grub
+
   setup_script:
     - sudo apt-get update
     - sudo apt-get install -yq acpica-tools autoconf autopoint bash bison build-essential bzip2 cmake diffutils file findutils flex git grep hostname perl python2.7 sed tar xz-utils uuid-dev zlib1g-dev zip curl libtool pkg-config gettext automake
     - sudo ln -sf python2.7 /usr/bin/python
+
   build_script:
     - cd ~/efidroid
     - source build/envsetup.sh
-    - echo 1 | echo 3 | lunch
+    - echo 1 | lunch
