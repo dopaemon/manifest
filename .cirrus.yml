@@ -33,3 +33,7 @@ task:
     - croot
     - mkefidroid
     - make -j$(nproc --all) uefi
+
+  check_script:
+    - cd ~/efidroid/
+    - ls out/
