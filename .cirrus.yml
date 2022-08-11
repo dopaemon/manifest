@@ -1,0 +1,22 @@
+env:
+    CIRRUS_CLONE_DEPTH: 1
+    BUILD_HOSTNAME: "CirrusCI"
+    CIRRUS_WORKING_DIR: "/tmp/ci"
+
+task:
+  name: EFIDroid - Xiaomi Mi 4 (Cancro)
+  container:
+    image: dopaemon/bionic
+    cpu: 4
+    memory: 8G
+
+  clone_script:
+    - mkdir -p ~/efidroid
+    - cd ~/efidroid
+    - repo init --depth=1 --no-repo-verify -u https://github.com/dopaemon/manifest.git -b efidroid-legacy -g default,-mips,-darwin,-notdefault
+    - repo sync -c --no-clone-bundle --no-tags --optimized-fetch --prune --force-sync -j$(nproc --all) || repo sync -c --no-clone-bundle --no-tags --optimized-fetch --prune --force-sync -j$(nproc --all)
+    - git clone -b xiaomi/cranco --single-branch https://github.com/cancro-dev/device.git device/xiaomi/cancro
+  build_script:
+    - cd ~/efidroid
+    - source build/envsetup.sh
+    - lunch | tee buildlog.txt
