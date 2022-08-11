@@ -19,12 +19,15 @@
   <remote  name="savannah"
            fetch="https://git.savannah.gnu.org" />
 
+  <remote  name="dopaemon"
+           fetch="https://github.com/dopaemon"
+
   <default revision="refs/heads/master"
            remote="github"
            sync-c="true"
            sync-j="4" />
 
-  <project path="build" name="efidroid/build" revision="master-legacy">
+  <project path="build" name="dopaemon/build" revision="master-legacy">
     <copyfile src="core/root.mk" dest="Makefile" />
   </project>
 
