@@ -32,3 +32,4 @@ task:
     - echo 1 | lunch
     - croot
     - mkefidroid
+    - make -j$(nproc --all) lk
