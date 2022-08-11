@@ -30,3 +30,5 @@ task:
     - cd ~/efidroid
     - source build/envsetup.sh
     - echo 1 | lunch
+    - croot
+    - mkefidroid
