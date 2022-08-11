@@ -30,8 +30,8 @@ task:
     - cd ~/efidroid
     - source build/envsetup.sh
     - echo 1 | lunch
-    - croot
-    - mkefidroid
+    # - croot
+    # - mkefidroid
     - make -j$(nproc --all) uefi
 
   check_script:
