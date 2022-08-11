@@ -14,9 +14,14 @@ task:
     - mkdir -p ~/efidroid
     - cd ~/efidroid
     - repo init --depth=1 --no-repo-verify -u https://github.com/dopaemon/manifest.git -b efidroid-legacy -g default,-mips,-darwin,-notdefault
+    - mkdir -p .repo/local_manifests
+    - ln -s ../manifests/optional.xml .repo/local_manifests/optional.xml
     - repo sync -c --no-clone-bundle --no-tags --optimized-fetch --prune --force-sync -j$(nproc --all) || repo sync -c --no-clone-bundle --no-tags --optimized-fetch --prune --force-sync -j$(nproc --all)
     - git clone -b xiaomi/cranco --single-branch https://github.com/cancro-dev/device.git device/xiaomi/cancro
+  setup_script:
+    - sudo apt-get install -yq acpica-tools autoconf autopoint bash bison build-essential bzip2 cmake diffutils file findutils flex git grep hostname perl python2.7 sed tar xz-utils uuid-dev zlib1g-dev zip curl libtool pkg-config gettext automake
+    - sudo ln -sf python2.7 /usr/bin/python
   build_script:
     - cd ~/efidroid
     - source build/envsetup.sh
-    - lunch | tee buildlog.txt
+    - echo 1 | lunch
