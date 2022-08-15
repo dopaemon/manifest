@@ -18,11 +18,16 @@
            sync-c="true"
            sync-j="4" />
 
+  <!-- Xiaomi Redmi Note 10 Pro / Pro Max -->
+  <project path="device/xiaomi/sweet" name="dopaemon/device_xiaomi_sweet" revision="hybris-18.1" />
+  <project path="vendor/xiaomi/sweet" name="dopaemon/vendor_xiaomi_sweet" revision="hybris-18.1" />
+  <project path="kernel/xiaomi/sweet" name="dopaemon/kernel_xiaomi_sweet" revision="hybris-18.1" />
+
   <!-- Hybris repos -->
-  <project path="hybris-patches" name="mer-hybris/hybris-patches" revision="hybris-18.1" />
-  <project path="hybris/hybris-boot" name="mer-hybris/hybris-boot" revision="master" />
+  <project path="hybris-patches" name="dopaemon/hybris-patches" revision="hybris-18.1" />
+  <project path="hybris/hybris-boot" name="dopaemon/hybris-boot" revision="master" />
   <project path="hybris/mer-kernel-check" name="mer-hybris/mer-kernel-check" revision="master" />
-  <project path="external/droidmedia" name="sailfishos/droidmedia" revision="master" />
+  <project path="external/droidmedia" name="SailfishOS-vayu/droidmedia" revision="master" />
   <project path="external/busybox" name="mer-hybris/android_external_busybox_prebuilt" revision="master" />
   <project path="external/selinux_stubs" name="mer-hybris/android_external_selinux_stubs" revision="master" />
 
