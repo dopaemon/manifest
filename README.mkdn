@@ -31,7 +31,10 @@ sudo apt install bc bison build-essential ccache curl flex g++-multilib gcc-mult
 ```
 - Repo setup
 ```
-sudo curl http://commondatastorage.googleapis.com/git-repo-downloads/repo > /usr/bin/repo
+curl http://commondatastorage.googleapis.com/git-repo-downloads/repo > repo
+```
+```
+sudo mv repo /usr/bin/
 ```
 ```
 sudo chmod a+x /usr/bin/repo
