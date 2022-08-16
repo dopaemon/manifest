@@ -67,6 +67,12 @@ echo '[ -d /etc/bash_completion.d ] && for i in /etc/bash_completion.d/*;do . $i
 ```
 sfossdk
 ```
+```
+sudo zypper ref
+```
+```
+sudo zypper in android-tools-hadk kmod createrepo_c
+```
 ## Setup Ubuntu SDK
 ```
 TARBALL=ubuntu-focal-20210531-android-rootfs.tar.bz2
