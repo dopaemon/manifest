@@ -136,6 +136,9 @@ source build/envsetup.sh
 export USE_CCACHE=1
 ```
 ```
+export TEMPORARY_DISABLE_PATH_RESTRICTIONS=true
+```
+```
 breakfast $DEVICE
 ```
 ```
