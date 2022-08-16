@@ -39,17 +39,6 @@ sudo mv repo /usr/bin/
 ```
 sudo chmod a+x /usr/bin/repo
 ```
-## Sync
-```
-repo init -u https://github.com/dopaemon/manifest.git -b hybris-18.1
-```
-```
-repo sync --fetch-submodules -j$(nproc --all)
-```
-## Patches hybris
-```
-./hybris-patches/apply-patches.sh --mb
-```
 ## Setup SFOS SDK
 ```
 export PLATFORM_SDK_ROOT=/srv/sailfishos
@@ -100,4 +89,14 @@ sudo chroot $UBUNTU_CHROOT /bin/bash -c "chage -M 999999 $(id -nu 1000)"
 ```
 ubu-chroot -r $PLATFORM_SDK_ROOT/sdks/ubuntu
 ```
-
+## Sync
+```
+repo init -u https://github.com/dopaemon/manifest.git -b hybris-18.1
+```
+```
+repo sync --fetch-submodules -j$(nproc --all)
+```
+## Patches hybris
+```
+./hybris-patches/apply-patches.sh --mb
+```
