@@ -55,6 +55,9 @@ sudo zypper ref
 ```
 sudo zypper in android-tools-hadk kmod createrepo_c nano
 ```
+```
+source ~/.hadk.env
+```
 ## Setup Ubuntu SDK $PlatformSDK
 ```
 TARBALL=ubuntu-focal-20210531-android-rootfs.tar.bz2
@@ -76,6 +79,9 @@ sudo chroot $UBUNTU_CHROOT /bin/bash -c "chage -M 999999 $(id -nu 1000)"
 ```
 ```
 ubu-chroot -r $PLATFORM_SDK_ROOT/sdks/ubuntu
+```
+```
+source ~/.hadk.env
 ```
 ## Packages Setup $HABUILD_SDK
 ```
