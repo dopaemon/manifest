@@ -3,7 +3,7 @@ SailfishOS
 
 Getting started
 ---------------
-## Setup Export Devices
+## Setup Export Devices $HOST
 ~/.hadk.env
 ```
 export ANDROID_ROOT="$HOME/hadk"
@@ -21,7 +21,7 @@ function hadk() { source $HOME/.hadk.env; echo "Env setup for $DEVICE"; }
 export PS1="HABUILD_SDK [\${DEVICE}] $PS1"
 hadk
 ```
-## Packages Setup
+## Packages Setup $HOST
 ```
 sudo apt-get update
 ```
@@ -39,7 +39,7 @@ sudo mv repo /usr/bin/
 ```
 sudo chmod a+x /usr/bin/repo
 ```
-## Setup SFOS SDK
+## Setup SFOS SDK $HOST
 ```
 export PLATFORM_SDK_ROOT=/srv/sailfishos
 ```
@@ -73,7 +73,7 @@ sudo zypper ref
 ```
 sudo zypper in android-tools-hadk kmod createrepo_c
 ```
-## Setup Ubuntu SDK
+## Setup Ubuntu SDK $PlatformSDK
 ```
 TARBALL=ubuntu-focal-20210531-android-rootfs.tar.bz2
 ```
@@ -95,14 +95,31 @@ sudo chroot $UBUNTU_CHROOT /bin/bash -c "chage -M 999999 $(id -nu 1000)"
 ```
 ubu-chroot -r $PLATFORM_SDK_ROOT/sdks/ubuntu
 ```
-## Sync
+## Sync $HABUILD_SDK
+git setup
+```
+git config --global user.name "Your Name"
+```
+```
+git config --global user.email "you@example.com"
+```
+repo sync
+```
+sudo mkdir -p $ANDROID_ROOT
+```
+```
+sudo chown -R $USER $ANDROID_ROOT
+```
+```
+cd $ANDROID_ROOT
+```
 ```
 repo init -u https://github.com/dopaemon/manifest.git -b hybris-18.1
 ```
 ```
 repo sync --fetch-submodules -j$(nproc --all)
 ```
-## Patches hybris
+## Patches hybris $HABUILD_SDK
 ```
 ./hybris-patches/apply-patches.sh --mb
 ```
