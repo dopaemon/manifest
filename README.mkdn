@@ -53,7 +53,7 @@ sfossdk
 sudo zypper ref
 ```
 ```
-sudo zypper in android-tools-hadk kmod createrepo_c
+sudo zypper in android-tools-hadk kmod createrepo_c nano
 ```
 ## Setup Ubuntu SDK $PlatformSDK
 ```
