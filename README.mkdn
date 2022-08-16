@@ -118,6 +118,12 @@ repo init -u https://github.com/dopaemon/manifest.git -b hybris-18.1
 ```
 repo sync --fetch-submodules -j$(nproc --all)
 ```
+```
+rm -rf external/libhybris
+```
+```
+git clone --recurse-submodules https://github.com/mer-hybris/libhybris.git external/libhybris
+```
 ## Patches hybris $HABUILD_SDK
 ```
 ./hybris-patches/apply-patches.sh --mb
