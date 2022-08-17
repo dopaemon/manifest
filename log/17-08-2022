@@ -1,0 +1,2222 @@
+ubuntu@ubuntu:~$ nano ~/.hadk.env
+ubuntu@ubuntu:~$ nano ~/.mersdk.profile
+ubuntu@ubuntu:~$ nano ~/.mersdkubu.profile
+ubuntu@ubuntu:~$ export PLATFORM_SDK_ROOT=/srv/sailfishos
+ubuntu@ubuntu:~$ curl -k -O https://releases.sailfishos.org/sdk/installers/latest/Jolla-latest-SailfishOS_Platform_SDK_Chroot-i486.tar.bz2
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+100  197M  100  197M    0     0  20.8M      0  0:00:09  0:00:09 --:--:-- 21.1Msudo mkdir -p $PLATFORM_SDK_ROOT/sdks/sfossdk
+ubuntu@ubuntu:~$ sudo mkdir -p $PLATFORM_SDK_ROOT/sdks/sfossdk
+[sudo] password for ubuntu:
+ubuntu@ubuntu:~$ sudo tar --numeric-owner -p -xjf Jolla-latest-SailfishOS_Platform_SDK_Chroot-i486.tar.bz2 -C $PLATFORM_SDK_ROOT/sdks/sfossdk
+ubuntu@ubuntu:~$ echo "export PLATFORM_SDK_ROOT=$PLATFORM_SDK_ROOT" >> ~/.bashrc
+ubuntu@ubuntu:~$ echo 'alias sfossdk=$PLATFORM_SDK_ROOT/sdks/sfossdk/sdk-chroot' >> ~/.bashrc; exec bash
+ubuntu@ubuntu:~$ echo 'PS1="PlatformSDK $PS1"' > ~/.mersdk.profile
+ubuntu@ubuntu:~$ echo '[ -d /etc/bash_completion.d ] && for i in /etc/bash_completion.d/*;do . $i;done' >> ~/.mersdk.profile
+ubuntu@ubuntu:~$ sfossdk
+SDK targets location '/srv/sailfishos/targets' does not exist - about to create it.
+Continue? [y/n] (y)y
+SDK toolings location '/srv/sailfishos/toolings' does not exist - about to create it.
+Continue? [y/n] (y)y
+ls: cannot open directory '/proc/sys/fs/binfmt_misc': Too many levels of symbolic links
+Mounting system directories...
+mount: /srv/sailfishos/sdks/sfossdk/proc/sys/fs/binfmt_misc: mount(2) system call failed: Too many levels of symbolic links.
+Mounting /srv/sailfishos/targets as /srv/mer/targets
+Mounting /srv/sailfishos/toolings as /srv/mer/toolings
+Mounting / as /parentroot
+Mounting home directory: /home/ubuntu
+Initializing machine ID from random generator.
+Entering chroot as ubuntu
+Failed to create bus connection: No such file or directory
+oneshot: /etc/oneshot.d/0/groupadd-user.later - OK
+DBus unavailable, falling back to libssu
+oneshot: /etc/oneshot.d/0/ssu-update-repos - OK
+
+Did you know…?
+
+`mb2` can do shadow builds conveniently - simply pass the path to the sources
+like in `mb2 build ../src` or `mb2 qmake ../src && mb2 make && mb2 rpm`.
+
+Learn more on
+<https://github.com/sailfishos/sdk-setup/blob/master/sdk-setup/README.tips.wiki#Shadow_builds>.
+PlatformSDK ubuntu@ubuntu:~$ sudo zypper ref
+Retrieving repository 'adaptation0' metadata .........................................................................................................[done]
+Building repository 'adaptation0' cache ..............................................................................................................[done]
+Retrieving repository 'customer-jolla' metadata ......................................................................................................[done]
+Building repository 'customer-jolla' cache ...........................................................................................................[done]
+Retrieving repository 'hotfixes' metadata ............................................................................................................[done]
+Building repository 'hotfixes' cache .................................................................................................................[done]
+Retrieving repository 'jolla' metadata ...............................................................................................................[done]
+Building repository 'jolla' cache ....................................................................................................................[done]
+Retrieving repository 'sdk' metadata .................................................................................................................[done]
+Building repository 'sdk' cache ......................................................................................................................[done]
+All repositories have been refreshed.
+PlatformSDK ubuntu@ubuntu:~$ sudo zypper in android-tools-hadk kmod createrepo_c
+Loading repository data...
+Reading installed packages...
+'createrepo_c' is already installed.
+No update candidate for 'createrepo_c-0.12.0-1.2.1.jolla.i486'. The highest available version is already installed.
+Resolving package dependencies...
+
+The following 2 NEW packages are going to be installed:
+  android-tools-hadk kmod
+
+2 new packages to install.
+Overall download size: 130.1 KiB. Already cached: 0 B. After the operation, additional 130.1 KiB will be used.
+Continue? [y/n/v/...? shows all options] (y): y
+Retrieving package kmod-27-1.6.1.jolla.i486                                                                            (1/2),  75.3 KiB ( 75.3 KiB unpacked)
+Retrieving: kmod-27-1.6.1.jolla.i486.rpm .............................................................................................................[done]
+Retrieving package android-tools-hadk-5.1.1+git8-1.4.1.jolla.i486                                                      (2/2),  54.8 KiB ( 54.8 KiB unpacked)
+Retrieving: android-tools-hadk-5.1.1+git8-1.4.1.jolla.i486.rpm .......................................................................................[done]
+
+Checking for file conflicts: .........................................................................................................................[done]
+(1/2) Installing: kmod-27-1.6.1.jolla.i486 ...........................................................................................................[done]
+Additional rpm output:
+warning: /home/.zypp-cache/packages/jolla/oss/i486/kmod-27-1.6.1.jolla.i486.rpm: Header V3 RSA/SHA1 Signature, key ID 47394f23: NOKEY
+
+
+(2/2) Installing: android-tools-hadk-5.1.1+git8-1.4.1.jolla.i486 .....................................................................................[done]
+Additional rpm output:
+warning: /home/.zypp-cache/packages/jolla/tools/i486/android-tools-hadk-5.1.1+git8-1.4.1.jolla.i486.rpm: Header V3 RSA/SHA1 Signature, key ID 47394f23: NOKEY
+
+
+PlatformSDK ubuntu@ubuntu:~$ sudo zypper in android-tools-hadk kmod createrepo_c nano
+Loading repository data...
+Reading installed packages...
+'kmod' is already installed.
+No update candidate for 'kmod-27-1.6.1.jolla.i486'. The highest available version is already installed.
+'createrepo_c' is already installed.
+No update candidate for 'createrepo_c-0.12.0-1.2.1.jolla.i486'. The highest available version is already installed.
+'android-tools-hadk' is already installed.
+No update candidate for 'android-tools-hadk-5.1.1+git8-1.4.1.jolla.i486'. The highest available version is already installed.
+Resolving package dependencies...
+
+The following NEW package is going to be installed:
+  nano
+
+1 new package to install.
+Overall download size: 398.3 KiB. Already cached: 0 B. After the operation, additional 398.3 KiB will be used.
+Continue? [y/n/v/...? shows all options] (y): y
+Retrieving package nano-2.8.5+git2-1.3.1.jolla.i486                                                                    (1/1), 398.3 KiB (398.3 KiB unpacked)
+Retrieving: nano-2.8.5+git2-1.3.1.jolla.i486.rpm ........................................................................................[done (41.9 KiB/s)]
+
+Checking for file conflicts: .........................................................................................................................[done]
+(1/1) Installing: nano-2.8.5+git2-1.3.1.jolla.i486 ...................................................................................................[done]
+Additional rpm output:
+warning: /home/.zypp-cache/packages/jolla/tools/i486/nano-2.8.5+git2-1.3.1.jolla.i486.rpm: Header V3 RSA/SHA1 Signature, key ID 47394f23: NOKEY
+
+
+PlatformSDK ubuntu@ubuntu:~$ TARBALL=ubuntu-focal-20210531-android-rootfs.tar.bz2
+PlatformSDK ubuntu@ubuntu:~$ curl -O https://releases.sailfishos.org/ubu/$TARBALL
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+100  422M  100  422M    0     0  34.9M      0  0:00:12  0:00:12 --:--:-- 41.8M
+PlatformSDK ubuntu@ubuntu:~$ UBUNTU_CHROOT=$PLATFORM_SDK_ROOT/sdks/ubuntu
+PlatformSDK ubuntu@ubuntu:~$ sudo mkdir -p $UBUNTU_CHROOT
+PlatformSDK ubuntu@ubuntu:~$ sudo tar --numeric-owner -xjf $TARBALL -C $UBUNTU_CHROOT
+PlatformSDK ubuntu@ubuntu:~$ sudo chroot $UBUNTU_CHROOT /bin/bash -c "chage -M 999999 $(id -nu 1000)"
+chage: user 'ubuntu' does not exist in /etc/passwd
+PlatformSDK ubuntu@ubuntu:~$ ubu-chroot -r $PLATFORM_SDK_ROOT/sdks/ubuntu
+mount_bind /var/run/dbus: None of these exists on your host - please report this bug
+Env setup for sweet
+HABUILD_SDK [sweet] ubuntu@ubuntu:~$ sudo apt-get update
+Get:1 http://ppa.launchpad.net/git-core/ppa/ubuntu focal InRelease [23.8 kB]
+Hit:2 http://archive.ubuntu.com/ubuntu focal InRelease
+Get:3 http://archive.ubuntu.com/ubuntu focal-security InRelease [114 kB]
+Get:4 http://ppa.launchpad.net/git-core/ppa/ubuntu focal/main amd64 Packages [3024 B]
+Get:5 http://archive.ubuntu.com/ubuntu focal-updates InRelease [114 kB]
+Get:6 http://ppa.launchpad.net/git-core/ppa/ubuntu focal/main i386 Packages [3024 B]
+Get:7 http://archive.ubuntu.com/ubuntu focal-security/main amd64 Packages [1672 kB]
+Get:8 http://archive.ubuntu.com/ubuntu focal-security/main i386 Packages [480 kB]
+Get:9 http://archive.ubuntu.com/ubuntu focal-security/main Translation-en [282 kB]
+Get:10 http://archive.ubuntu.com/ubuntu focal-security/universe amd64 Packages [714 kB]
+Get:11 http://archive.ubuntu.com/ubuntu focal-security/universe i386 Packages [559 kB]
+Get:12 http://archive.ubuntu.com/ubuntu focal-security/universe Translation-en [130 kB]
+Get:13 http://archive.ubuntu.com/ubuntu focal-security/multiverse amd64 Packages [22.2 kB]
+Get:14 http://archive.ubuntu.com/ubuntu focal-security/multiverse i386 Packages [7192 B]
+Get:15 http://archive.ubuntu.com/ubuntu focal-security/multiverse Translation-en [5376 B]
+Get:16 http://archive.ubuntu.com/ubuntu focal-security/restricted i386 Packages [25.3 kB]
+Get:17 http://archive.ubuntu.com/ubuntu focal-security/restricted amd64 Packages [1138 kB]
+Get:18 http://archive.ubuntu.com/ubuntu focal-security/restricted Translation-en [162 kB]
+Get:19 http://archive.ubuntu.com/ubuntu focal-updates/main i386 Packages [706 kB]
+Get:20 http://archive.ubuntu.com/ubuntu focal-updates/main amd64 Packages [2038 kB]
+Get:21 http://archive.ubuntu.com/ubuntu focal-updates/main Translation-en [364 kB]
+Get:22 http://archive.ubuntu.com/ubuntu focal-updates/universe amd64 Packages [940 kB]
+Get:23 http://archive.ubuntu.com/ubuntu focal-updates/universe i386 Packages [687 kB]
+Get:24 http://archive.ubuntu.com/ubuntu focal-updates/universe Translation-en [212 kB]
+Get:25 http://archive.ubuntu.com/ubuntu focal-updates/multiverse i386 Packages [8444 B]
+Get:26 http://archive.ubuntu.com/ubuntu focal-updates/multiverse amd64 Packages [24.4 kB]
+Get:27 http://archive.ubuntu.com/ubuntu focal-updates/multiverse Translation-en [7336 B]
+Get:28 http://archive.ubuntu.com/ubuntu focal-updates/restricted i386 Packages [26.6 kB]
+Get:29 http://archive.ubuntu.com/ubuntu focal-updates/restricted amd64 Packages [1224 kB]
+Get:30 http://archive.ubuntu.com/ubuntu focal-updates/restricted Translation-en [174 kB]
+Fetched 11.9 MB in 4s (3298 kB/s)
+Reading package lists... Done
+HABUILD_SDK [sweet] ubuntu@ubuntu:~$ sudo apt install bc bison build-essential ccache curl flex g++-multilib gcc-multilib git gnupg gperf imagemagick lib32ncurses5-dev lib32readline-dev lib32z1-dev liblz4-tool libncurses5-dev libncurses5 libsdl1.2-dev libssl-dev libwxgtk3.0-gtk3-dev libxml2 libxml2-utils lzop pngcrush rsync schedtool squashfs-tools xsltproc zip zlib1g-dev openjdk-8-jdk python-is-python3 -yq
+Reading package lists...
+Building dependency tree...
+Reading state information...
+bc is already the newest version (1.07.1-2build1).
+bison is already the newest version (2:3.5.1+dfsg-1).
+flex is already the newest version (2.6.4-6.2).
+g++-multilib is already the newest version (4:9.3.0-1ubuntu2).
+gcc-multilib is already the newest version (4:9.3.0-1ubuntu2).
+libncurses5-dev is already the newest version (6.2-0ubuntu2).
+python-is-python3 is already the newest version (3.8.2-4).
+xsltproc is already the newest version (1.1.34-4).
+zip is already the newest version (3.0-11build1).
+libncurses5 is already the newest version (6.2-0ubuntu2).
+schedtool is already the newest version (1.3.0-3).
+build-essential is already the newest version (12.8ubuntu1.1).
+The following additional packages will be installed:
+  accountsservice acl apg apport apport-symptoms aptdaemon aptdaemon-data aspell aspell-en avahi-daemon avahi-utils bind9-host bind9-libs bluez bolt
+  bubblewrap cheese-common colord colord-data cracklib-runtime crda cups-pk-helper dbus dbus-x11 dconf-cli desktop-file-utils dictionaries-common dirmngr
+  dns-root-data dnsmasq-base docbook-xml emacsen-common enchant-2 evolution-data-server evolution-data-server-common fonts-droid-fallback fonts-noto-mono
+  fonts-urw-base35 fprintd gcr gdm3 geoclue-2.0 gettext-base ghostscript gir1.2-accountsservice-1.0 gir1.2-atk-1.0 gir1.2-atspi-2.0 gir1.2-freedesktop
+  gir1.2-gck-1 gir1.2-gcr-3 gir1.2-gdesktopenums-3.0 gir1.2-gdkpixbuf-2.0 gir1.2-gdm-1.0 gir1.2-geoclue-2.0 gir1.2-gnomebluetooth-1.0
+  gir1.2-gnomedesktop-3.0 gir1.2-graphene-1.0 gir1.2-gtk-3.0 gir1.2-gweather-3.0 gir1.2-ibus-1.0 gir1.2-json-1.0 gir1.2-mutter-6 gir1.2-nm-1.0
+  gir1.2-nma-1.0 gir1.2-notify-0.7 gir1.2-pango-1.0 gir1.2-polkit-1.0 gir1.2-rsvg-2.0 gir1.2-secret-1 gir1.2-soup-2.4 gir1.2-upowerglib-1.0
+  gir1.2-vte-2.91 git-man gjs gkbd-capplet gnome-control-center gnome-control-center-data gnome-control-center-faces gnome-desktop3-data gnome-keyring
+  gnome-keyring-pkcs11 gnome-menus gnome-online-accounts gnome-session-bin gnome-session-common gnome-settings-daemon gnome-settings-daemon-common
+  gnome-shell gnome-shell-common gnome-startup-applications gnome-user-docs gnupg-l10n gnupg-utils gpg gpg-agent gpg-wks-client gpg-wks-server gpgconf
+  gpgsm gpgv groff-base gsfonts gstreamer1.0-clutter-3.0 gstreamer1.0-gl gstreamer1.0-plugins-base gstreamer1.0-plugins-good gstreamer1.0-pulseaudio
+  gstreamer1.0-x hunspell-en-us ibus ibus-data ibus-gtk ibus-gtk3 iio-sensor-proxy im-config imagemagick-6-common imagemagick-6.q16 ippusbxd iptables iw
+  language-selector-common language-selector-gnome lib32ncurses6 lib32ncursesw6 lib32readline8 lib32tinfo6 lib32z1 libaa1 libaccountsservice0
+  libappindicator3-1 libarchive13 libasound2 libasound2-data libasound2-dev libasound2-plugins libaspell15 libavahi-core7 libavahi-glib1 libavc1394-0
+  libblkid-dev libblkid1 libbluetooth3 libboost-thread1.71.0 libcaca-dev libcaca0 libcamel-1.2-62 libcanberra-gtk3-0 libcanberra-gtk3-module
+  libcanberra-pulse libcdparanoia0 libcheese-gtk25 libcheese8 libclutter-1.0-0 libclutter-1.0-common libclutter-gst-3.0-0 libclutter-gtk-1.0-0
+  libcogl-common libcogl-pango20 libcogl-path20 libcogl20 libcolord-gtk1 libcolord2 libcolorhug2 libcrack2 libcurl4 libdaemon0 libdbus-1-3
+  libdbusmenu-glib4 libdbusmenu-gtk3-4 libdjvulibre-text libdjvulibre21 libdrm-amdgpu1 libdrm-amdgpu1:i386 libdv4 libebackend-1.2-10 libebook-1.2-20
+  libebook-contacts-1.2-3 libecal-2.0-1 libedata-book-1.2-26 libedata-cal-2.0-1 libedataserver-1.2-24 libedataserverui-1.2-2 libenchant-2-2 libepoxy0
+  libevdev2 libexif12 libffi-dev libfftw3-double3 libfprint-2-2 libgck-1-0 libgcr-base-3-1 libgcr-ui-3-1 libgd3 libgdata-common libgdata22 libgdm1
+  libgee-0.8-2 libgeoclue-2-0 libgeocode-glib0 libgjs0g libglib2.0-0 libglib2.0-bin libglib2.0-dev libglib2.0-dev-bin libglu1-mesa libglu1-mesa-dev
+  libgnome-autoar-0-0 libgnome-bluetooth13 libgnome-desktop-3-19 libgnomekbd-common libgnomekbd8 libgoa-1.0-0b libgoa-1.0-common libgoa-backend-1.0-1
+  libgphoto2-6 libgphoto2-l10n libgphoto2-port12 libgraphene-1.0-0 libgs9 libgs9-common libgsound0 libgssdp-1.2-0 libgstreamer-gl1.0-0
+  libgstreamer-plugins-base1.0-0 libgstreamer-plugins-good1.0-0 libgstreamer1.0-0 libgtk-3-0 libgtk-3-bin libgtk-3-common libgtop-2.0-11 libgtop2-common
+  libgudev-1.0-0 libgupnp-1.2-0 libgupnp-av-1.0-2 libgupnp-dlna-2.0-3 libgusb2 libgweather-3-16 libgweather-common libharfbuzz-icu0 libhunspell-1.7-0
+  libhyphen0 libibus-1.0-5 libical3 libidn11 libiec61883-0 libieee1284-3 libijs-0.35 libilmbase24 libimobiledevice6 libinput-bin libinput10 libip6tc2
+  libjack-jackd2-0 libjansson4 libjavascriptcoregtk-4.0-18 libjbig2dec0 libjson-glib-1.0-0 libjson-glib-1.0-common libldb2 libllvm12 libllvm12:i386
+  liblqr-1-0 liblzo2-2 libmagickcore-6.q16-6 libmagickcore-6.q16-6-extra libmagickwand-6.q16-6 libmaxminddb0 libmbim-glib4 libmbim-proxy libmediaart-2.0-0
+  libmm-glib0 libmount-dev libmount1 libmozjs-68-0 libmp3lame0 libmpg123-0 libmtdev1 libmutter-6-0 libmysqlclient21 libndp0 libnetfilter-conntrack3
+  libnetpbm10 libnfnetlink0 libnftnl11 libnl-3-200 libnl-genl-3-200 libnl-route-3-200 libnm0 libnma0 libnotify4 libnss-mdns libopenexr24 libopenjp2-7
+  libopus0 liborc-0.4-0 libpam-fprintd libpam-gnome-keyring libpangoxft-1.0-0 libpaper-utils libpaper1 libpcap0.8 libpci3 libpcre16-3 libpcre2-16-0
+  libpcre2-32-0 libpcre2-dev libpcre2-posix2 libpcre3 libpcre3-dev libpcre32-3 libpcrecpp0v5 libphonenumber7 libpipeline1 libplist3 libpng-dev
+  libpng-tools libpolkit-agent-1-0 libpolkit-gobject-1-0 libprotobuf17 libpulse-dev libpulse-mainloop-glib0 libpulse0 libpulsedsp libpwquality-common
+  libpwquality1 libqmi-glib5 libqmi-proxy libraw1394-11 librest-0.7-0 librygel-core-2.6-2 librygel-db-2.6-2 librygel-renderer-2.6-2 librygel-server-2.6-2
+  libsamplerate0 libsane libsane-common libsbc1 libsdl1.2debian libsecret-1-0 libsecret-common libselinux1-dev libsepol1 libsepol1-dev libshout3
+  libslang2-dev libsmbclient libsnapd-glib1 libsnmp-base libsnmp35 libsoup-gnome2.4-1 libsoxr0 libspeex1 libspeexdsp1 libssl1.1 libstartup-notification0
+  libtag1v5 libtag1v5-vanilla libtalloc2 libtdb1 libteamdctl0 libtevent0 libtheora0 libtwolame0 libuchardet0 libudisks2-0 libunwind8 libupower-glib3
+  libusb-1.0-0 libusbmuxd6 libuuid1 libuv1 libv4l-0 libv4lconvert0 libvisual-0.4-0 libvpx6 libvte-2.91-0 libvte-2.91-common libwacom-bin libwacom-common
+  libwacom2 libwavpack1 libwayland-cursor0 libwayland-egl1 libwbclient0 libwebkit2gtk-4.0-37 libwebpdemux2 libwebpmux3 libwebrtc-audio-processing1
+  libwhoopsie-preferences0 libwhoopsie0 libwmf0.2-7 libwoff1 libwxbase3.0-0v5 libwxbase3.0-dev libwxgtk3.0-gtk3-0v5 libxatracker2 libxcb-icccm4
+  libxcb-image0 libxcb-keysyms1 libxcb-randr0 libxcb-render-util0 libxcb-res0 libxcb-util1 libxcb-xkb1 libxcb-xv0 libxext-dev libxfont2 libxkbcommon-x11-0
+  libxkbcommon0 libxklavier16 libxss1 libxvmc1 libyelp0 lz4 man-db mesa-vulkan-drivers mesa-vulkan-drivers:i386 mobile-broadband-provider-info
+  modemmanager mousetweaks mutter mutter-common mysql-common netpbm network-manager network-manager-gnome network-manager-pptp openjdk-8-jdk-headless
+  openjdk-8-jre openjdk-8-jre-headless p11-kit p11-kit-modules pci.ids pinentry-gnome3 pkg-config policykit-1 poppler-data ppp pptp-linux pulseaudio
+  pulseaudio-module-bluetooth pulseaudio-utils python3-apport python3-aptdaemon python3-aptdaemon.gtk3widgets python3-blinker python3-cairo
+  python3-cryptography python3-cups python3-cupshelpers python3-defer python3-distutils python3-entrypoints python3-httplib2 python3-ibus-1.0 python3-jwt
+  python3-keyring python3-launchpadlib python3-lazr.restfulclient python3-lazr.uri python3-ldb python3-lib2to3 python3-macaroonbakery python3-oauthlib
+  python3-problem-report python3-protobuf python3-rfc3339 python3-secretstorage python3-simplejson python3-systemd python3-talloc python3-tz
+  python3-wadllib rtkit rygel samba-libs sane-utils session-migration sgml-base sgml-data switcheroo-control system-config-printer
+  system-config-printer-common system-config-printer-udev ubuntu-docs ubuntu-session ubuntu-wallpapers ubuntu-wallpapers-focal update-inetd upower
+  usb-modeswitch usb-modeswitch-data usb.ids usbmuxd uuid-dev wamerican whoopsie-preferences wireless-regdb wpasupplicant wx-common wx3.0-headers
+  x11-xkb-utils x11-xserver-utils x11proto-xext-dev xdg-dbus-proxy xfonts-base xfonts-encodings xfonts-utils xml-core xserver-common xserver-xephyr
+  xserver-xorg xserver-xorg-core xserver-xorg-input-all xserver-xorg-input-libinput xserver-xorg-input-wacom xserver-xorg-legacy xserver-xorg-video-all
+  xserver-xorg-video-amdgpu xserver-xorg-video-ati xserver-xorg-video-fbdev xserver-xorg-video-intel xserver-xorg-video-nouveau xserver-xorg-video-qxl
+  xserver-xorg-video-radeon xserver-xorg-video-vesa xserver-xorg-video-vmware xwayland yaru-theme-gnome-shell yelp yelp-xsl zenity zenity-common zlib1g
+  zlib1g:i386 zlib1g-dev:i386
+Suggested packages:
+  apport-gtk | apport-kde aspell-doc spellutils avahi-autoipd distcc | icecc colord-sensor-argyll tor docbook docbook-dsssl docbook-xsl docbook-defguide
+  evolution fonts-noto fonts-freefont-otf | fonts-freefont-ttf fonts-texgyre gnome-orca ghostscript-x git-daemon-run | git-daemon-sysvinit git-doc
+  git-email git-gui gitk gitweb git-cvs git-mediawiki git-svn gnome-software | gnome-packagekit gnome-user-share realmd libcanberra-gtk-module usbguard
+  chrome-gnome-shell gir1.2-telepathyglib-0.12 gnome-themes-standard-data gnome-backgrounds gir1.2-telepathylogger-0.2 parcimonie xloadimage scdaemon
+  groff gvfs hunspell openoffice.org-hunspell | openoffice.org-core ibus-clutter ibus-doc imagemagick-doc autotrace cups-bsd | lpr | lprng enscript ffmpeg
+  gimp gnuplot grads graphviz hp2xx html2ps libwmf-bin mplayer povray radiance texlive-base-bin transfig ufraw-batch xdg-utils firewalld nftables
+  ncurses-doc indicator-application lrzip alsa-utils libasound2-doc libdv-bin oss-compat libenchant-2-voikko libfftw3-bin libfftw3-dev libgd-tools
+  libgirepository1.0-dev libglib2.0-doc gphoto2 libvisual-0.4-plugins gstreamer1.0-tools libusbmuxd-tools jackd2 inkscape libjxr-tools mmdb-bin
+  avahi-autoipd | zeroconf opus-tools libraw1394-doc hplip snapd snmp-mibs-downloader speex libssl-doc gstreamer1.0-libav libwmf0.2-7-gtk wx3.0-doc
+  gettext libxext-doc apparmor www-browser libteam-utils network-manager-openconnect-gnome network-manager-openvpn-gnome network-manager-vpnc-gnome
+  network-manager-pptp-gnome openjdk-8-demo openjdk-8-source visualvm fonts-ipafont-gothic fonts-ipafont-mincho fonts-wqy-microhei fonts-wqy-zenhei
+  fonts-indic pinentry-doc poppler-utils fonts-japanese-mincho | fonts-ipafont-mincho fonts-japanese-gothic | fonts-ipafont-gothic fonts-arphic-ukai
+  fonts-arphic-uming fonts-nanum pavumeter pavucontrol paman paprefs ubuntu-sounds python-blinker-doc python-cryptography-doc python3-cryptography-vectors
+  python3-crypto libkf5wallet-bin python3-keyrings.alt python3-testresources python-secretstorage-doc gstreamer1.0-plugins-ugly rygel-playbin
+  rygel-preferences rygel-ruih rygel-tracker tumbler unpaper sgml-base-doc perlsgml w3-recs opensp gnome-software python3-smbc ubuntu-wallpapers-karmic
+  ubuntu-wallpapers-lucid ubuntu-wallpapers-maverick ubuntu-wallpapers-natty ubuntu-wallpapers-oneiric ubuntu-wallpapers-precise ubuntu-wallpapers-quantal
+  ubuntu-wallpapers-raring ubuntu-wallpapers-saucy ubuntu-wallpapers-trusty ubuntu-wallpapers-utopic ubuntu-wallpapers-vivid ubuntu-wallpapers-wily
+  ubuntu-wallpapers-xenial ubuntu-wallpapers-yakkety ubuntu-wallpapers-zesty ubuntu-wallpapers-artful ubuntu-wallpapers-bionic ubuntu-wallpapers-cosmic
+  ubuntu-wallpapers-disco ubuntu-wallpapers-eoan comgt wvdial wpagui libengine-pkcs11-openssl nickle cairo-5c xorg-docs-core debhelper xfonts-100dpi
+  | xfonts-75dpi xfonts-scalable xinput firmware-amd-graphics xserver-xorg-video-r128 xserver-xorg-video-mach64 firmware-misc-nonfree
+Recommended packages:
+  uuid-runtime
+The following NEW packages will be installed:
+  accountsservice acl apg apport apport-symptoms aptdaemon aptdaemon-data aspell aspell-en avahi-daemon avahi-utils bind9-host bind9-libs bluez bolt
+  bubblewrap ccache cheese-common colord colord-data cracklib-runtime crda cups-pk-helper dbus-x11 dconf-cli desktop-file-utils dictionaries-common
+  dns-root-data dnsmasq-base docbook-xml emacsen-common enchant-2 evolution-data-server evolution-data-server-common fonts-droid-fallback fonts-noto-mono
+  fonts-urw-base35 fprintd gcr gdm3 geoclue-2.0 gettext-base ghostscript gir1.2-accountsservice-1.0 gir1.2-atk-1.0 gir1.2-atspi-2.0 gir1.2-freedesktop
+  gir1.2-gck-1 gir1.2-gcr-3 gir1.2-gdesktopenums-3.0 gir1.2-gdkpixbuf-2.0 gir1.2-gdm-1.0 gir1.2-geoclue-2.0 gir1.2-gnomebluetooth-1.0
+  gir1.2-gnomedesktop-3.0 gir1.2-graphene-1.0 gir1.2-gtk-3.0 gir1.2-gweather-3.0 gir1.2-ibus-1.0 gir1.2-json-1.0 gir1.2-mutter-6 gir1.2-nm-1.0
+  gir1.2-nma-1.0 gir1.2-notify-0.7 gir1.2-pango-1.0 gir1.2-polkit-1.0 gir1.2-rsvg-2.0 gir1.2-secret-1 gir1.2-soup-2.4 gir1.2-upowerglib-1.0
+  gir1.2-vte-2.91 gjs gkbd-capplet gnome-control-center gnome-control-center-data gnome-control-center-faces gnome-desktop3-data gnome-keyring
+  gnome-keyring-pkcs11 gnome-menus gnome-online-accounts gnome-session-bin gnome-session-common gnome-settings-daemon gnome-settings-daemon-common
+  gnome-shell gnome-shell-common gnome-startup-applications gnome-user-docs gperf groff-base gsfonts gstreamer1.0-clutter-3.0 gstreamer1.0-gl
+  gstreamer1.0-plugins-base gstreamer1.0-plugins-good gstreamer1.0-pulseaudio gstreamer1.0-x hunspell-en-us ibus ibus-data ibus-gtk ibus-gtk3
+  iio-sensor-proxy im-config imagemagick imagemagick-6-common imagemagick-6.q16 ippusbxd iptables iw language-selector-common language-selector-gnome
+  lib32ncurses-dev lib32ncurses6 lib32ncursesw6 lib32readline-dev lib32readline8 lib32tinfo6 lib32z1 lib32z1-dev libaa1 libaccountsservice0
+  libappindicator3-1 libarchive13 libasound2-dev libasound2-plugins libaspell15 libavahi-core7 libavahi-glib1 libavc1394-0 libblkid-dev libbluetooth3
+  libboost-thread1.71.0 libcaca-dev libcaca0 libcamel-1.2-62 libcanberra-gtk3-0 libcanberra-gtk3-module libcanberra-pulse libcdparanoia0 libcheese-gtk25
+  libcheese8 libclutter-1.0-0 libclutter-1.0-common libclutter-gst-3.0-0 libclutter-gtk-1.0-0 libcogl-common libcogl-pango20 libcogl-path20 libcogl20
+  libcolord-gtk1 libcolord2 libcolorhug2 libcrack2 libdaemon0 libdbusmenu-glib4 libdbusmenu-gtk3-4 libdjvulibre-text libdjvulibre21 libdv4
+  libebackend-1.2-10 libebook-1.2-20 libebook-contacts-1.2-3 libecal-2.0-1 libedata-book-1.2-26 libedata-cal-2.0-1 libedataserver-1.2-24
+  libedataserverui-1.2-2 libenchant-2-2 libepoxy0 libevdev2 libexif12 libffi-dev libfftw3-double3 libfprint-2-2 libgck-1-0 libgcr-base-3-1 libgcr-ui-3-1
+  libgd3 libgdata-common libgdata22 libgdm1 libgee-0.8-2 libgeoclue-2-0 libgeocode-glib0 libgjs0g libglib2.0-dev libglib2.0-dev-bin libglu1-mesa
+  libglu1-mesa-dev libgnome-autoar-0-0 libgnome-bluetooth13 libgnome-desktop-3-19 libgnomekbd-common libgnomekbd8 libgoa-1.0-0b libgoa-1.0-common
+  libgoa-backend-1.0-1 libgphoto2-6 libgphoto2-l10n libgphoto2-port12 libgraphene-1.0-0 libgs9 libgs9-common libgsound0 libgssdp-1.2-0
+  libgstreamer-gl1.0-0 libgstreamer-plugins-base1.0-0 libgstreamer-plugins-good1.0-0 libgtk-3-0 libgtk-3-bin libgtk-3-common libgtop-2.0-11
+  libgtop2-common libgudev-1.0-0 libgupnp-1.2-0 libgupnp-av-1.0-2 libgupnp-dlna-2.0-3 libgusb2 libgweather-3-16 libgweather-common libharfbuzz-icu0
+  libhunspell-1.7-0 libhyphen0 libibus-1.0-5 libical3 libidn11 libiec61883-0 libieee1284-3 libijs-0.35 libilmbase24 libimobiledevice6 libinput-bin
+  libinput10 libip6tc2 libjack-jackd2-0 libjansson4 libjavascriptcoregtk-4.0-18 libjbig2dec0 libjson-glib-1.0-0 libjson-glib-1.0-common libldb2 libllvm12
+  libllvm12:i386 liblqr-1-0 liblz4-tool liblzo2-2 libmagickcore-6.q16-6 libmagickcore-6.q16-6-extra libmagickwand-6.q16-6 libmaxminddb0 libmbim-glib4
+  libmbim-proxy libmediaart-2.0-0 libmm-glib0 libmount-dev libmozjs-68-0 libmp3lame0 libmpg123-0 libmtdev1 libmutter-6-0 libmysqlclient21 libndp0
+  libnetfilter-conntrack3 libnetpbm10 libnfnetlink0 libnftnl11 libnl-3-200 libnl-genl-3-200 libnl-route-3-200 libnm0 libnma0 libnotify4 libnss-mdns
+  libopenexr24 libopenjp2-7 libopus0 liborc-0.4-0 libpam-fprintd libpam-gnome-keyring libpangoxft-1.0-0 libpaper-utils libpaper1 libpcap0.8 libpci3
+  libpcre16-3 libpcre2-16-0 libpcre2-32-0 libpcre2-dev libpcre2-posix2 libpcre3-dev libpcre32-3 libpcrecpp0v5 libphonenumber7 libpipeline1 libplist3
+  libpng-dev libpng-tools libprotobuf17 libpulse-dev libpulse-mainloop-glib0 libpulsedsp libpwquality-common libpwquality1 libqmi-glib5 libqmi-proxy
+  libraw1394-11 librest-0.7-0 librygel-core-2.6-2 librygel-db-2.6-2 librygel-renderer-2.6-2 librygel-server-2.6-2 libsamplerate0 libsane libsane-common
+  libsbc1 libsdl1.2-dev libsdl1.2debian libsecret-1-0 libsecret-common libselinux1-dev libsepol1-dev libshout3 libslang2-dev libsmbclient libsnapd-glib1
+  libsnmp-base libsnmp35 libsoup-gnome2.4-1 libsoxr0 libspeex1 libspeexdsp1 libstartup-notification0 libtag1v5 libtag1v5-vanilla libtalloc2 libteamdctl0
+  libtevent0 libtheora0 libtwolame0 libuchardet0 libudisks2-0 libunwind8 libupower-glib3 libusb-1.0-0 libusbmuxd6 libuv1 libv4l-0 libv4lconvert0
+  libvisual-0.4-0 libvpx6 libvte-2.91-0 libvte-2.91-common libwacom-bin libwacom-common libwacom2 libwavpack1 libwayland-cursor0 libwayland-egl1
+  libwbclient0 libwebkit2gtk-4.0-37 libwebpdemux2 libwebpmux3 libwebrtc-audio-processing1 libwhoopsie-preferences0 libwhoopsie0 libwmf0.2-7 libwoff1
+  libwxbase3.0-0v5 libwxbase3.0-dev libwxgtk3.0-gtk3-0v5 libwxgtk3.0-gtk3-dev libxatracker2 libxcb-icccm4 libxcb-image0 libxcb-keysyms1 libxcb-randr0
+  libxcb-render-util0 libxcb-res0 libxcb-util1 libxcb-xkb1 libxcb-xv0 libxext-dev libxfont2 libxkbcommon-x11-0 libxkbcommon0 libxklavier16 libxss1
+  libxvmc1 libyelp0 lz4 lzop man-db mesa-vulkan-drivers mobile-broadband-provider-info modemmanager mousetweaks mutter mutter-common mysql-common netpbm
+  network-manager network-manager-gnome network-manager-pptp p11-kit p11-kit-modules pci.ids pinentry-gnome3 pkg-config pngcrush poppler-data ppp
+  pptp-linux pulseaudio pulseaudio-module-bluetooth pulseaudio-utils python3-apport python3-aptdaemon python3-aptdaemon.gtk3widgets python3-blinker
+  python3-cairo python3-cryptography python3-cups python3-cupshelpers python3-defer python3-distutils python3-entrypoints python3-httplib2
+  python3-ibus-1.0 python3-jwt python3-keyring python3-launchpadlib python3-lazr.restfulclient python3-lazr.uri python3-ldb python3-lib2to3
+  python3-macaroonbakery python3-oauthlib python3-problem-report python3-protobuf python3-rfc3339 python3-secretstorage python3-simplejson python3-systemd
+  python3-talloc python3-tz python3-wadllib rtkit rygel samba-libs sane-utils session-migration sgml-base sgml-data squashfs-tools switcheroo-control
+  system-config-printer system-config-printer-common system-config-printer-udev ubuntu-docs ubuntu-session ubuntu-wallpapers ubuntu-wallpapers-focal
+  update-inetd upower usb-modeswitch usb-modeswitch-data usb.ids usbmuxd uuid-dev wamerican whoopsie-preferences wireless-regdb wpasupplicant wx-common
+  wx3.0-headers x11-xkb-utils x11-xserver-utils x11proto-xext-dev xdg-dbus-proxy xfonts-base xfonts-encodings xfonts-utils xml-core xserver-common
+  xserver-xephyr xserver-xorg xserver-xorg-core xserver-xorg-input-all xserver-xorg-input-libinput xserver-xorg-input-wacom xserver-xorg-legacy
+  xserver-xorg-video-all xserver-xorg-video-amdgpu xserver-xorg-video-ati xserver-xorg-video-fbdev xserver-xorg-video-intel xserver-xorg-video-nouveau
+  xserver-xorg-video-qxl xserver-xorg-video-radeon xserver-xorg-video-vesa xserver-xorg-video-vmware xwayland yaru-theme-gnome-shell yelp yelp-xsl zenity
+  zenity-common zlib1g-dev
+The following packages will be upgraded:
+  curl dbus dirmngr git git-man gnupg gnupg-l10n gnupg-utils gpg gpg-agent gpg-wks-client gpg-wks-server gpgconf gpgsm gpgv libasound2 libasound2-data
+  libblkid1 libcurl4 libdbus-1-3 libdrm-amdgpu1 libdrm-amdgpu1:i386 libglib2.0-0 libglib2.0-bin libgstreamer1.0-0 libmount1 libpcre3 libpolkit-agent-1-0
+  libpolkit-gobject-1-0 libpulse0 libsepol1 libssl-dev libssl1.1 libtdb1 libuuid1 libxml2 libxml2-utils mesa-vulkan-drivers:i386 openjdk-8-jdk
+  openjdk-8-jdk-headless openjdk-8-jre openjdk-8-jre-headless policykit-1 rsync zlib1g zlib1g:i386 zlib1g-dev:i386
+47 upgraded, 510 newly installed, 0 to remove and 210 not upgraded.
+Need to get 270 MB of archives.
+After this operation, 860 MB of additional disk space will be used.
+Get:1 http://archive.ubuntu.com/ubuntu focal-security/main amd64 dbus amd64 1.12.16-2ubuntu2.2 [151 kB]
+Get:2 http://ppa.launchpad.net/git-core/ppa/ubuntu focal/main amd64 git amd64 1:2.37.2-0ppa1~ubuntu20.04.1 [6277 kB]
+Get:3 http://archive.ubuntu.com/ubuntu focal-security/main amd64 libdbus-1-3 amd64 1.12.16-2ubuntu2.2 [179 kB]
+Get:4 http://archive.ubuntu.com/ubuntu focal-updates/main amd64 libglib2.0-bin amd64 2.64.6-1~ubuntu20.04.4 [72.6 kB]
+Get:5 http://archive.ubuntu.com/ubuntu focal-security/main amd64 libblkid1 amd64 2.34-0.1ubuntu9.3 [136 kB]
+Get:6 http://archive.ubuntu.com/ubuntu focal-security/main amd64 libmount1 amd64 2.34-0.1ubuntu9.3 [149 kB]
+Get:7 http://archive.ubuntu.com/ubuntu focal-security/main amd64 libpcre3 amd64 2:8.39-12ubuntu0.1 [232 kB]
+Get:8 http://archive.ubuntu.com/ubuntu focal-security/main i386 zlib1g-dev i386 1:1.2.11.dfsg-2ubuntu1.3 [159 kB]
+Get:9 http://archive.ubuntu.com/ubuntu focal-security/main i386 zlib1g i386 1:1.2.11.dfsg-2ubuntu1.3 [56.7 kB]
+Get:10 http://archive.ubuntu.com/ubuntu focal-security/main amd64 zlib1g amd64 1:1.2.11.dfsg-2ubuntu1.3 [53.8 kB]
+Get:11 http://archive.ubuntu.com/ubuntu focal-updates/main amd64 libglib2.0-0 amd64 2.64.6-1~ubuntu20.04.4 [1287 kB]
+Get:12 http://ppa.launchpad.net/git-core/ppa/ubuntu focal/main amd64 git-man all 1:2.37.2-0ppa1~ubuntu20.04.1 [1958 kB]
+Get:13 http://archive.ubuntu.com/ubuntu focal-security/main amd64 libaccountsservice0 amd64 0.6.55-0ubuntu12~20.04.5 [72.6 kB]
+Get:14 http://archive.ubuntu.com/ubuntu focal-security/main amd64 policykit-1 amd64 0.105-26ubuntu1.3 [84.1 kB]
+Get:15 http://archive.ubuntu.com/ubuntu focal-security/main amd64 libpolkit-agent-1-0 amd64 0.105-26ubuntu1.3 [15.2 kB]
+Get:16 http://archive.ubuntu.com/ubuntu focal-security/main amd64 libpolkit-gobject-1-0 amd64 0.105-26ubuntu1.3 [39.2 kB]
+Get:17 http://archive.ubuntu.com/ubuntu focal-security/main amd64 accountsservice amd64 0.6.55-0ubuntu12~20.04.5 [61.0 kB]
+Get:18 http://archive.ubuntu.com/ubuntu focal-updates/main amd64 language-selector-common all 0.204.2 [224 kB]
+Get:19 http://archive.ubuntu.com/ubuntu focal/main amd64 libuchardet0 amd64 0.0.6-3build1 [65.2 kB]
+Get:20 http://archive.ubuntu.com/ubuntu focal/main amd64 groff-base amd64 1.22.4-4build1 [847 kB]
+Get:21 http://archive.ubuntu.com/ubuntu focal/main amd64 libpipeline1 amd64 1.5.2-2build1 [27.7 kB]
+Get:22 http://archive.ubuntu.com/ubuntu focal/main amd64 man-db amd64 2.9.1-1 [1112 kB]
+Get:23 http://archive.ubuntu.com/ubuntu focal-security/main amd64 rsync amd64 3.1.3-8ubuntu0.3 [318 kB]
+Get:24 http://archive.ubuntu.com/ubuntu focal/main amd64 fonts-droid-fallback all 1:6.0.1r16-1.1 [1805 kB]
+Get:25 http://archive.ubuntu.com/ubuntu focal/main amd64 libfftw3-double3 amd64 3.3.8-2ubuntu1 [728 kB]
+Get:26 http://archive.ubuntu.com/ubuntu focal/universe amd64 liblqr-1-0 amd64 0.4.2-2.1 [27.7 kB]
+Get:27 http://archive.ubuntu.com/ubuntu focal-security/main amd64 libwebpmux3 amd64 0.6.1-2ubuntu0.20.04.1 [19.5 kB]
+Get:28 http://archive.ubuntu.com/ubuntu focal-security/main amd64 libxml2 amd64 2.9.10+dfsg-5ubuntu0.20.04.4 [640 kB]
+Get:29 http://archive.ubuntu.com/ubuntu focal-security/universe amd64 imagemagick-6-common all 8:6.9.10.23+dfsg-2.1ubuntu11.4 [60.9 kB]
+Get:30 http://archive.ubuntu.com/ubuntu focal-security/universe amd64 libmagickcore-6.q16-6 amd64 8:6.9.10.23+dfsg-2.1ubuntu11.4 [1647 kB]
+Get:31 http://archive.ubuntu.com/ubuntu focal-security/universe amd64 libmagickwand-6.q16-6 amd64 8:6.9.10.23+dfsg-2.1ubuntu11.4 [303 kB]
+Get:32 http://archive.ubuntu.com/ubuntu focal-updates/main amd64 libsane-common all 1.0.29-0ubuntu5.2 [277 kB]
+Get:33 http://archive.ubuntu.com/ubuntu focal-security/main amd64 libtalloc2 amd64 2.3.1-0ubuntu0.20.04.1 [29.5 kB]
+Get:34 http://archive.ubuntu.com/ubuntu focal-security/main amd64 libtevent0 amd64 0.10.2-0ubuntu0.20.04.1 [35.6 kB]
+Get:35 http://archive.ubuntu.com/ubuntu focal-security/main amd64 libwbclient0 amd64 2:4.13.17~dfsg-0ubuntu1.20.04.1 [208 kB]
+Get:36 http://archive.ubuntu.com/ubuntu focal/main amd64 poppler-data all 0.4.9-2 [1475 kB]
+Get:37 http://archive.ubuntu.com/ubuntu focal-updates/main amd64 libasound2 amd64 1.2.2-2.1ubuntu2.5 [335 kB]
+Get:38 http://archive.ubuntu.com/ubuntu focal-updates/main amd64 libasound2-data all 1.2.2-2.1ubuntu2.5 [20.1 kB]
+Get:39 http://archive.ubuntu.com/ubuntu focal-security/main amd64 libgstreamer1.0-0 amd64 1.16.3-0ubuntu1.1 [894 kB]
+Get:40 http://archive.ubuntu.com/ubuntu focal/main amd64 liborc-0.4-0 amd64 1:0.4.31-1 [188 kB]
+Get:41 http://archive.ubuntu.com/ubuntu focal-security/main amd64 libgstreamer-plugins-base1.0-0 amd64 1.16.3-0ubuntu1.1 [740 kB]
+Get:42 http://archive.ubuntu.com/ubuntu focal-updates/main amd64 libpulse0 amd64 1:13.99.1-1ubuntu3.13 [262 kB]
+Get:43 http://archive.ubuntu.com/ubuntu focal/main amd64 libjson-glib-1.0-common all 1.4.4-2ubuntu2 [3468 B]
+Get:44 http://archive.ubuntu.com/ubuntu focal/main amd64 libjson-glib-1.0-0 amd64 1.4.4-2ubuntu2 [59.4 kB]
+Get:45 http://archive.ubuntu.com/ubuntu focal-updates/main amd64 libsnapd-glib1 amd64 1.58-0ubuntu0.20.04.0 [90.1 kB]
+Get:46 http://archive.ubuntu.com/ubuntu focal/main amd64 libsoxr0 amd64 0.1.3-2build1 [78.0 kB]
+Get:47 http://archive.ubuntu.com/ubuntu focal-security/main amd64 libspeexdsp1 amd64 1.2~rc1.2-1.1ubuntu1.20.04.1 [40.4 kB]
+Get:48 http://archive.ubuntu.com/ubuntu focal-security/main amd64 libtdb1 amd64 1.4.3-0ubuntu0.20.04.1 [44.2 kB]
+Get:49 http://archive.ubuntu.com/ubuntu focal/main amd64 libwebrtc-audio-processing1 amd64 0.3.1-0ubuntu3 [263 kB]
+Get:50 http://archive.ubuntu.com/ubuntu focal/main amd64 libsamplerate0 amd64 0.1.9-2 [939 kB]
+Get:51 http://archive.ubuntu.com/ubuntu focal/main amd64 libjack-jackd2-0 amd64 1.9.12~dfsg-2ubuntu2 [267 kB]
+Get:52 http://archive.ubuntu.com/ubuntu focal/main amd64 libasound2-plugins amd64 1.2.2-1ubuntu1 [66.0 kB]
+Get:53 http://archive.ubuntu.com/ubuntu focal-updates/main amd64 libpulsedsp amd64 1:13.99.1-1ubuntu3.13 [21.7 kB]
+Get:54 http://archive.ubuntu.com/ubuntu focal-updates/main amd64 pulseaudio-utils amd64 1:13.99.1-1ubuntu3.13 [55.0 kB]
+Get:55 http://archive.ubuntu.com/ubuntu focal-updates/main amd64 pulseaudio amd64 1:13.99.1-1ubuntu3.13 [814 kB]
+Get:56 http://archive.ubuntu.com/ubuntu focal/main amd64 sgml-base all 1.29.1 [12.4 kB]
+Get:57 http://archive.ubuntu.com/ubuntu focal/main amd64 libjansson4 amd64 2.12-1build1 [28.9 kB]
+Get:58 http://archive.ubuntu.com/ubuntu focal-security/main amd64 libldb2 amd64 2:2.2.3-0ubuntu0.20.04.3 [141 kB]
+Get:59 http://archive.ubuntu.com/ubuntu focal-security/main amd64 python3-ldb amd64 2:2.2.3-0ubuntu0.20.04.3 [38.2 kB]
+Get:60 http://archive.ubuntu.com/ubuntu focal-security/main amd64 python3-talloc amd64 2.3.1-0ubuntu0.20.04.1 [12.2 kB]
+Get:61 http://archive.ubuntu.com/ubuntu focal-security/main amd64 samba-libs amd64 2:4.13.17~dfsg-0ubuntu1.20.04.1 [5559 kB]
+Get:62 http://archive.ubuntu.com/ubuntu focal-security/main amd64 libsmbclient amd64 2:4.13.17~dfsg-0ubuntu1.20.04.1 [59.8 kB]
+Get:63 http://archive.ubuntu.com/ubuntu focal-security/main amd64 libsepol1 amd64 3.0-1ubuntu0.1 [252 kB]
+Get:64 http://archive.ubuntu.com/ubuntu focal-security/main amd64 libuuid1 amd64 2.34-0.1ubuntu9.3 [19.9 kB]
+Get:65 http://archive.ubuntu.com/ubuntu focal-security/main amd64 gpg-wks-client amd64 2.2.19-3ubuntu2.2 [97.4 kB]
+Get:66 http://archive.ubuntu.com/ubuntu focal-security/main amd64 dirmngr amd64 2.2.19-3ubuntu2.2 [330 kB]
+Get:67 http://archive.ubuntu.com/ubuntu focal-security/main amd64 gpg-wks-server amd64 2.2.19-3ubuntu2.2 [90.2 kB]
+Get:68 http://archive.ubuntu.com/ubuntu focal-security/main amd64 gnupg-utils amd64 2.2.19-3ubuntu2.2 [481 kB]
+Get:69 http://archive.ubuntu.com/ubuntu focal-security/main amd64 gpg-agent amd64 2.2.19-3ubuntu2.2 [232 kB]
+Get:70 http://archive.ubuntu.com/ubuntu focal-security/main amd64 gpg amd64 2.2.19-3ubuntu2.2 [482 kB]
+Get:71 http://archive.ubuntu.com/ubuntu focal-security/main amd64 gpgconf amd64 2.2.19-3ubuntu2.2 [124 kB]
+Get:72 http://archive.ubuntu.com/ubuntu focal-security/main amd64 gnupg-l10n all 2.2.19-3ubuntu2.2 [51.7 kB]
+Get:73 http://archive.ubuntu.com/ubuntu focal-security/main amd64 gnupg all 2.2.19-3ubuntu2.2 [259 kB]
+Get:74 http://archive.ubuntu.com/ubuntu focal-security/main amd64 gpgsm amd64 2.2.19-3ubuntu2.2 [217 kB]
+Get:75 http://archive.ubuntu.com/ubuntu focal/main amd64 libgck-1-0 amd64 3.36.0-2build1 [75.5 kB]
+Get:76 http://archive.ubuntu.com/ubuntu focal/main amd64 libgcr-base-3-1 amd64 3.36.0-2build1 [193 kB]
+Get:77 http://archive.ubuntu.com/ubuntu focal/main amd64 libcolord2 amd64 1.4.4-2 [133 kB]
+Get:78 http://archive.ubuntu.com/ubuntu focal/main amd64 libepoxy0 amd64 1.5.4-1 [191 kB]
+Get:79 http://archive.ubuntu.com/ubuntu focal/main amd64 libsoup-gnome2.4-1 amd64 2.70.0-1 [6136 B]
+Get:80 http://archive.ubuntu.com/ubuntu focal/main amd64 librest-0.7-0 amd64 0.8.1-1 [32.2 kB]
+Get:81 http://archive.ubuntu.com/ubuntu focal/main amd64 libwayland-cursor0 amd64 1.18.0-1 [10.3 kB]
+Get:82 http://archive.ubuntu.com/ubuntu focal/main amd64 libwayland-egl1 amd64 1.18.0-1 [5692 B]
+Get:83 http://archive.ubuntu.com/ubuntu focal/main amd64 libxkbcommon0 amd64 0.10.0-1 [98.4 kB]
+Get:84 http://archive.ubuntu.com/ubuntu focal-updates/main amd64 libgtk-3-common all 3.24.20-0ubuntu1.1 [234 kB]
+Get:85 http://archive.ubuntu.com/ubuntu focal-updates/main amd64 libgtk-3-0 amd64 3.24.20-0ubuntu1.1 [2620 kB]
+Get:86 http://archive.ubuntu.com/ubuntu focal/main amd64 libgcr-ui-3-1 amd64 3.36.0-2build1 [127 kB]
+Get:87 http://archive.ubuntu.com/ubuntu focal-security/main amd64 dbus-x11 amd64 1.12.16-2ubuntu2.2 [22.6 kB]
+Get:88 http://archive.ubuntu.com/ubuntu focal/main amd64 gcr amd64 3.36.0-2build1 [63.9 kB]
+Get:89 http://archive.ubuntu.com/ubuntu focal-updates/main amd64 libsecret-common all 0.20.4-0ubuntu1 [3940 B]
+Get:90 http://archive.ubuntu.com/ubuntu focal-updates/main amd64 libsecret-1-0 amd64 0.20.4-0ubuntu1 [110 kB]
+Get:91 http://archive.ubuntu.com/ubuntu focal/main amd64 pinentry-gnome3 amd64 1.1.0-3build1 [38.6 kB]
+Get:92 http://archive.ubuntu.com/ubuntu focal-security/main amd64 gpgv amd64 2.2.19-3ubuntu2.2 [200 kB]
+Get:93 http://archive.ubuntu.com/ubuntu focal-security/main amd64 libssl-dev amd64 1.1.1f-1ubuntu2.16 [1584 kB]
+Get:94 http://archive.ubuntu.com/ubuntu focal-security/main amd64 libssl1.1 amd64 1.1.1f-1ubuntu2.16 [1321 kB]
+Get:95 http://archive.ubuntu.com/ubuntu focal-security/main amd64 libmaxminddb0 amd64 1.4.2-0ubuntu1.20.04.1 [26.2 kB]
+Get:96 http://archive.ubuntu.com/ubuntu focal-security/main amd64 libuv1 amd64 1.34.2-1ubuntu1.3 [80.8 kB]
+Get:97 http://archive.ubuntu.com/ubuntu focal-security/main amd64 bind9-libs amd64 1:9.16.1-0ubuntu2.10 [1108 kB]
+Get:98 http://archive.ubuntu.com/ubuntu focal-security/main amd64 bind9-host amd64 1:9.16.1-0ubuntu2.10 [42.9 kB]
+Get:99 http://archive.ubuntu.com/ubuntu focal/main amd64 gettext-base amd64 0.19.8.1-10build1 [50.2 kB]
+Get:100 http://archive.ubuntu.com/ubuntu focal/main amd64 libip6tc2 amd64 1.8.4-3ubuntu2 [19.2 kB]
+Get:101 http://archive.ubuntu.com/ubuntu focal/main amd64 libnfnetlink0 amd64 1.0.1-3build1 [13.8 kB]
+Get:102 http://archive.ubuntu.com/ubuntu focal/main amd64 libnetfilter-conntrack3 amd64 1.0.7-2 [41.4 kB]
+Get:103 http://archive.ubuntu.com/ubuntu focal/main amd64 libnftnl11 amd64 1.1.5-1 [57.8 kB]
+Get:104 http://archive.ubuntu.com/ubuntu focal/main amd64 iptables amd64 1.8.4-3ubuntu2 [390 kB]
+Get:105 http://archive.ubuntu.com/ubuntu focal/main amd64 libpcap0.8 amd64 1.9.1-3 [128 kB]
+Get:106 http://archive.ubuntu.com/ubuntu focal/main amd64 pci.ids all 0.0~2020.03.20-1 [217 kB]
+Get:107 http://archive.ubuntu.com/ubuntu focal-updates/main amd64 libpci3 amd64 1:3.6.4-1ubuntu0.20.04.1 [26.9 kB]
+Get:108 http://archive.ubuntu.com/ubuntu focal/main amd64 libusb-1.0-0 amd64 2:1.0.23-2build1 [46.5 kB]
+Get:109 http://archive.ubuntu.com/ubuntu focal/main amd64 usb.ids all 2020.03.19-1 [176 kB]
+Get:110 http://archive.ubuntu.com/ubuntu focal/main amd64 acl amd64 2.2.53-6 [37.8 kB]
+Get:111 http://archive.ubuntu.com/ubuntu focal/main amd64 apg amd64 2.2.3.dfsg.1-5 [50.6 kB]
+Get:112 http://archive.ubuntu.com/ubuntu focal/main amd64 python3-httplib2 all 0.14.0-1ubuntu1 [28.9 kB]
+Get:113 http://archive.ubuntu.com/ubuntu focal-security/main amd64 python3-problem-report all 2.20.11-0ubuntu27.24 [10.2 kB]
+Get:114 http://archive.ubuntu.com/ubuntu focal/main amd64 python3-entrypoints all 0.3-2ubuntu1 [5740 B]
+Get:115 http://archive.ubuntu.com/ubuntu focal-security/main amd64 python3-cryptography amd64 2.8-3ubuntu0.1 [211 kB]
+Get:116 http://archive.ubuntu.com/ubuntu focal/main amd64 python3-secretstorage all 2.3.1-2ubuntu1 [12.4 kB]
+Get:117 http://archive.ubuntu.com/ubuntu focal/main amd64 python3-keyring all 18.0.1-2ubuntu1 [28.7 kB]
+Get:118 http://archive.ubuntu.com/ubuntu focal/main amd64 python3-lazr.uri all 1.0.3-4build1 [13.9 kB]
+Get:119 http://archive.ubuntu.com/ubuntu focal/main amd64 python3-simplejson amd64 3.16.0-2ubuntu2 [50.8 kB]
+Get:120 http://archive.ubuntu.com/ubuntu focal/main amd64 python3-wadllib all 1.3.3-3build1 [45.4 kB]
+Get:121 http://archive.ubuntu.com/ubuntu focal/main amd64 python3-blinker all 1.4+dfsg1-0.3ubuntu1 [13.2 kB]
+Get:122 http://archive.ubuntu.com/ubuntu focal-security/main amd64 python3-jwt all 1.7.1-2ubuntu2.1 [18.0 kB]
+Get:123 http://archive.ubuntu.com/ubuntu focal/main amd64 python3-oauthlib all 3.1.0-1ubuntu2 [84.8 kB]
+Get:124 http://archive.ubuntu.com/ubuntu focal/main amd64 python3-lazr.restfulclient all 0.14.2-2build1 [50.7 kB]
+Get:125 http://archive.ubuntu.com/ubuntu focal/main amd64 python3-launchpadlib all 1.10.13-1 [50.0 kB]
+Get:126 http://archive.ubuntu.com/ubuntu focal-security/main amd64 python3-apport all 2.20.11-0ubuntu27.24 [86.4 kB]
+Get:127 http://archive.ubuntu.com/ubuntu focal-security/main amd64 apport all 2.20.11-0ubuntu27.24 [129 kB]
+Get:128 http://archive.ubuntu.com/ubuntu focal/main amd64 apport-symptoms all 0.23 [13.5 kB]
+Get:129 http://archive.ubuntu.com/ubuntu focal-security/main amd64 libaspell15 amd64 0.60.8-1ubuntu0.1 [328 kB]
+Get:130 http://archive.ubuntu.com/ubuntu focal/main amd64 emacsen-common all 3.0.4 [14.9 kB]
+Get:131 http://archive.ubuntu.com/ubuntu focal/main amd64 dictionaries-common all 1.28.1 [178 kB]
+Get:132 http://archive.ubuntu.com/ubuntu focal-security/main amd64 aspell amd64 0.60.8-1ubuntu0.1 [88.4 kB]
+Get:133 http://archive.ubuntu.com/ubuntu focal/main amd64 aspell-en all 2018.04.16-0-1 [299 kB]
+Get:134 http://archive.ubuntu.com/ubuntu focal-security/main amd64 libavahi-core7 amd64 0.7-4ubuntu7.1 [82.0 kB]
+Get:135 http://archive.ubuntu.com/ubuntu focal/main amd64 libdaemon0 amd64 0.14-7 [13.9 kB]
+Get:136 http://archive.ubuntu.com/ubuntu focal-security/main amd64 avahi-daemon amd64 0.7-4ubuntu7.1 [61.0 kB]
+Get:137 http://archive.ubuntu.com/ubuntu focal-security/main amd64 avahi-utils amd64 0.7-4ubuntu7.1 [24.7 kB]
+Get:138 http://archive.ubuntu.com/ubuntu focal-security/main amd64 bluez amd64 5.53-0ubuntu3.6 [982 kB]
+Get:139 http://archive.ubuntu.com/ubuntu focal-updates/main amd64 bolt amd64 0.9.1-2~ubuntu20.04.1 [143 kB]
+Get:140 http://archive.ubuntu.com/ubuntu focal/main amd64 bubblewrap amd64 0.4.0-1ubuntu4 [35.4 kB]
+Get:141 http://archive.ubuntu.com/ubuntu focal/main amd64 ccache amd64 3.7.7-1 [121 kB]
+Get:142 http://archive.ubuntu.com/ubuntu focal-updates/main amd64 cheese-common all 3.34.0-1ubuntu1 [390 kB]
+Get:143 http://archive.ubuntu.com/ubuntu focal/main amd64 libgusb2 amd64 0.3.4-0.1 [22.1 kB]
+Get:144 http://archive.ubuntu.com/ubuntu focal/main amd64 libcolorhug2 amd64 1.4.4-2 [38.4 kB]
+Get:145 http://archive.ubuntu.com/ubuntu focal/main amd64 libgudev-1.0-0 amd64 1:233-1 [14.0 kB]
+Get:146 http://archive.ubuntu.com/ubuntu focal-security/main amd64 libexif12 amd64 0.6.21-6ubuntu0.4 [78.6 kB]
+Get:147 http://archive.ubuntu.com/ubuntu focal-security/main amd64 libgd3 amd64 2.2.5-5.2ubuntu2.1 [118 kB]
+Get:148 http://archive.ubuntu.com/ubuntu focal-updates/main amd64 libgphoto2-port12 amd64 2.5.25-0ubuntu0.1 [51.8 kB]
+Get:149 http://archive.ubuntu.com/ubuntu focal-updates/main amd64 libgphoto2-6 amd64 2.5.25-0ubuntu0.1 [653 kB]
+Get:150 http://archive.ubuntu.com/ubuntu focal/main amd64 libieee1284-3 amd64 0.2.11-13build1 [21.0 kB]
+Get:151 http://archive.ubuntu.com/ubuntu focal/main amd64 mysql-common all 5.8+1.0.5ubuntu2 [7496 B]
+Get:152 http://archive.ubuntu.com/ubuntu focal-security/main amd64 libmysqlclient21 amd64 8.0.30-0ubuntu0.20.04.2 [1323 kB]
+Get:153 http://archive.ubuntu.com/ubuntu focal-security/main amd64 libsnmp-base all 5.8+dfsg-2ubuntu2.4 [206 kB]
+Get:154 http://archive.ubuntu.com/ubuntu focal-security/main amd64 libsnmp35 amd64 5.8+dfsg-2ubuntu2.4 [979 kB]
+Get:155 http://archive.ubuntu.com/ubuntu focal-updates/main amd64 libsane amd64 1.0.29-0ubuntu5.2 [2405 kB]
+Get:156 http://archive.ubuntu.com/ubuntu focal/main amd64 colord-data all 1.4.4-2 [1093 kB]
+Get:157 http://archive.ubuntu.com/ubuntu focal/main amd64 colord amd64 1.4.4-2 [192 kB]
+Get:158 http://archive.ubuntu.com/ubuntu focal/main amd64 libcrack2 amd64 2.9.6-3.2 [28.3 kB]
+Get:159 http://archive.ubuntu.com/ubuntu focal/main amd64 cracklib-runtime amd64 2.9.6-3.2 [140 kB]
+Get:160 http://archive.ubuntu.com/ubuntu focal/main amd64 libnl-3-200 amd64 3.4.0-1 [53.9 kB]
+Get:161 http://archive.ubuntu.com/ubuntu focal/main amd64 libnl-genl-3-200 amd64 3.4.0-1 [11.1 kB]
+Get:162 http://archive.ubuntu.com/ubuntu focal-security/main amd64 wireless-regdb all 2022.06.06-0ubuntu1~20.04.1 [9872 B]
+Get:163 http://archive.ubuntu.com/ubuntu focal/main amd64 iw amd64 5.4-1 [94.0 kB]
+Get:164 http://archive.ubuntu.com/ubuntu focal/main amd64 crda amd64 3.18-1build1 [63.5 kB]
+Get:165 http://archive.ubuntu.com/ubuntu focal-security/main amd64 curl amd64 7.68.0-1ubuntu2.12 [161 kB]
+Get:166 http://archive.ubuntu.com/ubuntu focal-security/main amd64 libcurl4 amd64 7.68.0-1ubuntu2.12 [235 kB]
+Get:167 http://archive.ubuntu.com/ubuntu focal/main amd64 dconf-cli amd64 0.36.0-1 [24.0 kB]
+Get:168 http://archive.ubuntu.com/ubuntu focal-updates/main amd64 desktop-file-utils amd64 0.24-1ubuntu3 [50.6 kB]
+Get:169 http://archive.ubuntu.com/ubuntu focal/main amd64 dns-root-data all 2019052802 [5300 B]
+Get:170 http://archive.ubuntu.com/ubuntu focal/main amd64 libidn11 amd64 1.33-2.2ubuntu2 [46.2 kB]
+Get:171 http://archive.ubuntu.com/ubuntu focal-security/main amd64 dnsmasq-base amd64 2.80-1.1ubuntu1.5 [315 kB]
+Get:172 http://archive.ubuntu.com/ubuntu focal/main amd64 xml-core all 0.18+nmu1 [21.6 kB]
+Get:173 http://archive.ubuntu.com/ubuntu focal/main amd64 sgml-data all 2.0.11 [171 kB]
+Get:174 http://archive.ubuntu.com/ubuntu focal/main amd64 docbook-xml all 4.5-9 [71.2 kB]
+Get:175 http://archive.ubuntu.com/ubuntu focal/main amd64 hunspell-en-us all 1:2018.04.16-1 [170 kB]
+Get:176 http://archive.ubuntu.com/ubuntu focal/main amd64 libhunspell-1.7-0 amd64 1.7.0-2build2 [147 kB]
+Get:177 http://archive.ubuntu.com/ubuntu focal-updates/main amd64 libenchant-2-2 amd64 2.2.8-1ubuntu0.20.04.1 [45.6 kB]
+Get:178 http://archive.ubuntu.com/ubuntu focal-updates/main amd64 enchant-2 amd64 2.2.8-1ubuntu0.20.04.1 [12.1 kB]
+Get:179 http://archive.ubuntu.com/ubuntu focal-updates/main amd64 libcamel-1.2-62 amd64 3.36.5-0ubuntu1 [433 kB]
+Get:180 http://archive.ubuntu.com/ubuntu focal/main amd64 libcanberra-gtk3-0 amd64 0.30-7ubuntu1 [7928 B]
+Get:181 http://archive.ubuntu.com/ubuntu focal-updates/main amd64 libgoa-1.0-common all 3.36.1-0ubuntu1 [3752 B]
+Get:182 http://archive.ubuntu.com/ubuntu focal-updates/main amd64 libgoa-1.0-0b amd64 3.36.1-0ubuntu1 [63.4 kB]
+Get:183 http://archive.ubuntu.com/ubuntu focal/main amd64 libgdata-common all 0.17.12-1 [3392 B]
+Get:184 http://archive.ubuntu.com/ubuntu focal/main amd64 libgdata22 amd64 0.17.12-1 [268 kB]
+Get:185 http://archive.ubuntu.com/ubuntu focal-updates/main amd64 evolution-data-server-common all 3.36.5-0ubuntu1 [18.6 kB]
+Get:186 http://archive.ubuntu.com/ubuntu focal-updates/main amd64 libedataserver-1.2-24 amd64 3.36.5-0ubuntu1 [244 kB]
+Get:187 http://archive.ubuntu.com/ubuntu focal-updates/main amd64 libebackend-1.2-10 amd64 3.36.5-0ubuntu1 [103 kB]
+Get:188 http://archive.ubuntu.com/ubuntu focal/main amd64 libboost-thread1.71.0 amd64 1.71.0-6ubuntu6 [249 kB]
+Get:189 http://archive.ubuntu.com/ubuntu focal/main amd64 libprotobuf17 amd64 3.6.1.3-2ubuntu5 [798 kB]
+Get:190 http://archive.ubuntu.com/ubuntu focal/main amd64 libphonenumber7 amd64 7.1.0-5ubuntu11 [196 kB]
+Get:191 http://archive.ubuntu.com/ubuntu focal-updates/main amd64 libebook-contacts-1.2-3 amd64 3.36.5-0ubuntu1 [54.5 kB]
+Get:192 http://archive.ubuntu.com/ubuntu focal-updates/main amd64 libedata-book-1.2-26 amd64 3.36.5-0ubuntu1 [209 kB]
+Get:193 http://archive.ubuntu.com/ubuntu focal-updates/main amd64 libebook-1.2-20 amd64 3.36.5-0ubuntu1 [79.3 kB]
+Get:194 http://archive.ubuntu.com/ubuntu focal/main amd64 libical3 amd64 3.0.8-1 [276 kB]
+Get:195 http://archive.ubuntu.com/ubuntu focal-updates/main amd64 libecal-2.0-1 amd64 3.36.5-0ubuntu1 [145 kB]
+Get:196 http://archive.ubuntu.com/ubuntu focal-updates/main amd64 libedata-cal-2.0-1 amd64 3.36.5-0ubuntu1 [127 kB]
+Get:197 http://archive.ubuntu.com/ubuntu focal-security/main amd64 libjavascriptcoregtk-4.0-18 amd64 2.36.6-0ubuntu0.20.04.1 [6165 kB]
+Get:198 http://archive.ubuntu.com/ubuntu focal/main amd64 xdg-dbus-proxy amd64 0.1.2-1 [23.0 kB]
+Get:199 http://archive.ubuntu.com/ubuntu focal-security/main amd64 libgstreamer-gl1.0-0 amd64 1.16.3-0ubuntu1.1 [163 kB]
+Get:200 http://archive.ubuntu.com/ubuntu focal-security/main amd64 libharfbuzz-icu0 amd64 2.6.4-1ubuntu4.2 [5580 B]
+Get:201 http://archive.ubuntu.com/ubuntu focal/main amd64 libhyphen0 amd64 2.8.8-7 [27.0 kB]
+Get:202 http://archive.ubuntu.com/ubuntu focal/main amd64 libnotify4 amd64 0.7.9-1ubuntu2 [18.7 kB]
+Get:203 http://archive.ubuntu.com/ubuntu focal-security/main amd64 libopenjp2-7 amd64 2.3.1-1ubuntu4.20.04.1 [141 kB]
+Get:204 http://archive.ubuntu.com/ubuntu focal-security/main amd64 libwebpdemux2 amd64 0.6.1-2ubuntu0.20.04.1 [9576 B]
+Get:205 http://archive.ubuntu.com/ubuntu focal/main amd64 libwoff1 amd64 1.0.2-1build2 [42.0 kB]
+Get:206 http://archive.ubuntu.com/ubuntu focal-security/main amd64 libwebkit2gtk-4.0-37 amd64 2.36.6-0ubuntu0.20.04.1 [15.2 MB]
+Get:207 http://archive.ubuntu.com/ubuntu focal-updates/main amd64 libedataserverui-1.2-2 amd64 3.36.5-0ubuntu1 [54.7 kB]
+Get:208 http://archive.ubuntu.com/ubuntu focal/main amd64 libgeocode-glib0 amd64 3.26.2-2 [43.8 kB]
+Get:209 http://archive.ubuntu.com/ubuntu focal-updates/main amd64 libgweather-common all 3.36.1-1~ubuntu20.04.1 [169 kB]
+Get:210 http://archive.ubuntu.com/ubuntu focal-updates/main amd64 libgweather-3-16 amd64 3.36.1-1~ubuntu20.04.1 [68.3 kB]
+Get:211 http://archive.ubuntu.com/ubuntu focal-security/main amd64 p11-kit-modules amd64 0.23.20-1ubuntu0.1 [231 kB]
+Get:212 http://archive.ubuntu.com/ubuntu focal-security/main amd64 p11-kit amd64 0.23.20-1ubuntu0.1 [93.8 kB]
+Get:213 http://archive.ubuntu.com/ubuntu focal/main amd64 gnome-keyring amd64 3.36.0-1ubuntu1 [613 kB]
+Get:214 http://archive.ubuntu.com/ubuntu focal-updates/main amd64 evolution-data-server amd64 3.36.5-0ubuntu1 [679 kB]
+Get:215 http://archive.ubuntu.com/ubuntu focal-updates/main amd64 fonts-noto-mono all 20200323-1build1~ubuntu20.04.1 [80.6 kB]
+Get:216 http://archive.ubuntu.com/ubuntu focal/main amd64 fonts-urw-base35 all 20170801.1-3 [6333 kB]
+Get:217 http://archive.ubuntu.com/ubuntu focal-updates/main amd64 libgdm1 amd64 3.36.3-0ubuntu0.20.04.4 [63.6 kB]
+Get:218 http://archive.ubuntu.com/ubuntu focal-updates/main amd64 gir1.2-gdm-1.0 amd64 3.36.3-0ubuntu0.20.04.4 [9584 B]
+Get:219 http://archive.ubuntu.com/ubuntu focal/main amd64 libplist3 amd64 2.1.0-4build2 [31.6 kB]
+Get:220 http://archive.ubuntu.com/ubuntu focal/main amd64 libusbmuxd6 amd64 2.0.1-2 [19.1 kB]
+Get:221 http://archive.ubuntu.com/ubuntu focal/main amd64 libimobiledevice6 amd64 1.2.1~git20191129.9f79242-1build1 [65.2 kB]
+Get:222 http://archive.ubuntu.com/ubuntu focal/main amd64 libupower-glib3 amd64 0.99.11-1build2 [43.2 kB]
+Get:223 http://archive.ubuntu.com/ubuntu focal/main amd64 upower amd64 0.99.11-1build2 [104 kB]
+Get:224 http://archive.ubuntu.com/ubuntu focal-updates/main amd64 gnome-desktop3-data all 3.36.8-0ubuntu1 [21.7 kB]
+Get:225 http://archive.ubuntu.com/ubuntu focal-updates/main amd64 libgnome-desktop-3-19 amd64 3.36.8-0ubuntu1 [115 kB]
+Get:226 http://archive.ubuntu.com/ubuntu focal/main amd64 gnome-session-bin amd64 3.36.0-2ubuntu1 [117 kB]
+Get:227 http://archive.ubuntu.com/ubuntu focal/main amd64 gnome-session-common all 3.36.0-2ubuntu1 [5896 B]
+Get:228 http://archive.ubuntu.com/ubuntu focal-updates/main amd64 gnome-settings-daemon-common all 3.36.1-0ubuntu1.1 [20.2 kB]
+Get:229 http://archive.ubuntu.com/ubuntu focal/main amd64 x11-xserver-utils amd64 7.7+8 [162 kB]
+Get:230 http://archive.ubuntu.com/ubuntu focal-security/main amd64 libavahi-glib1 amd64 0.7-4ubuntu7.1 [7792 B]
+Get:231 http://archive.ubuntu.com/ubuntu focal-updates/main amd64 libmm-glib0 amd64 1.18.6-1~ubuntu20.04.1 [203 kB]
+Get:232 http://archive.ubuntu.com/ubuntu focal/main amd64 geoclue-2.0 amd64 2.5.6-0ubuntu1 [91.9 kB]
+Get:233 http://archive.ubuntu.com/ubuntu focal/main amd64 libgeoclue-2-0 amd64 2.5.6-0ubuntu1 [25.1 kB]
+Get:234 http://archive.ubuntu.com/ubuntu focal-updates/main amd64 libnm0 amd64 1.22.10-1ubuntu2.3 [370 kB]
+Get:235 http://archive.ubuntu.com/ubuntu focal-updates/main amd64 libpulse-mainloop-glib0 amd64 1:13.99.1-1ubuntu3.13 [11.7 kB]
+Get:236 http://archive.ubuntu.com/ubuntu focal-updates/main amd64 libwacom-common all 1.3-2ubuntu3 [45.3 kB]
+Get:237 http://archive.ubuntu.com/ubuntu focal-updates/main amd64 libwacom2 amd64 1.3-2ubuntu3 [20.0 kB]
+Get:238 http://archive.ubuntu.com/ubuntu focal-updates/main amd64 gnome-settings-daemon amd64 3.36.1-0ubuntu1.1 [308 kB]
+Get:239 http://archive.ubuntu.com/ubuntu focal-security/main amd64 gir1.2-accountsservice-1.0 amd64 0.6.55-0ubuntu12~20.04.5 [4984 B]
+Get:240 http://archive.ubuntu.com/ubuntu focal-updates/main amd64 gir1.2-freedesktop amd64 1.64.1-1~ubuntu20.04.1 [19.2 kB]
+Get:241 http://archive.ubuntu.com/ubuntu focal/main amd64 gir1.2-atspi-2.0 amd64 2.36.0-2 [15.1 kB]
+Get:242 http://archive.ubuntu.com/ubuntu focal/main amd64 gir1.2-gck-1 amd64 3.36.0-2build1 [10.3 kB]
+Get:243 http://archive.ubuntu.com/ubuntu focal/main amd64 gir1.2-atk-1.0 amd64 2.35.1-1ubuntu2 [18.2 kB]
+Get:244 http://archive.ubuntu.com/ubuntu focal-security/main amd64 gir1.2-gdkpixbuf-2.0 amd64 2.40.0+dfsg-3ubuntu0.3 [8268 B]
+Get:245 http://archive.ubuntu.com/ubuntu focal/main amd64 libpangoxft-1.0-0 amd64 1.44.7-2ubuntu4 [18.0 kB]
+Get:246 http://archive.ubuntu.com/ubuntu focal/main amd64 gir1.2-pango-1.0 amd64 1.44.7-2ubuntu4 [26.6 kB]
+Get:247 http://archive.ubuntu.com/ubuntu focal-updates/main amd64 gir1.2-gtk-3.0 amd64 3.24.20-0ubuntu1.1 [196 kB]
+Get:248 http://archive.ubuntu.com/ubuntu focal/main amd64 gir1.2-gcr-3 amd64 3.36.0-2build1 [15.4 kB]
+Get:249 http://archive.ubuntu.com/ubuntu focal/main amd64 gir1.2-gdesktopenums-3.0 amd64 3.36.0-1ubuntu1 [5484 B]
+Get:250 http://archive.ubuntu.com/ubuntu focal/main amd64 gir1.2-geoclue-2.0 amd64 2.5.6-0ubuntu1 [5892 B]
+Get:251 http://archive.ubuntu.com/ubuntu focal-updates/main amd64 libgnome-bluetooth13 amd64 3.34.3-0ubuntu1 [76.6 kB]
+Get:252 http://archive.ubuntu.com/ubuntu focal-updates/main amd64 gir1.2-gnomebluetooth-1.0 amd64 3.34.3-0ubuntu1 [5592 B]
+Get:253 http://archive.ubuntu.com/ubuntu focal-updates/main amd64 gir1.2-gnomedesktop-3.0 amd64 3.36.8-0ubuntu1 [8352 B]
+Get:254 http://archive.ubuntu.com/ubuntu focal-updates/main amd64 gir1.2-gweather-3.0 amd64 3.36.1-1~ubuntu20.04.1 [7356 B]
+Get:255 http://archive.ubuntu.com/ubuntu focal-updates/main amd64 libibus-1.0-5 amd64 1.5.22-2ubuntu2.1 [153 kB]
+Get:256 http://archive.ubuntu.com/ubuntu focal-updates/main amd64 gir1.2-ibus-1.0 amd64 1.5.22-2ubuntu2.1 [65.9 kB]
+Get:257 http://archive.ubuntu.com/ubuntu focal-updates/main amd64 mutter-common all 3.36.9-0ubuntu0.20.04.2 [12.9 kB]
+Get:258 http://archive.ubuntu.com/ubuntu focal/main amd64 libgraphene-1.0-0 amd64 1.10.0-1build2 [42.9 kB]
+Get:259 http://archive.ubuntu.com/ubuntu focal-security/main amd64 libevdev2 amd64 1.9.0+dfsg-1ubuntu0.2 [31.6 kB]
+Get:260 http://archive.ubuntu.com/ubuntu focal/main amd64 libmtdev1 amd64 1.1.5-1.1 [14.2 kB]
+Get:261 http://archive.ubuntu.com/ubuntu focal-security/main amd64 libinput-bin amd64 1.15.5-1ubuntu0.3 [19.3 kB]
+Get:262 http://archive.ubuntu.com/ubuntu focal-security/main amd64 libinput10 amd64 1.15.5-1ubuntu0.3 [112 kB]
+Get:263 http://archive.ubuntu.com/ubuntu focal/main amd64 libxcb-util1 amd64 0.4.0-0ubuntu3 [11.2 kB]
+Get:264 http://archive.ubuntu.com/ubuntu focal/main amd64 libstartup-notification0 amd64 0.12-6 [18.8 kB]
+Get:265 http://archive.ubuntu.com/ubuntu focal/main amd64 libxcb-randr0 amd64 1.14-2 [16.3 kB]
+Get:266 http://archive.ubuntu.com/ubuntu focal/main amd64 libxcb-res0 amd64 1.14-2 [6412 B]
+Get:267 http://archive.ubuntu.com/ubuntu focal/main amd64 libxcb-xkb1 amd64 1.14-2 [29.6 kB]
+Get:268 http://archive.ubuntu.com/ubuntu focal/main amd64 libxkbcommon-x11-0 amd64 0.10.0-1 [13.4 kB]
+Get:269 http://archive.ubuntu.com/ubuntu focal-updates/main amd64 libmutter-6-0 amd64 3.36.9-0ubuntu0.20.04.2 [1168 kB]
+Get:270 http://archive.ubuntu.com/ubuntu focal/main amd64 gir1.2-graphene-1.0 amd64 1.10.0-1build2 [10.4 kB]
+Get:271 http://archive.ubuntu.com/ubuntu focal/main amd64 gir1.2-json-1.0 amd64 1.4.4-2ubuntu2 [8048 B]
+Get:272 http://archive.ubuntu.com/ubuntu focal-updates/main amd64 gir1.2-mutter-6 amd64 3.36.9-0ubuntu0.20.04.2 [109 kB]
+Get:273 http://archive.ubuntu.com/ubuntu focal-updates/main amd64 gir1.2-nm-1.0 amd64 1.22.10-1ubuntu2.3 [64.5 kB]
+Get:274 http://archive.ubuntu.com/ubuntu focal-updates/main amd64 libnma0 amd64 1.8.24-1ubuntu3 [94.8 kB]
+Get:275 http://archive.ubuntu.com/ubuntu focal-updates/main amd64 gir1.2-nma-1.0 amd64 1.8.24-1ubuntu3 [5796 B]
+Get:276 http://archive.ubuntu.com/ubuntu focal-security/main amd64 gir1.2-polkit-1.0 amd64 0.105-26ubuntu1.3 [7344 B]
+Get:277 http://archive.ubuntu.com/ubuntu focal-updates/main amd64 gir1.2-rsvg-2.0 amd64 2.48.9-1ubuntu0.20.04.1 [8080 B]
+Get:278 http://archive.ubuntu.com/ubuntu focal/main amd64 gir1.2-soup-2.4 amd64 2.70.0-1 [27.5 kB]
+Get:279 http://archive.ubuntu.com/ubuntu focal/main amd64 gir1.2-upowerglib-1.0 amd64 0.99.11-1build2 [5280 B]
+Get:280 http://archive.ubuntu.com/ubuntu focal/main amd64 libmozjs-68-0 amd64 68.6.0-1ubuntu1 [3201 kB]
+Get:281 http://archive.ubuntu.com/ubuntu focal-updates/main amd64 libgjs0g amd64 1.64.5-0ubuntu0.20.04.01 [288 kB]
+Get:282 http://archive.ubuntu.com/ubuntu focal-updates/main amd64 gjs amd64 1.64.5-0ubuntu0.20.04.01 [43.4 kB]
+Get:283 http://archive.ubuntu.com/ubuntu focal-updates/main amd64 gnome-shell-common all 3.36.9-0ubuntu0.20.04.2 [153 kB]
+Get:284 http://archive.ubuntu.com/ubuntu focal/main amd64 ubuntu-wallpapers-focal all 20.04.2-0ubuntu1 [11.8 MB]
+Get:285 http://archive.ubuntu.com/ubuntu focal/main amd64 ubuntu-wallpapers all 20.04.2-0ubuntu1 [2227 kB]
+Get:286 http://archive.ubuntu.com/ubuntu focal/main amd64 zenity-common all 3.32.0-5 [311 kB]
+Get:287 http://archive.ubuntu.com/ubuntu focal/main amd64 zenity amd64 3.32.0-5 [57.9 kB]
+Get:288 http://archive.ubuntu.com/ubuntu focal-updates/main amd64 mutter amd64 3.36.9-0ubuntu0.20.04.2 [129 kB]
+Get:289 http://archive.ubuntu.com/ubuntu focal-security/main amd64 libarchive13 amd64 3.4.0-2ubuntu1.2 [327 kB]
+Get:290 http://archive.ubuntu.com/ubuntu focal-security/main amd64 libgnome-autoar-0-0 amd64 0.2.3-2ubuntu0.4 [26.6 kB]
+Get:291 http://archive.ubuntu.com/ubuntu focal-updates/main amd64 gnome-shell amd64 3.36.9-0ubuntu0.20.04.2 [783 kB]
+Get:292 http://archive.ubuntu.com/ubuntu focal/main amd64 x11-xkb-utils amd64 7.7+5 [158 kB]
+Get:293 http://archive.ubuntu.com/ubuntu focal-security/main amd64 xserver-common all 2:1.20.13-1ubuntu1~20.04.3 [26.7 kB]
+Get:294 http://archive.ubuntu.com/ubuntu focal/main amd64 libunwind8 amd64 1.2.1-9build1 [47.6 kB]
+Get:295 http://archive.ubuntu.com/ubuntu focal/main amd64 libxfont2 amd64 1:2.0.3-1 [91.7 kB]
+Get:296 http://archive.ubuntu.com/ubuntu focal-security/main amd64 xwayland amd64 2:1.20.13-1ubuntu1~20.04.3 [868 kB]
+Get:297 http://archive.ubuntu.com/ubuntu focal-updates/main amd64 yaru-theme-gnome-shell all 20.04.11.1 [106 kB]
+Get:298 http://archive.ubuntu.com/ubuntu focal/main amd64 session-migration amd64 0.3.5 [8988 B]
+Get:299 http://archive.ubuntu.com/ubuntu focal/main amd64 ubuntu-session all 3.36.0-2ubuntu1 [5232 B]
+Get:300 http://archive.ubuntu.com/ubuntu focal-updates/main amd64 gdm3 amd64 3.36.3-0ubuntu0.20.04.4 [261 kB]
+Get:301 http://archive.ubuntu.com/ubuntu focal-security/main amd64 libgs9-common all 9.50~dfsg-5ubuntu4.5 [681 kB]
+Get:302 http://archive.ubuntu.com/ubuntu focal/main amd64 libijs-0.35 amd64 0.35-15 [15.7 kB]
+Get:303 http://archive.ubuntu.com/ubuntu focal/main amd64 libjbig2dec0 amd64 0.18-1ubuntu1 [60.0 kB]
+Get:304 http://archive.ubuntu.com/ubuntu focal/main amd64 libpaper1 amd64 1.1.28 [13.0 kB]
+Get:305 http://archive.ubuntu.com/ubuntu focal-security/main amd64 libgs9 amd64 9.50~dfsg-5ubuntu4.5 [2172 kB]
+Get:306 http://archive.ubuntu.com/ubuntu focal-security/main amd64 ghostscript amd64 9.50~dfsg-5ubuntu4.5 [51.8 kB]
+Get:307 http://archive.ubuntu.com/ubuntu focal/main amd64 gir1.2-notify-0.7 amd64 0.7.9-1ubuntu2 [3596 B]
+Get:308 http://archive.ubuntu.com/ubuntu focal-updates/main amd64 gir1.2-secret-1 amd64 0.20.4-0ubuntu1 [8508 B]
+Get:309 http://archive.ubuntu.com/ubuntu focal-updates/main amd64 libvte-2.91-common amd64 0.60.3-0ubuntu1~20.04 [7500 B]
+Get:310 http://archive.ubuntu.com/ubuntu focal-updates/main amd64 libvte-2.91-0 amd64 0.60.3-0ubuntu1~20.04 [195 kB]
+Get:311 http://archive.ubuntu.com/ubuntu focal-updates/main amd64 gir1.2-vte-2.91 amd64 0.60.3-0ubuntu1~20.04 [9496 B]
+Get:312 http://archive.ubuntu.com/ubuntu focal/main amd64 libgnomekbd-common all 3.26.1-1 [6088 B]
+Get:313 http://archive.ubuntu.com/ubuntu focal/main amd64 libxklavier16 amd64 5.4-4 [43.7 kB]
+Get:314 http://archive.ubuntu.com/ubuntu focal/main amd64 libgnomekbd8 amd64 3.26.1-1 [43.9 kB]
+Get:315 http://archive.ubuntu.com/ubuntu focal/main amd64 gkbd-capplet amd64 3.26.1-1 [4904 B]
+Get:316 http://archive.ubuntu.com/ubuntu focal/main amd64 libcogl20 amd64 1.22.6-1 [293 kB]
+Get:317 http://archive.ubuntu.com/ubuntu focal/main amd64 libcogl-pango20 amd64 1.22.6-1 [15.7 kB]
+Get:318 http://archive.ubuntu.com/ubuntu focal/main amd64 libcogl-path20 amd64 1.22.6-1 [31.8 kB]
+Get:319 http://archive.ubuntu.com/ubuntu focal/main amd64 libclutter-1.0-0 amd64 1.26.4+dfsg-1 [534 kB]
+Get:320 http://archive.ubuntu.com/ubuntu focal/main amd64 libclutter-gst-3.0-0 amd64 3.0.27-1 [56.9 kB]
+Get:321 http://archive.ubuntu.com/ubuntu focal/main amd64 libcdparanoia0 amd64 3.10.2+debian-13 [46.7 kB]
+Get:322 http://archive.ubuntu.com/ubuntu focal/main amd64 libopus0 amd64 1.3.1-0ubuntu1 [191 kB]
+Get:323 http://archive.ubuntu.com/ubuntu focal/main amd64 libtheora0 amd64 1.1.1+dfsg.1-15ubuntu2 [162 kB]
+Get:324 http://archive.ubuntu.com/ubuntu focal/main amd64 libvisual-0.4-0 amd64 0.4.0-17 [99.8 kB]
+Get:325 http://archive.ubuntu.com/ubuntu focal-security/main amd64 gstreamer1.0-plugins-base amd64 1.16.3-0ubuntu1.1 [620 kB]
+Get:326 http://archive.ubuntu.com/ubuntu focal/main amd64 libaa1 amd64 1.4p5-46 [47.3 kB]
+Get:327 http://archive.ubuntu.com/ubuntu focal/main amd64 libraw1394-11 amd64 2.1.2-1 [30.7 kB]
+Get:328 http://archive.ubuntu.com/ubuntu focal/main amd64 libavc1394-0 amd64 0.5.4-5 [16.2 kB]
+Get:329 http://archive.ubuntu.com/ubuntu focal-security/main amd64 libcaca0 amd64 0.99.beta19-2.1ubuntu1.20.04.2 [203 kB]
+Get:330 http://archive.ubuntu.com/ubuntu focal/main amd64 libdv4 amd64 1.0.0-12 [58.0 kB]
+Get:331 http://archive.ubuntu.com/ubuntu focal-security/main amd64 libgstreamer-plugins-good1.0-0 amd64 1.16.3-0ubuntu1.1 [68.7 kB]
+Get:332 http://archive.ubuntu.com/ubuntu focal/main amd64 libiec61883-0 amd64 1.2.0-3 [24.3 kB]
+Get:333 http://archive.ubuntu.com/ubuntu focal/main amd64 libmp3lame0 amd64 3.100-3 [133 kB]
+Get:334 http://archive.ubuntu.com/ubuntu focal/main amd64 libmpg123-0 amd64 1.25.13-1 [124 kB]
+Get:335 http://archive.ubuntu.com/ubuntu focal-security/main amd64 libspeex1 amd64 1.2~rc1.2-1.1ubuntu1.20.04.1 [53.2 kB]
+Get:336 http://archive.ubuntu.com/ubuntu focal/main amd64 libshout3 amd64 2.4.3-1 [50.6 kB]
+Get:337 http://archive.ubuntu.com/ubuntu focal/main amd64 libtag1v5-vanilla amd64 1.11.1+dfsg.1-0.3ubuntu2 [280 kB]
+Get:338 http://archive.ubuntu.com/ubuntu focal/main amd64 libtag1v5 amd64 1.11.1+dfsg.1-0.3ubuntu2 [11.0 kB]
+Get:339 http://archive.ubuntu.com/ubuntu focal/main amd64 libtwolame0 amd64 0.4.0-2 [47.6 kB]
+Get:340 http://archive.ubuntu.com/ubuntu focal/main amd64 libv4lconvert0 amd64 1.18.0-2build1 [76.5 kB]
+Get:341 http://archive.ubuntu.com/ubuntu focal/main amd64 libv4l-0 amd64 1.18.0-2build1 [41.9 kB]
+Get:342 http://archive.ubuntu.com/ubuntu focal/main amd64 libvpx6 amd64 1.8.2-1build1 [820 kB]
+Get:343 http://archive.ubuntu.com/ubuntu focal-security/main amd64 libwavpack1 amd64 5.2.0-1ubuntu0.1 [77.3 kB]
+Get:344 http://archive.ubuntu.com/ubuntu focal-security/main amd64 gstreamer1.0-plugins-good amd64 1.16.3-0ubuntu1.1 [1745 kB]
+Get:345 http://archive.ubuntu.com/ubuntu focal-security/main amd64 gstreamer1.0-x amd64 1.16.3-0ubuntu1.1 [74.7 kB]
+Get:346 http://archive.ubuntu.com/ubuntu focal-updates/main amd64 libcheese8 amd64 3.34.0-1ubuntu1 [33.3 kB]
+Get:347 http://archive.ubuntu.com/ubuntu focal/main amd64 libclutter-gtk-1.0-0 amd64 1.8.4-4 [26.1 kB]
+Get:348 http://archive.ubuntu.com/ubuntu focal/main amd64 gstreamer1.0-clutter-3.0 amd64 3.0.27-1 [6504 B]
+Get:349 http://archive.ubuntu.com/ubuntu focal-updates/main amd64 libcheese-gtk25 amd64 3.34.0-1ubuntu1 [27.0 kB]
+Get:350 http://archive.ubuntu.com/ubuntu focal/main amd64 libcolord-gtk1 amd64 0.2.0-0ubuntu1 [17.7 kB]
+Get:351 http://archive.ubuntu.com/ubuntu focal-updates/main amd64 libgoa-backend-1.0-1 amd64 3.36.1-0ubuntu1 [114 kB]
+Get:352 http://archive.ubuntu.com/ubuntu focal/main amd64 libgsound0 amd64 1.0.2-4 [8312 B]
+Get:353 http://archive.ubuntu.com/ubuntu focal/main amd64 libgtop2-common all 2.40.0-2 [3544 B]
+Get:354 http://archive.ubuntu.com/ubuntu focal/main amd64 libgtop-2.0-11 amd64 2.40.0-2 [36.1 kB]
+Get:355 http://archive.ubuntu.com/ubuntu focal/main amd64 libpwquality-common all 1.4.2-1build1 [7744 B]
+Get:356 http://archive.ubuntu.com/ubuntu focal/main amd64 libpwquality1 amd64 1.4.2-1build1 [12.7 kB]
+Get:357 http://archive.ubuntu.com/ubuntu focal-updates/main amd64 libudisks2-0 amd64 2.8.4-1ubuntu2 [99.4 kB]
+Get:358 http://archive.ubuntu.com/ubuntu focal/main amd64 libwhoopsie-preferences0 amd64 22 [14.0 kB]
+Get:359 http://archive.ubuntu.com/ubuntu focal-updates/main amd64 gnome-control-center-data all 1:3.36.5-0ubuntu4 [328 kB]
+Get:360 http://archive.ubuntu.com/ubuntu focal/main amd64 python3-defer all 1.0.6-2.1 [10.7 kB]
+Get:361 http://archive.ubuntu.com/ubuntu focal-security/main amd64 python3-aptdaemon all 1.1.1+bzr982-0ubuntu32.3 [76.4 kB]
+Get:362 http://archive.ubuntu.com/ubuntu focal-security/main amd64 aptdaemon all 1.1.1+bzr982-0ubuntu32.3 [12.8 kB]
+Get:363 http://archive.ubuntu.com/ubuntu focal-security/main amd64 aptdaemon-data all 1.1.1+bzr982-0ubuntu32.3 [160 kB]
+Get:364 http://archive.ubuntu.com/ubuntu focal-security/main amd64 python3-aptdaemon.gtk3widgets all 1.1.1+bzr982-0ubuntu32.3 [13.1 kB]
+Get:365 http://archive.ubuntu.com/ubuntu focal-updates/main amd64 im-config all 0.44-1ubuntu1.3 [25.1 kB]
+Get:366 http://archive.ubuntu.com/ubuntu focal-updates/main amd64 language-selector-gnome all 0.204.2 [19.0 kB]
+Get:367 http://archive.ubuntu.com/ubuntu focal/main amd64 python3-cups amd64 1.9.73-3build1 [59.5 kB]
+Get:368 http://archive.ubuntu.com/ubuntu focal-updates/main amd64 python3-cupshelpers all 1.5.12-0ubuntu1.1 [32.5 kB]
+Get:369 http://archive.ubuntu.com/ubuntu focal/main amd64 python3-cairo amd64 1.16.2-2ubuntu2 [56.8 kB]
+Get:370 http://archive.ubuntu.com/ubuntu focal-updates/main amd64 system-config-printer-common all 1.5.12-0ubuntu1.1 [108 kB]
+Get:371 http://archive.ubuntu.com/ubuntu focal-updates/main amd64 system-config-printer all 1.5.12-0ubuntu1.1 [74.4 kB]
+Get:372 http://archive.ubuntu.com/ubuntu focal-security/main amd64 libwhoopsie0 amd64 0.2.69ubuntu0.3 [9924 B]
+Get:373 http://archive.ubuntu.com/ubuntu focal/main amd64 whoopsie-preferences amd64 22 [8864 B]
+Get:374 http://archive.ubuntu.com/ubuntu focal-updates/main amd64 gnome-control-center amd64 1:3.36.5-0ubuntu4 [1717 kB]
+Get:375 http://archive.ubuntu.com/ubuntu focal-updates/main amd64 gnome-control-center-faces all 1:3.36.5-0ubuntu4 [1216 kB]
+Get:376 http://archive.ubuntu.com/ubuntu focal/main amd64 gnome-keyring-pkcs11 amd64 3.36.0-1ubuntu1 [28.0 kB]
+Get:377 http://archive.ubuntu.com/ubuntu focal/main amd64 gnome-menus amd64 3.36.0-1ubuntu1 [10.1 kB]
+Get:378 http://archive.ubuntu.com/ubuntu focal/main amd64 python3-protobuf amd64 3.6.1.3-2ubuntu5 [298 kB]
+Get:379 http://archive.ubuntu.com/ubuntu focal/main amd64 python3-tz all 2019.3-1 [24.4 kB]
+Get:380 http://archive.ubuntu.com/ubuntu focal/main amd64 python3-rfc3339 all 1.1-2 [6808 B]
+Get:381 http://archive.ubuntu.com/ubuntu focal/main amd64 python3-macaroonbakery all 1.3.1-1 [63.7 kB]
+Get:382 http://archive.ubuntu.com/ubuntu focal-updates/main amd64 gnome-online-accounts amd64 3.36.1-0ubuntu1 [83.5 kB]
+Get:383 http://archive.ubuntu.com/ubuntu focal/main amd64 gnome-startup-applications amd64 3.36.0-2ubuntu1 [31.0 kB]
+Get:384 http://archive.ubuntu.com/ubuntu focal-updates/main amd64 libyelp0 amd64 3.36.2-0ubuntu1 [94.3 kB]
+Get:385 http://archive.ubuntu.com/ubuntu focal/main amd64 yelp-xsl all 3.36.0-1 [180 kB]
+Get:386 http://archive.ubuntu.com/ubuntu focal-updates/main amd64 yelp amd64 3.36.2-0ubuntu1 [527 kB]
+Get:387 http://archive.ubuntu.com/ubuntu focal-updates/main amd64 ubuntu-docs all 20.04.3 [249 kB]
+Get:388 http://archive.ubuntu.com/ubuntu focal-updates/main amd64 gnome-user-docs all 3.36.2+git20200704-0ubuntu0.1 [1740 kB]
+Get:389 http://archive.ubuntu.com/ubuntu focal/universe amd64 gperf amd64 3.1-1build1 [103 kB]
+Get:390 http://archive.ubuntu.com/ubuntu focal/universe amd64 gsfonts all 1:8.11+urwcyr1.0.7~pre44-4.4 [3120 kB]
+Get:391 http://archive.ubuntu.com/ubuntu focal-security/main amd64 gstreamer1.0-gl amd64 1.16.3-0ubuntu1.1 [109 kB]
+Get:392 http://archive.ubuntu.com/ubuntu focal-security/main amd64 gstreamer1.0-pulseaudio amd64 1.16.3-0ubuntu1.1 [93.4 kB]
+Get:393 http://archive.ubuntu.com/ubuntu focal-updates/main amd64 ibus-data all 1.5.22-2ubuntu2.1 [4533 kB]
+Get:394 http://archive.ubuntu.com/ubuntu focal-updates/main amd64 python3-ibus-1.0 all 1.5.22-2ubuntu2.1 [7120 B]
+Get:395 http://archive.ubuntu.com/ubuntu focal-updates/main amd64 ibus amd64 1.5.22-2ubuntu2.1 [288 kB]
+Get:396 http://archive.ubuntu.com/ubuntu focal-updates/main amd64 ibus-gtk amd64 1.5.22-2ubuntu2.1 [15.2 kB]
+Get:397 http://archive.ubuntu.com/ubuntu focal-updates/main amd64 ibus-gtk3 amd64 1.5.22-2ubuntu2.1 [15.8 kB]
+Get:398 http://archive.ubuntu.com/ubuntu focal-updates/main amd64 iio-sensor-proxy amd64 2.8-1ubuntu2 [35.8 kB]
+Get:399 http://archive.ubuntu.com/ubuntu focal-security/universe amd64 imagemagick-6.q16 amd64 8:6.9.10.23+dfsg-2.1ubuntu11.4 [427 kB]
+Get:400 http://archive.ubuntu.com/ubuntu focal-security/universe amd64 imagemagick amd64 8:6.9.10.23+dfsg-2.1ubuntu11.4 [14.4 kB]
+Get:401 http://archive.ubuntu.com/ubuntu focal/main amd64 lib32tinfo6 amd64 6.2-0ubuntu2 [86.6 kB]
+Get:402 http://archive.ubuntu.com/ubuntu focal/main amd64 lib32ncurses6 amd64 6.2-0ubuntu2 [108 kB]
+Get:403 http://archive.ubuntu.com/ubuntu focal/main amd64 lib32ncursesw6 amd64 6.2-0ubuntu2 [142 kB]
+Get:404 http://archive.ubuntu.com/ubuntu focal/main amd64 lib32ncurses-dev amd64 6.2-0ubuntu2 [305 kB]
+Get:405 http://archive.ubuntu.com/ubuntu focal/main amd64 lib32readline8 amd64 8.0-4 [133 kB]
+Get:406 http://archive.ubuntu.com/ubuntu focal/main amd64 lib32readline-dev amd64 8.0-4 [139 kB]
+Get:407 http://archive.ubuntu.com/ubuntu focal-security/main amd64 lib32z1 amd64 1:1.2.11.dfsg-2ubuntu1.3 [56.7 kB]
+Get:408 http://archive.ubuntu.com/ubuntu focal-security/main amd64 zlib1g-dev amd64 1:1.2.11.dfsg-2ubuntu1.3 [155 kB]
+Get:409 http://archive.ubuntu.com/ubuntu focal-security/main amd64 lib32z1-dev amd64 1:1.2.11.dfsg-2ubuntu1.3 [57.9 kB]
+Get:410 http://archive.ubuntu.com/ubuntu focal/main amd64 libdbusmenu-glib4 amd64 16.04.1+18.10.20180917-0ubuntu6 [41.2 kB]
+Get:411 http://archive.ubuntu.com/ubuntu focal/main amd64 libdbusmenu-gtk3-4 amd64 16.04.1+18.10.20180917-0ubuntu6 [27.7 kB]
+Get:412 http://archive.ubuntu.com/ubuntu focal/main amd64 libappindicator3-1 amd64 12.10.1+20.04.20200408.1-0ubuntu1 [22.9 kB]
+Get:413 http://archive.ubuntu.com/ubuntu focal-updates/main amd64 libasound2-dev amd64 1.2.2-2.1ubuntu2.5 [104 kB]
+Get:414 http://archive.ubuntu.com/ubuntu focal-security/main amd64 libbluetooth3 amd64 5.53-0ubuntu3.6 [60.6 kB]
+Get:415 http://archive.ubuntu.com/ubuntu focal/main amd64 libpng-dev amd64 1.6.37-2 [175 kB]
+Get:416 http://archive.ubuntu.com/ubuntu focal/main amd64 libslang2-dev amd64 2.3.2-4 [396 kB]
+Get:417 http://archive.ubuntu.com/ubuntu focal-security/main amd64 libcaca-dev amd64 0.99.beta19-2.1ubuntu1.20.04.2 [758 kB]
+Get:418 http://archive.ubuntu.com/ubuntu focal/main amd64 libcanberra-pulse amd64 0.30-7ubuntu1 [11.9 kB]
+Get:419 http://archive.ubuntu.com/ubuntu focal/main amd64 libclutter-1.0-common all 1.26.4+dfsg-1 [4236 B]
+Get:420 http://archive.ubuntu.com/ubuntu focal/main amd64 libcogl-common all 1.22.6-1 [177 kB]
+Get:421 http://archive.ubuntu.com/ubuntu focal-security/main amd64 libdjvulibre-text all 3.5.27.1-14ubuntu0.1 [49.2 kB]
+Get:422 http://archive.ubuntu.com/ubuntu focal-security/main amd64 libdjvulibre21 amd64 3.5.27.1-14ubuntu0.1 [578 kB]
+Get:423 http://archive.ubuntu.com/ubuntu focal-security/main amd64 libdrm-amdgpu1 amd64 2.4.107-8ubuntu1~20.04.2 [18.6 kB]
+Get:424 http://archive.ubuntu.com/ubuntu focal-security/main i386 libdrm-amdgpu1 i386 2.4.107-8ubuntu1~20.04.2 [21.6 kB]
+Get:425 http://archive.ubuntu.com/ubuntu focal-updates/main amd64 libfprint-2-2 amd64 1:1.90.2+tod1-0ubuntu1~20.04.8 [211 kB]
+Get:426 http://archive.ubuntu.com/ubuntu focal/main amd64 libgee-0.8-2 amd64 0.20.3-1 [216 kB]
+Get:427 http://archive.ubuntu.com/ubuntu focal/main amd64 libffi-dev amd64 3.3-4 [57.0 kB]
+Get:428 http://archive.ubuntu.com/ubuntu focal-security/main amd64 python3-lib2to3 all 3.8.10-0ubuntu1~20.04 [76.3 kB]
+Get:429 http://archive.ubuntu.com/ubuntu focal-security/main amd64 python3-distutils all 3.8.10-0ubuntu1~20.04 [141 kB]
+Get:430 http://archive.ubuntu.com/ubuntu focal-updates/main amd64 libglib2.0-dev-bin amd64 2.64.6-1~ubuntu20.04.4 [109 kB]
+Get:431 http://archive.ubuntu.com/ubuntu focal-security/main amd64 uuid-dev amd64 2.34-0.1ubuntu9.3 [33.6 kB]
+Get:432 http://archive.ubuntu.com/ubuntu focal-security/main amd64 libblkid-dev amd64 2.34-0.1ubuntu9.3 [167 kB]
+Get:433 http://archive.ubuntu.com/ubuntu focal-security/main amd64 libmount-dev amd64 2.34-0.1ubuntu9.3 [176 kB]
+Get:434 http://archive.ubuntu.com/ubuntu focal-security/main amd64 libpcre16-3 amd64 2:8.39-12ubuntu0.1 [150 kB]
+Get:435 http://archive.ubuntu.com/ubuntu focal-security/main amd64 libpcre32-3 amd64 2:8.39-12ubuntu0.1 [140 kB]
+Get:436 http://archive.ubuntu.com/ubuntu focal-security/main amd64 libpcrecpp0v5 amd64 2:8.39-12ubuntu0.1 [15.5 kB]
+Get:437 http://archive.ubuntu.com/ubuntu focal-security/main amd64 libpcre3-dev amd64 2:8.39-12ubuntu0.1 [540 kB]
+Get:438 http://archive.ubuntu.com/ubuntu focal-security/main amd64 libsepol1-dev amd64 3.0-1ubuntu0.1 [325 kB]
+Get:439 http://archive.ubuntu.com/ubuntu focal/main amd64 libpcre2-16-0 amd64 10.34-7 [181 kB]
+Get:440 http://archive.ubuntu.com/ubuntu focal/main amd64 libpcre2-32-0 amd64 10.34-7 [169 kB]
+Get:441 http://archive.ubuntu.com/ubuntu focal/main amd64 libpcre2-posix2 amd64 10.34-7 [5992 B]
+Get:442 http://archive.ubuntu.com/ubuntu focal/main amd64 libpcre2-dev amd64 10.34-7 [670 kB]
+Get:443 http://archive.ubuntu.com/ubuntu focal/main amd64 libselinux1-dev amd64 3.0-1build2 [151 kB]
+Get:444 http://archive.ubuntu.com/ubuntu focal/main amd64 pkg-config amd64 0.29.1-0ubuntu4 [45.5 kB]
+Get:445 http://archive.ubuntu.com/ubuntu focal-updates/main amd64 libglib2.0-dev amd64 2.64.6-1~ubuntu20.04.4 [1506 kB]
+Get:446 http://archive.ubuntu.com/ubuntu focal/main amd64 libglu1-mesa amd64 9.0.1-1build1 [168 kB]
+Get:447 http://archive.ubuntu.com/ubuntu focal/main amd64 libglu1-mesa-dev amd64 9.0.1-1build1 [207 kB]
+Get:448 http://archive.ubuntu.com/ubuntu focal-updates/main amd64 libgphoto2-l10n all 2.5.25-0ubuntu0.1 [12.2 kB]
+Get:449 http://archive.ubuntu.com/ubuntu focal-security/main amd64 libgssdp-1.2-0 amd64 1.2.3-0ubuntu0.20.04.1 [37.1 kB]
+Get:450 http://archive.ubuntu.com/ubuntu focal-updates/main amd64 libgtk-3-bin amd64 3.24.20-0ubuntu1.1 [61.9 kB]
+Get:451 http://archive.ubuntu.com/ubuntu focal-updates/main amd64 libgupnp-1.2-0 amd64 1.2.4-0ubuntu1 [81.3 kB]
+Get:452 http://archive.ubuntu.com/ubuntu focal/main amd64 libgupnp-av-1.0-2 amd64 0.12.11-2 [67.5 kB]
+Get:453 http://archive.ubuntu.com/ubuntu focal/main amd64 libgupnp-dlna-2.0-3 amd64 0.10.5-4 [50.0 kB]
+Get:454 http://archive.ubuntu.com/ubuntu focal/universe amd64 libilmbase24 amd64 2.3.0-6build1 [75.1 kB]
+Get:455 http://archive.ubuntu.com/ubuntu focal-security/main amd64 libllvm12 amd64 1:12.0.0-3ubuntu1~20.04.5 [18.8 MB]
+Get:456 http://archive.ubuntu.com/ubuntu focal-security/main i386 libllvm12 i386 1:12.0.0-3ubuntu1~20.04.5 [19.2 MB]
+Get:457 http://archive.ubuntu.com/ubuntu focal/main amd64 liblzo2-2 amd64 2.10-2 [50.8 kB]
+Get:458 http://archive.ubuntu.com/ubuntu focal-security/universe amd64 libopenexr24 amd64 2.3.0-6ubuntu0.5 [592 kB]
+Get:459 http://archive.ubuntu.com/ubuntu focal/main amd64 libwmf0.2-7 amd64 0.2.8.4-17ubuntu1 [149 kB]
+Get:460 http://archive.ubuntu.com/ubuntu focal-security/universe amd64 libmagickcore-6.q16-6-extra amd64 8:6.9.10.23+dfsg-2.1ubuntu11.4 [64.6 kB]
+Get:461 http://archive.ubuntu.com/ubuntu focal-updates/main amd64 libmbim-glib4 amd64 1.26.2-1~ubuntu20.04.1 [123 kB]
+Get:462 http://archive.ubuntu.com/ubuntu focal-updates/main amd64 libmbim-proxy amd64 1.26.2-1~ubuntu20.04.1 [6012 B]
+Get:463 http://archive.ubuntu.com/ubuntu focal/main amd64 libmediaart-2.0-0 amd64 1.9.4-2 [22.0 kB]
+Get:464 http://archive.ubuntu.com/ubuntu focal/main amd64 libndp0 amd64 1.7-0ubuntu1 [10.9 kB]
+Get:465 http://archive.ubuntu.com/ubuntu focal/universe amd64 libnetpbm10 amd64 2:10.0-15.3build1 [58.0 kB]
+Get:466 http://archive.ubuntu.com/ubuntu focal/main amd64 libnl-route-3-200 amd64 3.4.0-1 [149 kB]
+Get:467 http://archive.ubuntu.com/ubuntu focal/main amd64 libnss-mdns amd64 0.14.1-1ubuntu1 [22.9 kB]
+Get:468 http://archive.ubuntu.com/ubuntu focal/main amd64 libpam-gnome-keyring amd64 3.36.0-1ubuntu1 [23.3 kB]
+Get:469 http://archive.ubuntu.com/ubuntu focal/main amd64 libpaper-utils amd64 1.1.28 [8400 B]
+Get:470 http://archive.ubuntu.com/ubuntu focal/main amd64 libpng-tools amd64 1.6.37-2 [26.1 kB]
+Get:471 http://archive.ubuntu.com/ubuntu focal-updates/main amd64 libpulse-dev amd64 1:13.99.1-1ubuntu3.13 [72.5 kB]
+Get:472 http://archive.ubuntu.com/ubuntu focal-updates/main amd64 libqmi-glib5 amd64 1.30.4-1~ubuntu20.04.1 [642 kB]
+Get:473 http://archive.ubuntu.com/ubuntu focal-updates/main amd64 libqmi-proxy amd64 1.30.4-1~ubuntu20.04.1 [5908 B]
+Get:474 http://archive.ubuntu.com/ubuntu focal/universe amd64 libsdl1.2debian amd64 1.2.15+dfsg2-5 [175 kB]
+Get:475 http://archive.ubuntu.com/ubuntu focal/main amd64 x11proto-xext-dev all 2019.2-1ubuntu1 [2616 B]
+Get:476 http://archive.ubuntu.com/ubuntu focal/main amd64 libxext-dev amd64 2:1.3.4-0ubuntu1 [82.2 kB]
+Get:477 http://archive.ubuntu.com/ubuntu focal/universe amd64 libsdl1.2-dev amd64 1.2.15+dfsg2-5 [707 kB]
+Get:478 http://archive.ubuntu.com/ubuntu focal/main amd64 libteamdctl0 amd64 1.30-1 [11.8 kB]
+Get:479 http://archive.ubuntu.com/ubuntu focal-updates/main amd64 libwacom-bin amd64 1.3-2ubuntu3 [5484 B]
+Get:480 http://archive.ubuntu.com/ubuntu focal/universe amd64 libwxbase3.0-0v5 amd64 3.0.4+dfsg-15build1 [982 kB]
+Get:481 http://archive.ubuntu.com/ubuntu focal/universe amd64 wx3.0-headers all 3.0.4+dfsg-15build1 [1019 kB]
+Get:482 http://archive.ubuntu.com/ubuntu focal/universe amd64 libwxbase3.0-dev amd64 3.0.4+dfsg-15build1 [29.5 kB]
+Get:483 http://archive.ubuntu.com/ubuntu focal/universe amd64 libwxgtk3.0-gtk3-0v5 amd64 3.0.4+dfsg-15build1 [4359 kB]
+Get:484 http://archive.ubuntu.com/ubuntu focal/universe amd64 wx-common amd64 3.0.4+dfsg-15build1 [71.1 kB]
+Get:485 http://archive.ubuntu.com/ubuntu focal/universe amd64 libwxgtk3.0-gtk3-dev amd64 3.0.4+dfsg-15build1 [29.7 kB]
+Get:486 http://archive.ubuntu.com/ubuntu focal-security/main amd64 libxatracker2 amd64 21.2.6-0ubuntu0.1~20.04.2 [1803 kB]
+Get:487 http://archive.ubuntu.com/ubuntu focal/main amd64 libxcb-xv0 amd64 1.14-2 [9192 B]
+Get:488 http://archive.ubuntu.com/ubuntu focal-security/main amd64 libxml2-utils amd64 2.9.10+dfsg-5ubuntu0.20.04.4 [37.1 kB]
+Get:489 http://archive.ubuntu.com/ubuntu focal/main amd64 libxss1 amd64 1:1.2.3-1 [8140 B]
+Get:490 http://archive.ubuntu.com/ubuntu focal/main amd64 libxvmc1 amd64 2:1.0.12-2 [14.2 kB]
+Get:491 http://archive.ubuntu.com/ubuntu focal-security/main amd64 lz4 amd64 1.9.2-2ubuntu0.20.04.1 [82.7 kB]
+Get:492 http://archive.ubuntu.com/ubuntu focal/universe amd64 lzop amd64 1.04-1 [82.8 kB]
+Get:493 http://archive.ubuntu.com/ubuntu focal-security/main i386 mesa-vulkan-drivers i386 21.2.6-0ubuntu0.1~20.04.2 [5911 kB]
+Get:494 http://archive.ubuntu.com/ubuntu focal-security/main amd64 mesa-vulkan-drivers amd64 21.2.6-0ubuntu0.1~20.04.2 [5788 kB]
+Get:495 http://archive.ubuntu.com/ubuntu focal-updates/main amd64 modemmanager amd64 1.18.6-1~ubuntu20.04.1 [895 kB]
+Get:496 http://archive.ubuntu.com/ubuntu focal/main amd64 mousetweaks amd64 3.32.0-2 [37.9 kB]
+Get:497 http://archive.ubuntu.com/ubuntu focal/universe amd64 netpbm amd64 2:10.0-15.3build1 [1017 kB]
+Get:498 http://archive.ubuntu.com/ubuntu focal-security/main amd64 wpasupplicant amd64 2:2.9-1ubuntu4.3 [1183 kB]
+Get:499 http://archive.ubuntu.com/ubuntu focal-updates/main amd64 network-manager amd64 1.22.10-1ubuntu2.3 [1855 kB]
+Get:500 http://archive.ubuntu.com/ubuntu focal-updates/main amd64 network-manager-gnome amd64 1.8.24-1ubuntu3 [324 kB]
+Get:501 http://archive.ubuntu.com/ubuntu focal-security/main amd64 ppp amd64 2.4.7-2+4.1ubuntu5.1 [328 kB]
+Get:502 http://archive.ubuntu.com/ubuntu focal/main amd64 pptp-linux amd64 1.10.0-1build1 [42.0 kB]
+Get:503 http://archive.ubuntu.com/ubuntu focal/main amd64 network-manager-pptp amd64 1.2.8-2 [30.1 kB]
+Get:504 http://archive.ubuntu.com/ubuntu focal-security/universe amd64 openjdk-8-jdk amd64 8u342-b07-0ubuntu1~20.04 [3982 kB]
+Get:505 http://archive.ubuntu.com/ubuntu focal-security/universe amd64 openjdk-8-jdk-headless amd64 8u342-b07-0ubuntu1~20.04 [8298 kB]
+Get:506 http://archive.ubuntu.com/ubuntu focal-security/universe amd64 openjdk-8-jre amd64 8u342-b07-0ubuntu1~20.04 [69.9 kB]
+Get:507 http://archive.ubuntu.com/ubuntu focal-security/universe amd64 openjdk-8-jre-headless amd64 8u342-b07-0ubuntu1~20.04 [28.2 MB]
+Get:508 http://archive.ubuntu.com/ubuntu focal/universe amd64 pngcrush amd64 1.8.13-0.1 [52.8 kB]
+Get:509 http://archive.ubuntu.com/ubuntu focal/main amd64 python3-systemd amd64 234-3build2 [36.5 kB]
+Get:510 http://archive.ubuntu.com/ubuntu focal/main amd64 rtkit amd64 0.12-4 [34.1 kB]
+Get:511 http://archive.ubuntu.com/ubuntu focal/main amd64 update-inetd all 4.50 [24.8 kB]
+Get:512 http://archive.ubuntu.com/ubuntu focal-updates/main amd64 sane-utils amd64 1.0.29-0ubuntu5.2 [201 kB]
+Get:513 http://archive.ubuntu.com/ubuntu focal-security/main amd64 squashfs-tools amd64 1:4.4-1ubuntu0.3 [117 kB]
+Get:514 http://archive.ubuntu.com/ubuntu focal/main amd64 switcheroo-control amd64 2.1-1 [13.8 kB]
+Get:515 http://archive.ubuntu.com/ubuntu focal-updates/main amd64 system-config-printer-udev amd64 1.5.12-0ubuntu1.1 [19.7 kB]
+Get:516 http://archive.ubuntu.com/ubuntu focal/main amd64 usbmuxd amd64 1.1.1~git20191130.9af2b12-1 [38.4 kB]
+Get:517 http://archive.ubuntu.com/ubuntu focal/main amd64 wamerican all 2018.04.16-1 [210 kB]
+Get:518 http://archive.ubuntu.com/ubuntu focal/main amd64 xfonts-encodings all 1:1.0.5-0ubuntu1 [573 kB]
+Get:519 http://archive.ubuntu.com/ubuntu focal/main amd64 xfonts-utils amd64 1:7.7+6 [91.5 kB]
+Get:520 http://archive.ubuntu.com/ubuntu focal/main amd64 xfonts-base all 1:1.0.5 [5896 kB]
+Get:521 http://archive.ubuntu.com/ubuntu focal/main amd64 libxcb-icccm4 amd64 0.4.1-1.1 [10.8 kB]
+Get:522 http://archive.ubuntu.com/ubuntu focal/main amd64 libxcb-image0 amd64 0.4.0-1build1 [12.3 kB]
+Processing triggers for hicolor-icon-theme (0.17-2) ...
+Processing triggers for libgtk2.0-0:amd64 (2.24.32-4ubuntu4) ...
+Processing triggers for libc-bin (2.31-0ubuntu9.2) ...
+Processing triggers for systemd (245.4-4ubuntu3.6) ...
+Processing triggers for shared-mime-info (1.15-1) ...
+Processing triggers for udev (245.4-4ubuntu3.6) ...
+Processing triggers for fontconfig (2.13.1-2ubuntu3) ...
+Processing triggers for sgml-base (1.29.1) ...
+Setting up sgml-data (2.0.11) ...
+Processing triggers for sgml-base (1.29.1) ...
+Setting up docbook-xml (4.5-9) ...
+Processing triggers for dbus (1.12.16-2ubuntu2.2) ...
+Processing triggers for dictionaries-common (1.28.1) ...
+aspell-autobuildhash: processing: en [en-common].
+aspell-autobuildhash: processing: en [en-variant_0].
+aspell-autobuildhash: processing: en [en-variant_1].
+aspell-autobuildhash: processing: en [en-variant_2].
+aspell-autobuildhash: processing: en [en-w_accents-only].
+aspell-autobuildhash: processing: en [en-wo_accents-only].
+aspell-autobuildhash: processing: en [en_AU-variant_0].
+aspell-autobuildhash: processing: en [en_AU-variant_1].
+aspell-autobuildhash: processing: en [en_AU-w_accents-only].
+aspell-autobuildhash: processing: en [en_AU-wo_accents-only].
+aspell-autobuildhash: processing: en [en_CA-variant_0].
+aspell-autobuildhash: processing: en [en_CA-variant_1].
+aspell-autobuildhash: processing: en [en_CA-w_accents-only].
+aspell-autobuildhash: processing: en [en_CA-wo_accents-only].
+aspell-autobuildhash: processing: en [en_GB-ise-w_accents-only].
+aspell-autobuildhash: processing: en [en_GB-ise-wo_accents-only].
+aspell-autobuildhash: processing: en [en_GB-ize-w_accents-only].
+aspell-autobuildhash: processing: en [en_GB-ize-wo_accents-only].
+aspell-autobuildhash: processing: en [en_GB-variant_0].
+aspell-autobuildhash: processing: en [en_GB-variant_1].
+aspell-autobuildhash: processing: en [en_US-w_accents-only].
+aspell-autobuildhash: processing: en [en_US-wo_accents-only].
+Processing triggers for rygel (0.38.3-1ubuntu1) ...
+Processing triggers for sgml-base (1.29.1) ...
+HABUILD_SDK [sweet] ubuntu@ubuntu:~$ curl http://commondatastorage.googleapis.com/git-repo-downloads/repo > repo
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+100 45277  100 45277    0     0   148k      0 --:--:-- --:--:-- --:--:--  148k
+HABUILD_SDK [sweet] ubuntu@ubuntu:~$ sudo mv repo /usr/bin/
+HABUILD_SDK [sweet] ubuntu@ubuntu:~$ sudo chmod a+x /usr/bin/repo
+HABUILD_SDK [sweet] ubuntu@ubuntu:~$ git config --global user.name "dopaemon"
+HABUILD_SDK [sweet] ubuntu@ubuntu:~$ git config --global user.email "polarisdp@gmail.com"
+HABUILD_SDK [sweet] ubuntu@ubuntu:~$ sudo mkdir -p $ANDROID_ROOT
+HABUILD_SDK [sweet] ubuntu@ubuntu:~$ sudo chown -R $USER $ANDROID_ROOT
+HABUILD_SDK [sweet] ubuntu@ubuntu:~$ cd $ANDROID_ROOT
+HABUILD_SDK [sweet] ubuntu@ubuntu:~/hadk$ repo init -u https://github.com/dopaemon/manifest.git -b hybris-18.1
+Downloading Repo source from https://gerrit.googlesource.com/git-repo
+repo: Updating release signing keys to keyset ver 2.3
+
+Your identity is: dopaemon <polarisdp@gmail.com>
+If you want to change this, please re-run 'repo init' with --config-name
+
+Testing colorized output (for 'repo diff', 'repo status'):
+  black    red      green    yellow   blue     magenta   cyan     white
+  bold     dim      ul       reverse
+Enable color display in this user account (y/N)? y
+
+repo has been initialized in /home/ubuntu/hadk/
+If this is not the directory in which you want to initialize repo, please run:
+   rm -r /home/ubuntu/hadk//.repo
+and try again.
+HABUILD_SDK [sweet] ubuntu@ubuntu:~/hadk$ repo sync --fetch-submodules -j$(nproc --all)
+Receiving objects: 100% (1602/1602), 659.70 KiB | 31.41 MiB/s, done.
+Resolving deltas: 100% (110/110), done.
+Receiving objects: 100% (7159/7159), 8.55 MiB | 33.41 MiB/s, done.
+Resolving deltas: 100% (2959/2959), done.
+Receiving objects: 100% (13329/13329), 26.74 MiB | 54.65 MiB/s, done.
+Resolving deltas: 100% (10993/10993), done.
+Receiving objects: 100% (1362/1362), 276.88 KiB | 19.78 MiB/s, done.
+Resolving deltas: 100% (669/669), done.
+Receiving objects: 100% (6940/6940), 11.21 MiB | 32.06 MiB/s, done.
+Resolving deltas: 100% (4795/4795), done.
+Receiving objects: 100% (36149/36149), 15.82 MiB | 33.96 MiB/s, done.
+Resolving deltas: 100% (25631/25631), done.
+Receiving objects: 100% (9449/9449), 3.14 MiB | 36.56 MiB/s, done.
+Resolving deltas: 100% (6112/6112), done.
+Receiving objects: 100% (3545/3545), 1.25 MiB | 31.93 MiB/s, done.
+Resolving deltas: 100% (651/651), done. 21.85 MiB | 43.69 MiB/s
+Receiving objects: 100% (868/868), 298.47 KiB | 18.65 MiB/s, done.cts:  52% (123930/236830), 43.63 MiB | 43.63 MiB/s
+Resolving deltas: 100% (204/204), done.
+Receiving objects: 100% (83293/83293), 61.29 MiB | 30.13 MiB/s, done.
+Receiving objects: 100% (762/762), 191.36 KiB | 23.92 MiB/s, done.
+Resolving deltas: 100% (152/152), done.
+Receiving objects: 100% (150467/150467), 82.28 MiB | 43.79 MiB/s, done.
+Resolving deltas: 100% (73983/73983), done.0.00 MiB | 54.25 MiB/s
+Receiving objects: 100% (5179/5179), 12.88 MiB | 35.85 MiB/s, done.6% (58569/127320)
+Resolving deltas: 100% (1745/1745), done.
+Receiving objects: 100% (21347/21347), 4.86 MiB | 35.55 MiB/s, done.
+Resolving deltas: 100% (14809/14809), done.
+Receiving objects: 100% (48927/48927), 49.69 MiB | 60.07 MiB/s, done.solving deltas:  76% (97690/127320)
+Resolving deltas: 100% (26900/26900), done.8.05 MiB | 34.71 MiB/s
+Receiving objects: 100% (13954/13954), 5.04 MiB | 28.49 MiB/s, done.
+Resolving deltas: 100% (127320/127320), done.
+Resolving deltas: 100% (5632/5632), done.
+Receiving objects: 100% (1844/1844), 1.20 MiB | 19.83 MiB/s, done.
+Resolving deltas: 100% (305/305), done.
+Receiving objects: 100% (3578/3578), 1.38 MiB | 24.73 MiB/s, done.ing objects: 100% (3578/3578)
+Resolving deltas: 100% (1129/1129), done.
+Receiving objects: 100% (4350/4350), 1.46 MiB | 28.69 MiB/s, done.cts:  74% (175255/236830), 619.93 MiB | 29.36 MiB/s
+Resolving deltas: 100% (2439/2439), done.
+Receiving objects: 100% (7075/7075), 3.18 MiB | 31.27 MiB/s, done.
+Resolving deltas: 100% (268/268), done., 634.48 MiB | 27.40 MiB/s
+Receiving objects: 100% (101986/101986), 25.20 MiB | 39.64 MiB/s, done.
+Receiving objects: 100% (2012/2012), 12.97 MiB | 29.59 MiB/s, done.
+Resolving deltas: 100% (910/910), done., 675.52 MiB | 27.35 MiB/srResolving deltas:  77% (58705/76239)
+Resolving deltas: 100% (76239/76239), done.8.98 MiB | 27.52 MiB/s
+Receiving objects: 100% (236830/236830), 729.69 MiB | 38.75 MiB/s, done.:  86% (203674/236830), 688.98 MiB | 27.52 MiB/s
+Receiving objects: 100% (14126/14126), 7.72 MiB | 44.67 MiB/s, done.
+Resolving deltas: 100% (4816/4816), done.
+Receiving objects: 100% (2313/2313), 1.94 MiB | 20.68 MiB/s, done.  58% (97618/168306)
+Resolving deltas: 100% (385/385), done.
+Receiving objects: 100% (24452/24452), 13.68 MiB | 27.41 MiB/s, done.
+Resolving deltas: 100% (18650/18650), done.9.08 MiB | 31.63 MiB/s
+Receiving objects: 100% (1933/1933), 4.13 MiB | 50.39 MiB/s, done.
+Resolving deltas: 100% (205/205), done.
+Receiving objects: 100% (33424/33424), 10.77 MiB | 41.01 MiB/s, done.
+Resolving deltas: 100% (25341/25341), done.40 MiB | 26.79 MiB/sB/s
+Receiving objects: 100% (1626/1626), 583.80 KiB | 12.97 MiB/s, done.
+Resolving deltas: 100% (163/163), done.
+Receiving objects: 100% (2809/2809), 529.79 KiB | 18.27 MiB/s, done.
+Resolving deltas: 100% (1244/1244), done. 134.93 MiB | 29.93 MiB/s
+Receiving objects: 100% (2293/2293), 751.29 KiB | 26.83 MiB/s, done.
+Resolving deltas: 100% (205/205), done.26.82 MiB | 26.84 MiB/s/s
+Receiving objects: 100% (29005/29005), 33.48 MiB | 29.30 MiB/s, done.
+Receiving objects: 100% (26338/26338), 15.39 MiB | 37.61 MiB/s, done.tas:  65% (14100/21691)
+Resolving deltas: 100% (21691/21691), done.357.29 MiB | 54.61 MiB/s
+Resolving deltas: 100% (168306/168306), done.95 MiB | 56.96 MiB/s
+Resolving deltas: 100% (18102/18102), done.pstoneResolving deltas: 100% (18102/18102)
+Receiving objects: 100% (26758/26758), 16.68 MiB | 32.23 MiB/s, done.
+Receiving objects: 100% (1722/1722), 1.03 MiB | 17.59 MiB/s, done.
+Resolving deltas: 100% (88/88), done.
+Receiving objects: 100% (1222/1222), 321.58 KiB | 29.23 MiB/s, done.
+Resolving deltas: 100% (291/291), done.
+Resolving deltas: 100% (12810/12810), done.3.06 MiB | 67.44 MiB/s
+Receiving objects: 100% (1514/1514), 471.66 KiB | 31.44 MiB/s, done. 90% (1458227/1617121), 515.71 MiB | 71.44 MiB/s
+Resolving deltas: 100% (4/4), done.
+Receiving objects: 100% (2354/2354), 840.41 KiB | 28.98 MiB/s, done.
+Resolving deltas: 100% (1076/1076), done.
+Receiving objects: 100% (6429/6429), 4.81 MiB | 32.01 MiB/s, done.s
+Resolving deltas: 100% (4688/4688), done.
+Receiving objects: 100% (1606/1606), 723.42 KiB | 31.45 MiB/s, done.
+Resolving deltas: 100% (43/43), done.
+Receiving objects: 100% (106221/106221), 21.70 MiB | 32.82 MiB/s, done.
+Receiving objects: 100% (7196/7196), 1.81 MiB | 32.54 MiB/s, done.
+Resolving deltas: 100% (2892/2892), done.
+Resolving deltas: 100% (84556/84556), done.803.88 MiB | 72.38 MiB/seltas:  78% (65954/84556)
+Receiving objects: 100% (7741/7741), 33.55 MiB | 53.52 MiB/s, done.
+Resolving deltas: 100% (4527/4527), done..18 MiB | 36.35 MiB/sB/s
+Receiving objects: 100% (51754/51754), 38.56 MiB | 33.29 MiB/s, done.
+Receiving objects: 100% (424109/424109), 709.87 MiB | 58.05 MiB/s, done.
+Receiving objects: 100% (2971/2971), 1.07 MiB | 27.99 MiB/s, done.
+Resolving deltas: 100% (384/384), done.
+Receiving objects: 100% (3895/3895), 2.44 MiB | 17.26 MiB/s, done.
+Resolving deltas: 100% (28539/28539), done.924.75 MiB | 64.00 MiB/s
+Resolving deltas: 100% (2063/2063), done.bsdiffResolving deltas: 100% (2063/2063)
+Receiving objects: 100% (5317/5317), 1.80 MiB | 32.30 MiB/s, done.s
+Resolving deltas: 100% (1237/1237), done.
+Receiving objects: 100% (22264/22264), 124.45 MiB | 30.39 MiB/s, done.
+Receiving objects: 100% (4954/4954), 6.93 MiB | 52.56 MiB/s, done.
+Resolving deltas: 100% (951/951), done.
+Receiving objects: 100% (36980/36980), 20.71 MiB | 35.53 MiB/s, done.
+Resolving deltas: 100% (11878/11878), done.
+Resolving deltas: 100% (28173/28173), done.
+Receiving objects: 100% (1135/1135), 407.91 KiB | 29.14 MiB/s, done.
+Resolving deltas: 100% (1/1), done.
+Resolving deltas: 100% (276451/276451), done.
+Receiving objects: 100% (7547/7547), 3.78 MiB | 34.60 MiB/s, done.
+Resolving deltas: 100% (5491/5491), done.
+Receiving objects: 100% (2134/2134), 2.30 MiB | 27.74 MiB/s, done.
+Resolving deltas: 100% (134/134), done.21.11 MiB | 42.20 MiB/s
+Receiving objects: 100% (45666/45666), 36.23 MiB | 35.77 MiB/s, done.5% (106869/194307), 22.19 MiB | 44.36 MiB/s
+Resolving deltas: 100% (13715/13715), done.1.45 GiB | 93.88 MiB/s
+Receiving objects: 100% (2445/2445), 1.23 MiB | 24.29 MiB/s, done.
+Resolving deltas: 100% (245/245), done., 39.42 MiB | 39.41 MiB/s
+Receiving objects: 100% (194307/194307), 83.08 MiB | 38.39 MiB/s, done.7% (149617/194307), 55.25 MiB | 36.83 MiB/s
+Receiving objects: 100% (9432/9432), 4.10 MiB | 37.82 MiB/s, done.
+Resolving deltas: 100% (2622/2622), done.
+Receiving objects: 100% (5347/5347), 5.34 MiB | 28.20 MiB/s, done.
+Resolving deltas: 100% (1306/1306), done.
+Receiving objects: 100% (2225/2225), 743.32 KiB | 32.32 MiB/s, done.
+Resolving deltas: 100% (670/670), done.
+Receiving objects: 100% (8011/8011), 3.50 MiB | 33.47 MiB/s, done.% (31108/49377), 15.01 MiB | 30.00 MiB/s
+Resolving deltas: 100% (3872/3872), done..15 MiB | 35.14 MiB/s
+Resolving deltas: 100% (155263/155263), done.
+Receiving objects: 100% (49377/49377), 53.59 MiB | 37.71 MiB/s, done.
+Receiving objects: 100% (890/890), 342.47 KiB | 24.46 MiB/s, done.
+Resolving deltas: 100% (155/155), done.
+Receiving objects: 100% (2025/2025), 1.21 MiB | 22.49 MiB/s, done.g deltas:  80% (33517/41423)
+Resolving deltas: 100% (171/171), done.
+Resolving deltas: 100% (41423/41423), done.
+Receiving objects: 100% (16001/16001), 35.65 MiB | 46.68 MiB/s, done.ving objects: 100% (16001/16001), 24.24 MiB | 48.46 MiB/s
+Resolving deltas: 100% (8739/8739), done.deqp-deps/glslangResolving deltas:  14% (1225/8739)
+Receiving objects: 100% (1832/1832), 659.98 KiB | 20.62 MiB/s, done.
+Resolving deltas: 100% (83/83), done.
+Receiving objects: 100% (1431/1431), 625.41 KiB | 31.27 MiB/s, done.
+Resolving deltas: 100% (35/35), done.
+Receiving objects: 100% (1609/1609), 519.71 KiB | 27.35 MiB/s, done.
+Resolving deltas: 100% (50/50), done.
+Receiving objects: 100% (39133/39133), 8.65 MiB | 37.53 MiB/s, done.
+Receiving objects: 100% (59891/59891), 79.80 MiB | 63.05 MiB/s, done.
+Resolving deltas: 100% (30691/30691), done.
+Receiving objects: 100% (20900/20900), 14.80 MiB | 20.26 MiB/s, done.
+Resolving deltas: 100% (36821/36821), done.
+Resolving deltas: 100% (14267/14267), done.
+Receiving objects: 100% (25944/25944), 19.49 MiB | 31.53 MiB/s, done.
+Resolving deltas: 100% (15470/15470), done.2.47 GiB | 76.90 MiB/s
+Receiving objects: 100% (8257/8257), 4.36 MiB | 31.19 MiB/s, done.cts:   0% (1/8257)
+Resolving deltas: 100% (3569/3569), done.
+Receiving objects: 100% (604/604), 328.98 KiB | 23.50 MiB/s, done.
+Resolving deltas: 100% (95/95), done.
+Receiving objects: 100% (1618/1618), 74.93 MiB | 70.33 MiB/s, done. 94% (1521/1618), 33.39 MiB | 66.77 MiB/s
+Resolving deltas: 100% (121/121), done.
+Receiving objects: 100% (1609/1609), 491.39 KiB | 27.30 MiB/s, done.
+Resolving deltas: 100% (515/515), done.
+Receiving objects: 100% (30611/30611), 13.62 MiB | 35.66 MiB/s, done.
+Receiving objects: 100% (3732/3732), 2.00 MiB | 28.89 MiB/s, done.
+Resolving deltas: 100% (2172/2172), done.
+Receiving objects: 100% (2078/2078), 1.64 MiB | 20.68 MiB/s, done.
+Resolving deltas: 100% (346/346), done.1), 2.80 GiB | 84.54 MiB/s
+Resolving deltas: 100% (19234/19234), done.
+Receiving objects: 100% (3245/3245), 1.47 MiB | 31.96 MiB/s, done.
+Resolving deltas: 100% (1649/1649), done.86.00 MiB | 43.00 MiB/siving objects:   3% (468/15591)
+Receiving objects: 100% (112922/112922), 91.68 MiB | 42.91 MiB/s, done.
+Receiving objects: 100% (15591/15591), 11.36 MiB | 30.15 MiB/s, done.
+Resolving deltas: 100% (9011/9011), done.
+Receiving objects: 100% (1888/1888), 1.13 MiB | 21.46 MiB/s, done.
+Resolving deltas: 100% (101/101), done.
+Resolving deltas: 100% (94464/94464), done.3.01 GiB | 74.21 MiB/s 87% (82185/94464)
+Receiving objects: 100% (609/609), 228.70 KiB | 28.59 MiB/s, done.
+Resolving deltas: 100% (9/9), done.
+Receiving objects: 100% (604/604), 295.71 KiB | 32.86 MiB/s, done.
+Resolving deltas: 100% (9/9), done.
+Receiving objects: 100% (552/552), 1.04 MiB | 38.11 MiB/s, done.s
+Resolving deltas: 100% (7/7), done.
+Receiving objects: 100% (1617121/1617121), 3.15 GiB | 71.15 MiB/s, done.
+Receiving objects: 100% (544/544), 613.15 KiB | 32.27 MiB/s, done.
+Resolving deltas: 100% (7/7), done.)), 16.91 MiB | 33.80 MiB/s
+Receiving objects: 100% (79967/79967), 29.92 MiB | 35.38 MiB/s, done.textReceiving objects:  99% (79168/79967), 16.91 MiB | 33.80 MiB/s
+Receiving objects: 100% (55228/55228), 71.46 MiB | 70.02 MiB/s, done.
+Receiving objects: 100% (1371/1371), 441.88 KiB | 29.46 MiB/s, done.
+Resolving deltas: 100% (3/3), done.
+Resolving deltas: 100% (32230/32230), done.
+Receiving objects: 100% (1347/1347), 449.69 KiB | 29.98 MiB/s, done.
+Resolving deltas: 100% (2/2), done.
+Resolving deltas: 100% (64734/64734), done.
+Receiving objects: 100% (1385/1385), 457.37 KiB | 30.49 MiB/s, done.
+Resolving deltas: 100% (5/5), done.
+Receiving objects: 100% (27827/27827), 26.77 MiB | 43.86 MiB/s, done.
+Resolving deltas: 100% (20318/20318), done.
+Receiving objects: 100% (1409/1409), 549.73 KiB | 28.93 MiB/s, done.   0% (1/23586)
+Resolving deltas: 100% (10/10), done.
+Receiving objects: 100% (536/536), 1.14 MiB | 46.69 MiB/s, done.
+Resolving deltas: 100% (5/5), done.6)
+Receiving objects: 100% (1954/1954), 710.43 KiB | 29.60 MiB/s, done.
+Resolving deltas: 100% (72/72), done.
+Receiving objects: 100% (23586/23586), 13.68 MiB | 35.01 MiB/s, done.
+Resolving deltas: 100% (17466/17466), done.sck_msdosResolving deltas:  74% (12925/17466)
+Receiving objects: 100% (540/540), 207.12 KiB | 23.01 MiB/s, done.
+Resolving deltas: 100% (6/6), done.
+Receiving objects: 100% (2141/2141), 2.75 MiB | 39.08 MiB/s, done.
+Resolving deltas: 100% (812/812), done.
+Receiving objects: 100% (614/614), 590.90 KiB | 34.76 MiB/s, done.
+Resolving deltas: 100% (8/8), done.
+Receiving objects: 100% (606/606), 720.58 KiB | 34.31 MiB/s, done.
+Resolving deltas: 100% (6/6), done.
+Receiving objects: 100% (7685/7685), 4.32 MiB | 32.99 MiB/s, done.
+Resolving deltas: 100% (3405/3405), done.
+Receiving objects: 100% (619/619), 2.71 MiB | 39.68 MiB/s, done.
+Resolving deltas: 100% (14/14), done.
+Receiving objects: 100% (611/611), 510.94 KiB | 31.93 MiB/s, done.
+Resolving deltas: 100% (10/10), done.
+Receiving objects: 100% (531/531), 184.66 KiB | 26.38 MiB/s, done.
+Resolving deltas: 100% (5/5), done.
+Receiving objects: 100% (12103/12103), 2.62 MiB | 32.37 MiB/s, done.ing deltas:  97% (854664/881096)
+Resolving deltas: 100% (8825/8825), done.
+Receiving objects: 100% (26880/26880), 14.50 MiB | 31.01 MiB/s, done.
+Resolving deltas: 100% (17637/17637), done.oogle-fruitResolving deltas:  53% (9348/17637)
+Receiving objects: 100% (2068/2068), 633.82 KiB | 28.81 MiB/s, done.
+Resolving deltas: 100% (199/199), done.
+Resolving deltas: 100% (881096/881096), done.
+Receiving objects: 100% (127799/127799), 40.48 MiB | 36.68 MiB/s, done.
+Receiving objects: 100% (23971/23971), 42.48 MiB | 23.78 MiB/s, done.
+Resolving deltas: 100% (15790/15790), done.
+Resolving deltas: 100% (64431/64431), done.oogle-breakpadResolving deltas:  98% (63143/64431)
+Receiving objects: 100% (1704/1704), 1.38 MiB | 35.28 MiB/s, done.
+Resolving deltas: 100% (167/167), done.
+Receiving objects: 100% (86604/86604), 76.78 MiB | 42.11 MiB/s, done.
+Resolving deltas: 100% (66067/66067), done.65 MiB | 61.32 MiB/s
+Receiving objects: 100% (125051/125051), 73.17 MiB | 50.83 MiB/s, done.
+Resolving deltas: 100% (70786/70786), done.60 MiB | 70.25 MiB/s
+Receiving objects: 100% (80679/80679), 34.49 MiB | 35.28 MiB/s, done.
+Resolving deltas: 100% (53710/53710), done.2.82 MiB | 40.94 MiB/s
+Receiving objects: 100% (2118/2118), 881.99 KiB | 29.40 MiB/s, done.
+Resolving deltas: 100% (315/315), done.
+Receiving objects: 100% (53884/53884), 876.81 MiB | 68.19 MiB/s, done.00% (53884/53884), 850.29 MiB | 72.95 MiB/s
+Receiving objects: 100% (3112/3112), 1.21 MiB | 20.69 MiB/s, done.
+Resolving deltas: 100% (476/476), done.124.24 MiB | 62.12 MiB/s
+Receiving objects: 100% (61389/61389), 167.83 MiB | 62.47 MiB/s, done.
+Resolving deltas: 100% (30121/30121), done.0.45 MiB | 28.82 MiB/s
+Receiving objects: 100% (826084/826084), 330.25 MiB | 33.19 MiB/s, done.
+Resolving deltas: 100% (40697/40697), done.5.23 MiB | 34.03 MiB/s
+Receiving objects: 100% (568841/568841), 246.49 MiB | 35.17 MiB/s, done.
+Receiving objects: 100% (7552/7552), 9.16 MiB | 41.87 MiB/s, done.
+Receiving objects: 100% (6230/6230), 1.68 MiB | 31.80 MiB/s, done.
+Resolving deltas: 100% (5243/5243), done.
+Resolving deltas: 100% (2987/2987), done.
+Receiving objects: 100% (30257/30257), 6.07 MiB | 34.89 MiB/s, done.ects:   3% (908/30257)
+Receiving objects: 100% (25577/25577), 5.22 MiB | 30.55 MiB/s, done.
+Resolving deltas: 100% (21845/21845), done.
+Resolving deltas: 100% (17906/17906), done.
+Receiving objects: 100% (1720/1720), 2.39 MiB | 45.25 MiB/s, done.
+Resolving deltas: 100% (79/79), done.
+Receiving objects: 100% (2535/2535), 1.81 MiB | 28.55 MiB/s, done.
+Resolving deltas: 100% (552/552), done.
+Receiving objects: 100% (6059/6059), 3.18 MiB | 37.90 MiB/s, done.
+Resolving deltas: 100% (3117/3117), done.
+Receiving objects: 100% (3520/3520), 786.50 KiB | 26.22 MiB/s, done.s:  71% (454307/639868)
+Resolving deltas: 100% (1573/1573), done.
+Receiving objects: 100% (121533/121533), 36.83 MiB | 46.34 MiB/s, done.
+Receiving objects: 100% (46024/46024), 8.49 MiB | 35.76 MiB/s, done.
+Resolving deltas: 100% (69474/69474), done.
+Resolving deltas: 100% (28446/28446), done.
+Receiving objects: 100% (1475/1475), 1.48 MiB | 42.01 MiB/s, done. 79% (368403/465700)
+Resolving deltas: 100% (13/13), done.
+Receiving objects: 100% (7380/7380), 1.38 MiB | 28.32 MiB/s, done.
+Resolving deltas: 100% (2557/2557), done.
+Receiving objects: 100% (1896/1896), 749.02 KiB | 24.16 MiB/s, done.
+Resolving deltas: 100% (232/232), done.
+Receiving objects: 100% (6413/6413), 1.96 MiB | 22.53 MiB/s, done.
+Resolving deltas: 100% (116/116), done.
+Receiving objects: 100% (1496/1496), 480.00 KiB | 20.00 MiB/s, done.
+Resolving deltas: 100% (16/16), done.
+Receiving objects: 100% (9144/9144), 131.26 MiB | 67.81 MiB/s, done.:  83% (386531/465700)
+Resolving deltas: 100% (3515/3515), done.
+Receiving objects: 100% (2440/2440), 1.07 MiB | 25.55 MiB/s, done.
+Resolving deltas: 100% (113/113), done.
+Receiving objects: 100% (1915/1915), 1.75 MiB | 39.01 MiB/s, done.
+Resolving deltas: 100% (115/115), done.
+Receiving objects: 100% (1384/1384), 1.37 MiB | 21.61 MiB/s, done. deltas:  86% (400502/465700)
+Resolving deltas: 100% (147/147), done.
+Receiving objects: 100% (13462/13462), 2.78 MiB | 30.64 MiB/s, done.
+Resolving deltas: 100% (9143/9143), done.
+Receiving objects: 100% (1921/1921), 582.79 KiB | 27.75 MiB/s, done.
+Resolving deltas: 100% (114/114), done.
+Resolving deltas: 100% (465700/465700), done.
+Receiving objects: 100% (2053/2053), 653.00 KiB | 29.68 MiB/s, done.
+Resolving deltas: 100% (573/573), done.
+Receiving objects: 100% (28756/28756), 8.15 MiB | 36.61 MiB/s, done.
+Resolving deltas: 100% (21632/21632), done.
+Receiving objects: 100% (3075/3075), 1.17 MiB | 18.76 MiB/s, done.
+Resolving deltas: 100% (305/305), done.
+Receiving objects: 100% (11049/11049), 14.79 MiB | 27.00 MiB/s, done.
+Resolving deltas: 100% (3741/3741), done./jemalloc_newResolving deltas:  55% (2058/3741)
+Receiving objects: 100% (986/986), 309.41 KiB | 23.80 MiB/s, done.s:  89% (569484/639868)
+Resolving deltas: 100% (17/17), done.
+Receiving objects: 100% (8505/8505), 6.69 MiB | 43.90 MiB/s, done.
+Resolving deltas: 100% (5127/5127), done.
+Receiving objects: 100% (9000/9000), 3.05 MiB | 33.98 MiB/s, done.
+Resolving deltas: 100% (5403/5403), done.
+Receiving objects: 100% (5742/5742), 1.69 MiB | 33.28 MiB/s, done.
+Resolving deltas: 100% (2685/2685), done.
+Receiving objects: 100% (42585/42585), 14.46 MiB | 47.91 MiB/s, done.
+Resolving deltas: 100% (28426/28426), done.
+Receiving objects: 100% (1584/1584), 828.93 KiB | 25.12 MiB/s, done.
+Resolving deltas: 100% (42/42), done.
+Receiving objects: 100% (1688/1688), 572.18 KiB | 27.25 MiB/s, done.
+Resolving deltas: 100% (76/76), done.
+Resolving deltas: 100% (639868/639868), done.
+Receiving objects: 100% (1765/1765), 435.61 KiB | 29.04 MiB/s, done.g objects:   0% (1/1765)
+Resolving deltas: 100% (644/644), done.
+Receiving objects: 100% (1416/1416), 459.03 KiB | 19.13 MiB/s, done.
+Resolving deltas: 100% (132/132), done.
+Receiving objects: 100% (2468/2468), 732.82 KiB | 20.94 MiB/s, done.
+Resolving deltas: 100% (643/643), done.
+Receiving objects: 100% (4549/4549), 12.56 MiB | 27.66 MiB/s, done.
+Resolving deltas: 100% (1268/1268), done.37.68 MiB | 37.67 MiB/s
+Receiving objects: 100% (2135/2135), 4.40 MiB | 29.26 MiB/s, done.
+Resolving deltas: 100% (126/126), done., 54.04 MiB | 36.02 MiB/s
+Receiving objects: 100% (43246/43246), 9.16 MiB | 36.49 MiB/s, done.
+Receiving objects: 100% (268639/268639), 78.74 MiB | 37.00 MiB/s, done.
+Receiving objects: 100% (10781/10781), 4.28 MiB | 28.48 MiB/s, done.
+Resolving deltas: 100% (32800/32800), done.
+Resolving deltas: 100% (4086/4086), done.
+Receiving objects: 100% (9849/9849), 5.70 MiB | 44.22 MiB/s, done. 61% (123174/201924)
+Resolving deltas: 100% (6129/6129), done.
+Receiving objects: 100% (3242/3242), 2.69 MiB | 22.97 MiB/s, done.
+Receiving objects: 100% (12371/12371), 3.31 MiB | 39.36 MiB/s, done.
+Resolving deltas: 100% (1885/1885), done.
+Resolving deltas: 100% (9217/9217), done.
+Resolving deltas: 100% (201924/201924), done.epoxyResolving deltas:  89% (179713/201924)
+Receiving objects: 100% (594/594), 364.49 KiB | 26.03 MiB/s, done.
+Resolving deltas: 100% (55/55), done.
+Receiving objects: 100% (14558/14558), 6.16 MiB | 37.35 MiB/s, done.
+Receiving objects: 100% (2097/2097), 2.96 MiB | 18.14 MiB/s, done.
+Resolving deltas: 100% (750/750), done.
+Resolving deltas: 100% (10259/10259), done.
+Receiving objects: 100% (17111/17111), 14.11 MiB | 31.61 MiB/s, done.
+Resolving deltas: 100% (11556/11556), done.ibffiResolving deltas:  67% (7743/11556)
+Receiving objects: 100% (1816/1816), 666.36 KiB | 30.29 MiB/s, done.
+Resolving deltas: 100% (40/40), done.
+Receiving objects: 100% (4097/4097), 1.55 MiB | 28.92 MiB/s, done.
+Resolving deltas: 100% (929/929), done.
+Receiving objects: 100% (4476/4476), 895.83 KiB | 22.97 MiB/s, done.
+Resolving deltas: 100% (2649/2649), done.
+Receiving objects: 100% (9274/9274), 5.17 MiB | 23.61 MiB/s, done.
+Receiving objects: 100% (1147/1147), 439.46 KiB | 12.92 MiB/s, done.
+Resolving deltas: 100% (13/13), done.
+Resolving deltas: 100% (3052/3052), done.
+Receiving objects: 100% (1054/1054), 670.72 KiB | 27.95 MiB/s, done. 71% (110840/155671), 18.31 MiB | 36.60 MiB/s
+Resolving deltas: 100% (10/10), done.
+Receiving objects: 100% (1164/1164), 773.34 KiB | 28.64 MiB/s, done.
+Resolving deltas: 100% (60/60), done.
+Receiving objects: 100% (38167/38167), 49.41 MiB | 41.13 MiB/s, done.
+Receiving objects: 100% (13989/13989), 3.39 MiB | 23.79 MiB/s, done.
+Resolving deltas: 100% (9745/9745), done.
+Receiving objects: 100% (28565/28565), 16.68 MiB | 36.42 MiB/s, done.
+Resolving deltas: 100% (30305/30305), done..28 MiB | 12.73 MiB/s
+Receiving objects: 100% (4418/4418), 1.41 MiB | 18.25 MiB/s, done.ving deltas:  72% (13696/19021)
+Resolving deltas: 100% (2237/2237), done.
+Resolving deltas: 100% (19021/19021), done..57 MiB | 10.85 MiB/s
+Receiving objects: 100% (9289/9289), 4.78 MiB | 47.48 MiB/s, done.
+Resolving deltas: 100% (5861/5861), done.96.20 MiB | 11.92 MiB/s
+Receiving objects: 100% (27944/27944), 10.18 MiB | 34.64 MiB/s, done.cts:  59% (16487/27944)
+Resolving deltas: 100% (20510/20510), done.1.39 MiB | 12.20 MiB/s
+Receiving objects: 100% (16814/16814), 14.49 MiB | 41.11 MiB/s, done.46% (7735/16814)
+Resolving deltas: 100% (7832/7832), done.13 MiB | 48.23 MiB/s
+Receiving objects: 100% (13749/13749), 4.13 MiB | 37.73 MiB/s, done.
+Resolving deltas: 100% (9513/9513), done.77 MiB | 51.82 MiB/s
+Receiving objects: 100% (4687/4687), 2.58 MiB | 31.82 MiB/s, done.
+Resolving deltas: 100% (2401/2401), done..77 MiB | 51.82 MiB/s
+Receiving objects: 100% (1308/1308), 415.59 KiB | 24.45 MiB/s, done.
+Resolving deltas: 100% (60/60), done.
+Receiving objects: 100% (11235/11235), 131.51 MiB | 56.11 MiB/s, done.
+Receiving objects: 100% (7154/7154), 3.42 MiB | 21.87 MiB/s, done.
+Receiving objects: 100% (1371/1371), 1.93 MiB | 19.59 MiB/s, done.
+Resolving deltas: 100% (122/122), done.
+Receiving objects: 100% (59145/59145), 29.24 MiB | 47.22 MiB/s, done.
+Resolving deltas: 100% (3907/3907), done.
+Resolving deltas: 100% (5281/5281), done.
+Resolving deltas: 100% (45573/45573), done.
+Receiving objects: 100% (77916/77916), 17.74 MiB | 40.36 MiB/s, done.   0% (1/77916)
+Receiving objects: 100% (723/723), 273.13 KiB | 27.31 MiB/s, done.
+Resolving deltas: 100% (54/54), done.
+Receiving objects: 100% (17233/17233), 4.60 MiB | 32.74 MiB/s, done. 16% (11224/70143)
+Receiving objects: 100% (1035/1035), 1.10 MiB | 18.18 MiB/s, done.
+Resolving deltas: 100% (41/41), done.
+Resolving deltas: 100% (11320/11320), done.
+Receiving objects: 100% (15599/15599), 20.19 MiB | 31.37 MiB/s, done.
+Resolving deltas: 100% (8013/8013), done.
+Receiving objects: 100% (14985/14985), 4.30 MiB | 40.35 MiB/s, done.
+Resolving deltas: 100% (70143/70143), done.
+Resolving deltas: 100% (9498/9498), done.
+Receiving objects: 100% (2976/2976), 856.16 KiB | 32.93 MiB/s, done.
+Resolving deltas: 100% (1109/1109), done.
+Receiving objects: 100% (47523/47523), 29.54 MiB | 32.18 MiB/s, done.ects:  48% (22812/47523)
+Receiving objects: 100% (2778/2778), 777.02 KiB | 28.78 MiB/s, done.
+Resolving deltas: 100% (1442/1442), done.
+Receiving objects: 100% (2492/2492), 2.16 MiB | 25.72 MiB/s, done.
+Resolving deltas: 100% (268/268), done.
+Receiving objects: 100% (3815/3815), 3.17 MiB | 28.73 MiB/s, done.
+Resolving deltas: 100% (393/393), done.
+Receiving objects: 100% (1178/1178), 448.46 KiB | 20.38 MiB/s, done.ng objects:   0% (1/1178)
+Resolving deltas: 100% (10/10), done.
+Receiving objects: 100% (7513/7513), 5.07 MiB | 27.04 MiB/s, done.:  53% (19360/36528)
+Resolving deltas: 100% (1747/1747), done.
+Receiving objects: 100% (1799/1799), 647.93 KiB | 27.00 MiB/s, done.
+Resolving deltas: 100% (50/50), done.
+Receiving objects: 100% (1759/1759), 517.65 KiB | 25.88 MiB/s, done.
+Resolving deltas: 100% (80/80), done.
+Receiving objects: 100% (1350/1350), 426.56 KiB | 30.47 MiB/s, done. 76% (27762/36528)
+Resolving deltas: 100% (27/27), done.
+Resolving deltas: 100% (36528/36528), done.
+Receiving objects: 100% (2027/2027), 858.45 KiB | 31.79 MiB/s, done.
+Resolving deltas: 100% (233/233), done.), 70.51 MiB | 35.27 MiB/s
+Receiving objects: 100% (2728/2728), 1.66 MiB | 29.32 MiB/s, done.
+Resolving deltas: 100% (591/591), done.
+Receiving objects: 100% (7266/7266), 1.32 MiB | 37.41 MiB/s, done.
+Resolving deltas: 100% (4155/4155), done.
+Receiving objects: 100% (702/702), 1.15 MiB | 23.49 MiB/s, done.s:  72% (1009741/1402418), 120.49 MiB | 40.17 MiB/s
+Resolving deltas: 100% (80/80), done.1), 222.76 MiB | 7.61 MiB/sB/s
+Receiving objects: 100% (1816/1816), 571.20 KiB | 30.06 MiB/s, done.
+Resolving deltas: 100% (99/99), done.
+Receiving objects: 100% (1961/1961), 794.36 KiB | 30.55 MiB/s, done.% (1051814/1402418), 150.44 MiB | 37.62 MiB/s
+Resolving deltas: 100% (201/201), done.
+Receiving objects: 100% (1925/1925), 771.74 KiB | 35.08 MiB/s, done.
+Resolving deltas: 100% (17/17), done.
+Receiving objects: 100% (6057/6057), 975.98 KiB | 33.65 MiB/s, done.
+Resolving deltas: 100% (1960/1960), done.
+Receiving objects: 100% (5042/5042), 2.91 MiB | 37.24 MiB/s, done.s
+Resolving deltas: 100% (1917/1917), done.
+Receiving objects: 100% (698/698), 274.49 KiB | 24.95 MiB/s, done.s
+Resolving deltas: 100% (12/12), done.
+Receiving objects: 100% (9857/9857), 4.19 MiB | 37.01 MiB/s, done.
+Resolving deltas: 100% (5843/5843), done.7 MiB | 69.93 MiB/siB/s
+Receiving objects: 100% (5464/5464), 24.42 MiB | 64.28 MiB/s, done.
+Receiving objects: 100% (3725/3725), 860.64 KiB | 30.74 MiB/s, done.
+Resolving deltas: 100% (1490/1490), done.
+Resolving deltas: 100% (1543/1543), done.
+Receiving objects: 100% (1116/1116), 344.49 KiB | 28.71 MiB/s, done.
+Resolving deltas: 100% (9/9), done.
+Receiving objects: 100% (1435/1435), 1.60 MiB | 32.12 MiB/s, done.: 100% (1435/1435)
+Resolving deltas: 100% (15/15), done.
+Receiving objects: 100% (9671/9671), 6.20 MiB | 30.11 MiB/s, done.scts:  83% (1164007/1402418), 255.00 MiB | 29.89 MiB/s
+Resolving deltas: 100% (1387/1387), done..34 MiB | 40.74 MiB/sMiB/s
+Receiving objects: 100% (49375/49375), 36.08 MiB | 40.69 MiB/s, done.
+Receiving objects: 100% (1402418/1402418), 342.89 MiB | 35.17 MiB/s, done.
+Resolving deltas: 100% (33964/33964), done.
+Receiving objects: 100% (2580/2580), 3.10 MiB | 29.08 MiB/s, done.
+Resolving deltas: 100% (773/773), done.2.68 MiB | 71.55 MiB/sB/s
+Receiving objects: 100% (1541/1541), 488.25 KiB | 20.34 MiB/s, done.
+Resolving deltas: 100% (18/18), done.
+Receiving objects: 100% (39402/39402), 6.94 MiB | 43.33 MiB/s, done.
+Receiving objects: 100% (2107/2107), 622.71 KiB | 27.07 MiB/s, done.
+Resolving deltas: 100% (297/297), done.
+Resolving deltas: 100% (17650/17650), done.
+Receiving objects: 100% (4797/4797), 27.56 MiB | 69.50 MiB/s, done.
+Resolving deltas: 100% (1938/1938), done.
+Receiving objects: 100% (7016/7016), 3.40 MiB | 42.98 MiB/s, done.g objects:  86% (134640/155671), 338.23 MiB | 6.78 MiB/s
+Resolving deltas: 100% (4384/4384), done.50.45 MiB | 33.63 MiB/s
+Receiving objects: 100% (2663/2663), 1.13 GiB | 71.67 MiB/s, done.ving objects:  98% (2635/2663), 1.11 GiB | 69.61 MiB/s
+Resolving deltas: 100% (311/311), done., 65.98 MiB | 32.99 MiB/s
+Receiving objects: 100% (259519/259519), 115.15 MiB | 38.47 MiB/s, done.s: 100% (259519/259519), 91.07 MiB | 36.42 MiB/s
+Receiving objects: 100% (4303/4303), 18.74 MiB | 29.16 MiB/s, done.  0% (0/215781)
+Resolving deltas: 100% (983/983), done.
+Receiving objects: 100% (1205/1205), 469.63 KiB | 29.35 MiB/s, done.
+Resolving deltas: 100% (138/138), done.
+Receiving objects: 100% (2375/2375), 1.31 MiB | 20.39 MiB/s, done.
+Resolving deltas: 100% (245/245), done.
+Resolving deltas: 100% (215781/215781), done.
+Receiving objects: 100% (4037/4037), 1.53 MiB | 29.07 MiB/s, done.cts:  89% (4463/5003), 247.89 MiB | 62.00 MiB/s
+Resolving deltas: 100% (2387/2387), done.
+Receiving objects: 100% (4561/4561), 6.69 MiB | 52.71 MiB/s, done.
+Resolving deltas: 100% (2590/2590), done.394.29 MiB | 6.10 MiB/s
+Receiving objects: 100% (4643/4643), 1.43 MiB | 23.93 MiB/s, done.
+Resolving deltas: 100% (2899/2899), done.61 MiB | 64.75 MiB/s
+Receiving objects: 100% (900/900), 1.62 MiB | 29.71 MiB/s, done.as:  91% (1093664/1192245)
+Resolving deltas: 100% (37/37), done.
+Receiving objects: 100% (5003/5003), 421.79 MiB | 63.79 MiB/s, done.
+Resolving deltas: 100% (1000/1000), done.8.31 MiB | 32.20 MiB/s/s
+Resolving deltas: 100% (1192245/1192245), done. MiB | 31.14 MiB/sects:  49% (93120/190040), 23.96 MiB | 47.90 MiB/s
+Receiving objects: 100% (774/774), 238.88 KiB | 19.91 MiB/s, done.
+Resolving deltas: 100% (91/91), done.
+Receiving objects: 100% (106528/106528), 136.99 MiB | 33.21 MiB/s, done.
+Receiving objects: 100% (772/772), 260.13 KiB | 28.90 MiB/s, done.
+Receiving objects: 100% (190040/190040), 141.20 MiB | 51.35 MiB/s, done.
+Resolving deltas: 100% (7/7), done.
+Resolving deltas: 100% (74751/74751), done.259.40 MiB | 47.57 MiB/s
+Resolving deltas: 100% (158816/158816), done.6.48 MiB | 50.80 MiB/s
+Receiving objects: 100% (647/647), 174.76 KiB | 29.13 MiB/s, done.s
+Resolving deltas: 100% (79/79), done.
+Receiving objects: 100% (1209/1209), 339.13 KiB | 28.26 MiB/s, done.
+Resolving deltas: 100% (415/415), done.
+Receiving objects: 100% (1871/1871), 913.82 KiB | 32.64 MiB/s, done.
+Resolving deltas: 100% (349/349), done.
+Receiving objects: 100% (897/897), 307.55 KiB | 27.96 MiB/s, done.s 68% (344348/502913), 61.32 MiB | 40.88 MiB/s
+Resolving deltas: 100% (267/267), done., 113.46 MiB | 45.38 MiB/s
+Receiving objects: 100% (505/505), 166.63 KiB | 23.80 MiB/s, done.
+Resolving deltas: 100% (3/3), done.
+Receiving objects: 100% (502913/502913), 156.02 MiB | 44.69 MiB/s, done.
+Receiving objects: 100% (7268/7268), 1.47 MiB | 35.08 MiB/s, done.
+Receiving objects: 100% (5079/5079), 3.07 MiB | 32.41 MiB/s, done.s
+Resolving deltas: 100% (4896/4896), done.
+Resolving deltas: 100% (2286/2286), done.
+Receiving objects: 100% (8319/8319), 1.83 MiB | 31.21 MiB/s, done.:  11% (8357/75971)
+Resolving deltas: 100% (5932/5932), done..42 MiB | 26.41 MiB/sMiB/s
+Receiving objects: 100% (3361/3361), 1.57 MiB | 36.47 MiB/s, done.s
+Resolving deltas: 100% (1690/1690), done., 506.99 MiB | 29.21 MiB/s
+Receiving objects: 100% (15110/15110), 18.81 MiB | 41.96 MiB/s, done.
+Receiving objects: 100% (75971/75971), 135.28 MiB | 36.67 MiB/s, done.
+Resolving deltas: 100% (11849/11849), done.552.02 MiB | 29.18 MiB/s
+Receiving objects: 100% (1633/1633), 651.06 KiB | 14.15 MiB/s, done.
+Resolving deltas: 100% (71/71), done.), 16.87 MiB | 33.72 MiB/s
+Receiving objects: 100% (510/510), 416.24 KiB | 17.34 MiB/s, done.s0% (85157/851568), 16.87 MiB | 33.72 MiB/s
+Resolving deltas: 100% (7/7), done.7)8), 32.29 MiB | 32.28 MiB/s
+Receiving objects: 100% (17807/17807), 9.76 MiB | 23.08 MiB/s, done.
+Receiving objects: 100% (11250/11250), 2.61 MiB | 25.24 MiB/s, done. objects:  35% (298049/851568), 51.02 MiB | 34.01 MiB/s
+Resolving deltas: 100% (11399/11399), done..08 MiB | 42.04 MiB/s
+Resolving deltas: 100% (7952/7952), done., 601.78 MiB | 27.56 MiB/s
+Receiving objects: 100% (1292/1292), 350.89 KiB | 9.00 MiB/s, done.
+Resolving deltas: 100% (342/342), done.
+Receiving objects: 100% (3470/3470), 1.02 MiB | 28.98 MiB/s, done.s
+Resolving deltas: 100% (2109/2109), done.
+Receiving objects: 100% (3302/3302), 1.09 MiB | 25.87 MiB/s, done.
+Resolving deltas: 100% (1786/1786), done.
+Receiving objects: 100% (811/811), 260.50 KiB | 17.37 MiB/s, done.g objects:  84% (1601094/1906064), 642.73 MiB | 23.45 MiB/s
+Resolving deltas: 100% (25/25), done.
+Receiving objects: 100% (2609/2609), 5.39 MiB | 66.51 MiB/s, done.s
+Resolving deltas: 100% (503/503), done.
+Receiving objects: 100% (1398/1398), 2.83 MiB | 33.68 MiB/s, done.s
+Resolving deltas: 100% (48/48), done.
+Receiving objects: 100% (2677/2677), 1.53 MiB | 38.13 MiB/s, done.s
+Resolving deltas: 100% (1350/1350), done.
+Receiving objects: 100% (2224/2224), 628.24 KiB | 15.71 MiB/s, done.s:  87% (1658276/1906064), 723.99 MiB | 25.31 MiB/s
+Resolving deltas: 100% (707/707), done.
+Receiving objects: 100% (1446/1446), 365.70 KiB | 18.29 MiB/s, done.:  89% (1696397/1906064), 737.70 MiB | 26.53 MiB/s
+Receiving objects: 100% (116450/116450), 24.89 MiB | 29.33 MiB/s, done.
+Resolving deltas: 100% (536/536), done.
+Receiving objects: 100% (1204/1204), 332.45 KiB | 27.70 MiB/s, done.
+Resolving deltas: 100% (359/359), done.
+Resolving deltas: 100% (71106/71106), done.4.80 MiB | 36.64 MiB/s/s
+Receiving objects: 100% (1906064/1906064), 802.58 MiB | 32.07 MiB/s, done.
+Resolving deltas: 100% (407828/407828), done.
+Receiving objects: 100% (851568/851568), 361.99 MiB | 37.22 MiB/s, done.
+Receiving objects: 100% (19783/19783), 7.14 MiB | 33.23 MiB/s, done.
+Resolving deltas: 100% (13502/13502), done.8.06 MiB | 5.74 MiB/s
+Resolving deltas: 100% (70225/70225), done.0.75 MiB | 5.66 MiB/s
+Receiving objects: 100% (40466/40466), 13.94 MiB | 39.66 MiB/s, done.
+Receiving objects: 100% (1036/1036), 335.89 KiB | 12.00 MiB/s, done.
+Resolving deltas: 100% (138/138), done.
+Resolving deltas: 100% (28424/28424), done.6.79 MiB | 5.81 MiB/s
+Receiving objects: 100% (3846/3846), 3.73 MiB | 43.45 MiB/s, done. deltas:  13% (190783/1467556)
+Resolving deltas: 100% (2058/2058), done.
+Receiving objects: 100% (3626/3626), 1.09 MiB | 37.19 MiB/s, done. deltas:  60% (415254/692090)
+Resolving deltas: 100% (1795/1795), done.
+Receiving objects: 100% (1605/1605), 26.72 MiB | 44.21 MiB/s, done.
+Receiving objects: 100% (1611/1611), 490.48 KiB | 8.92 MiB/s, done.
+Resolving deltas: 100% (83/83), done.
+Resolving deltas: 100% (112/112), done.
+Receiving objects: 100% (2954/2954), 955.53 KiB | 31.85 MiB/s, done.
+Resolving deltas: 100% (1423/1423), done.
+Receiving objects: 100% (1261/1261), 392.60 KiB | 26.17 MiB/s, done. deltas:  28% (410916/1467556)
+Resolving deltas: 100% (46/46), done.6)
+Receiving objects: 100% (37596/37596), 25.49 MiB | 36.05 MiB/s, done.
+Receiving objects: 100% (4049/4049), 1.94 MiB | 28.78 MiB/s, done.
+Resolving deltas: 100% (2129/2129), done.
+Receiving objects: 100% (2279/2279), 608.18 KiB | 30.41 MiB/s, done.
+Resolving deltas: 100% (710/710), done.
+Receiving objects: 100% (3018/3018), 684.00 KiB | 27.36 MiB/s, done.
+Resolving deltas: 100% (1085/1085), done.
+Resolving deltas: 100% (27211/27211), done.
+Receiving objects: 100% (2934/2934), 1.20 MiB | 41.07 MiB/s, done.58% (851183/1467556)
+Resolving deltas: 100% (1292/1292), done.
+Receiving objects: 100% (20622/20622), 4.52 MiB | 23.59 MiB/s, done.
+Resolving deltas: 100% (8272/8272), done.
+Receiving objects: 100% (19949/19949), 8.44 MiB | 45.73 MiB/s, done.ltas:  69% (1012614/1467556)
+Resolving deltas: 100% (10487/10487), done.
+Receiving objects: 100% (5321/5321), 37.75 MiB | 58.40 MiB/s, done.
+Resolving deltas: 100% (2318/2318), done.
+Receiving objects: 100% (12488/12488), 3.38 MiB | 29.83 MiB/s, done.1% (560593/692090)
+Receiving objects: 100% (33173/33173), 6.01 MiB | 24.54 MiB/s, done.
+Resolving deltas: 100% (6757/6757), done.
+Resolving deltas: 100% (18086/18086), done.
+Receiving objects: 100% (1935/1935), 11.73 MiB | 61.59 MiB/s, done.
+Resolving deltas: 100% (413/413), done.)
+Receiving objects: 100% (36607/36607), 19.51 MiB | 30.74 MiB/s, done.
+Receiving objects: 100% (20428/20428), 8.36 MiB | 38.55 MiB/s, done.
+Resolving deltas: 100% (13863/13863), done.
+Receiving objects: 100% (4140/4140), 17.97 MiB | 42.11 MiB/s, done.
+Resolving deltas: 100% (954/954), done., 667.80 MiB | 6.54 MiB/s
+Resolving deltas: 100% (24884/24884), done.nakeyamlResolving deltas: 100% (24884/24884)
+Receiving objects: 100% (1570/1570), 836.24 KiB | 27.87 MiB/s, done.
+Resolving deltas: 100% (262/262), done.
+Receiving objects: 100% (2120/2120), 1.61 MiB | 36.66 MiB/s, done.
+Resolving deltas: 100% (157/157), done.
+Receiving objects: 100% (33295/33295), 22.84 MiB | 43.16 MiB/s, done.wReceiving objects:   5% (35271/705417), 16.36 MiB | 32.70 MiB/s
+Receiving objects: 100% (4973/4973), 37.93 MiB | 26.17 MiB/s, done.
+Resolving deltas: 100% (21821/21821), done.
+Resolving deltas: 100% (692090/692090), done.27 MiB | 5.65 MiB/s
+Resolving deltas: 100% (1088/1088), done.705.08 MiB | 5.52 MiB/ss
+Receiving objects: 100% (6224/6224), 3.49 MiB | 38.88 MiB/s, done.  67% (472630/705417), 154.77 MiB | 38.72 MiB/s
+Resolving deltas: 100% (3118/3118), done.717.65 MiB | 5.72 MiB/ss
+Receiving objects: 100% (705417/705417), 362.55 MiB | 39.58 MiB/s, done.
+Receiving objects: 100% (1529/1529), 754.36 KiB | 26.94 MiB/s, done.
+Resolving deltas: 100% (101/101), done.
+Receiving objects: 100% (10434/10434), 2.10 MiB | 34.74 MiB/s, done.40% (231968/579919)
+Resolving deltas: 100% (5219/5219), done.
+Receiving objects: 100% (17825/17825), 87.34 MiB | 54.14 MiB/s, done.
+Resolving deltas: 100% (12236/12236), done.8 MiB | 36.57 MiB/s
+Receiving objects: 100% (51387/51387), 44.80 MiB | 37.02 MiB/s, done.
+Resolving deltas: 100% (39254/39254), done.3.86 MiB | 6.22 MiB/s
+Receiving objects: 100% (7124/7124), 4.18 MiB | 50.35 MiB/s, done.
+Resolving deltas: 100% (4399/4399), done.
+Receiving objects: 100% (771/771), 259.77 KiB | 28.86 MiB/s, done.
+Resolving deltas: 100% (4/4), done.03), 29.36 MiB | 14.68 MiB/s
+Receiving objects: 100% (1217/1217), 440.88 KiB | 33.91 MiB/s, done.ects:  87% (136597/155671), 797.50 MiB | 5.88 MiB/s
+Resolving deltas: 100% (43/43), done.)
+Receiving objects: 100% (3477/3477), 1.23 MiB | 17.04 MiB/s, done.
+Resolving deltas: 100% (489/489), done.
+Receiving objects: 100% (878895/878895), 165.42 MiB | 35.79 MiB/s, done. (342770/878895), 46.44 MiB | 30.91 MiB/s
+Receiving objects: 100% (17259/17259), 38.23 MiB | 42.55 MiB/s, done.
+Resolving deltas: 100% (11272/11272), done.6.65 MiB | 5.70 MiB/s
+Receiving objects: 100% (6941/6941), 3.19 MiB | 37.13 MiB/s, done.
+Resolving deltas: 100% (2489/2489), done.23.44 MiB | 23.21 MiB/s
+Resolving deltas: 100% (1467556/1467556), done.2 MiB | 33.58 MiB/s
+Resolving deltas: 100% (579919/579919), done.3.92 MiB | 33.58 MiB/s
+Resolving deltas: 100% (744086/744086), done.MiB | 33.18 MiB/s/sB/s
+Receiving objects: 100% (41187/41187), 171.89 MiB | 32.67 MiB/s, done.
+Resolving deltas: 100% (24045/24045), done.9.07 MiB | 5.99 MiB/sB/s
+Receiving objects: 100% (1907/1907), 6.17 MiB | 67.21 MiB/s, done.74% (3109458/4153336), 612.20 MiB | 25.68 MiB/s
+Resolving deltas: 100% (303/303), done.
+Receiving objects: 100% (888/888), 420.63 KiB | 28.04 MiB/s, done.s
+Resolving deltas: 100% (81/81), done.
+Receiving objects: 100% (1533/1533), 955.44 KiB | 20.77 MiB/s, done.
+Resolving deltas: 100% (71/71), done.
+Receiving objects: 100% (1502/1502), 1.52 MiB | 23.54 MiB/s, done.
+Resolving deltas: 100% (269/269), done.
+Receiving objects: 100% (2046/2046), 876.68 KiB | 31.31 MiB/s, done. 73% (96310/131603), 273.70 MiB | 6.54 MiB/s
+Resolving deltas: 100% (359/359), done.
+Receiving objects: 100% (6427/6427), 11.35 MiB | 64.93 MiB/s, done.
+Resolving deltas: 100% (3061/3061), done.
+Receiving objects: 100% (4069/4069), 5.45 MiB | 38.20 MiB/s, done.s
+Resolving deltas: 100% (1309/1309), done.
+Receiving objects: 100% (4798/4798), 1.68 MiB | 33.82 MiB/s, done.
+Resolving deltas: 100% (868/868), done.
+Receiving objects: 100% (1691/1691), 474.17 KiB | 29.63 MiB/s, done.% (136910/155671), 971.76 MiB | 6.53 MiB/s
+Resolving deltas: 100% (507/507), done.
+Receiving objects: 100% (2708/2708), 20.08 MiB | 18.29 MiB/s, done.
+Receiving objects: 100% (2019/2019), 412.38 KiB | 21.70 MiB/s, done.
+Resolving deltas: 100% (918/918), done.
+Resolving deltas: 100% (1157/1157), done., 787.26 MiB | 29.43 MiB/s
+Receiving objects: 100% (5973/5973), 1.13 MiB | 37.26 MiB/s, done.
+Receiving objects: 100% (16094/16094), 15.28 MiB | 23.89 MiB/s, done.
+Resolving deltas: 100% (4445/4445), done.
+Receiving objects: 100% (983/983), 635.43 KiB | 28.88 MiB/s, done.s
+Resolving deltas: 100% (22/22), done.
+Resolving deltas: 100% (11465/11465), done.820.63 MiB | 30.34 MiB/s
+Receiving objects: 100% (212348/212348), 48.12 MiB | 33.36 MiB/s, done.
+Resolving deltas: 100% (169870/169870), done.2.18 MiB | 43.31 MiB/stas:  85% (144390/169870)
+Receiving objects: 100% (6391/6391), 3.61 MiB | 29.14 MiB/s, done.
+Resolving deltas: 100% (2358/2358), done.1017.04 MiB | 7.07 MiB/s
+Receiving objects: 100% (4153336/4153336), 1023.46 MiB | 33.00 MiB/s, done.
+Receiving objects: 100% (2124/2124), 920.64 KiB | 32.88 MiB/s, done.
+Resolving deltas: 100% (435/435), done.
+Receiving objects: 100% (1607/1607), 1.29 MiB | 43.94 MiB/s, done.% (0/3513044)
+Resolving deltas: 100% (47/47), done.
+Receiving objects: 100% (25040/25040), 119.78 MiB | 39.29 MiB/s, done.
+Resolving deltas: 100% (20025/20025), done..14 MiB | 23.97 MiB/ss
+Receiving objects: 100% (15878/15878), 6.89 MiB | 41.51 MiB/s, done.% (278060/421303), 180.32 MiB | 40.06 MiB/s
+Resolving deltas: 100% (5816/5816), done.210.71 MiB | 37.11 MiB/s
+Receiving objects: 100% (111966/111966), 178.23 MiB | 27.39 MiB/s, done.
+Receiving objects: 100% (3793/3793), 961.46 KiB | 14.57 MiB/s, done.
+Resolving deltas: 100% (916/916), done.)
+Receiving objects: 100% (131603/131603), 487.46 MiB | 8.84 MiB/s, done.
+Receiving objects: 100% (421303/421303), 347.58 MiB | 37.48 MiB/s, done.
+Receiving objects: 100% (1703/1703), 1.78 MiB | 10.00 MiB/s, done.eltas:  62% (201489/324982)
+Resolving deltas: 100% (268/268), done.
+Receiving objects: 100% (11454/11454), 3.36 MiB | 23.43 MiB/s, done.
+Resolving deltas: 100% (2117/2117), done.
+Receiving objects: 100% (1390/1390), 364.11 KiB | 14.56 MiB/s, done.
+Resolving deltas: 100% (269/269), done.
+Receiving objects: 100% (9029/9029), 2.35 MiB | 12.39 MiB/s, done.
+Resolving deltas: 100% (4281/4281), done.1.12 GiB | 4.09 MiB/s/s
+Resolving deltas: 100% (324982/324982), done. GiB | 3.78 MiB/sB/sas:  81% (66215/81489)
+Resolving deltas: 100% (81489/81489), done.6.51 MiB | 41.35 MiB/s
+Receiving objects: 100% (1891/1891), 568.67 KiB | 10.94 MiB/s, done.ceiving objects:  51% (37006/72560), 26.46 MiB | 17.58 MiB/s
+Resolving deltas: 100% (165/165), done.
+Receiving objects: 100% (4545/4545), 1.05 MiB | 31.75 MiB/s, done.
+Resolving deltas: 100% (1011/1011), done.
+Receiving objects: 100% (4651/4651), 1.05 MiB | 16.75 MiB/s, done.
+Resolving deltas: 100% (1434/1434), done.
+Receiving objects: 100% (12858/12858), 2.75 MiB | 33.17 MiB/s, done.
+Resolving deltas: 100% (4417/4417), done.1.17 GiB | 5.55 MiB/s
+Receiving objects: 100% (2543/2543), 698.86 KiB | 12.48 MiB/s, done.ts:  88% (137528/155671), 1.17 GiB | 5.45 MiB/s
+Resolving deltas: 100% (251/251), done.
+Receiving objects: 100% (509/509), 164.22 KiB | 14.93 MiB/s, done.
+Resolving deltas: 100% (16/16), done.
+Resolving deltas: 100% (69693/69693), done.57 MiB | 13.80 MiB/s
+Receiving objects: 100% (3785/3785), 1.31 MiB | 28.56 MiB/s, done.
+Resolving deltas: 100% (304/304), done.155.60 MiB | 16.00 MiB/s
+Receiving objects: 100% (1742/1742), 664.87 KiB | 14.77 MiB/s, done.
+Resolving deltas: 100% (26/26), done.
+Receiving objects: 100% (15263/15263), 4.38 MiB | 33.69 MiB/s, done.
+Resolving deltas: 100% (3982/3982), done.874.46 MiB | 53.49 MiB/s
+Receiving objects: 100% (3107/3107), 15.24 MiB | 36.37 MiB/s, done.
+Receiving objects: 100% (5105/5105), 5.71 MiB | 14.13 MiB/s, done.eltas:  42% (498/1185)
+Resolving deltas: 100% (1534/1534), done.
+Resolving deltas: 100% (1185/1185), done.9.79 MiB | 23.09 MiB/s
+Receiving objects: 100% (4557/4557), 1.07 MiB | 28.06 MiB/s, done.
+Resolving deltas: 100% (1346/1346), done.5.01 MiB | 25.05 MiB/s
+Receiving objects: 100% (1519/1519), 565.67 KiB | 31.43 MiB/s, done.
+Resolving deltas: 100% (15/15), done., 232.68 MiB | 23.92 MiB/s
+Receiving objects: 100% (72560/72560), 264.45 MiB | 18.83 MiB/s, done.:  90% (877283/966179), 998.44 MiB | 57.20 MiB/s
+Receiving objects: 100% (966179/966179), 1.12 GiB | 53.01 MiB/s, done.
+Resolving deltas: 100% (55254/55254), done.25 GiB | 2.94 MiB/s
+Receiving objects: 100% (7800/7800), 3.34 MiB | 32.93 MiB/s, done.
+Resolving deltas: 100% (2348/2348), done.
+Receiving objects: 100% (2328/2328), 905.48 KiB | 11.32 MiB/s, done.
+Resolving deltas: 100% (296/296), done.
+Receiving objects: 100% (12894/12894), 3.76 MiB | 21.40 MiB/s, done.
+Resolving deltas: 100% (6369/6369), done.
+Receiving objects: 100% (838/838), 235.30 KiB | 7.84 MiB/s, done.Receiving objects:  87% (730/838)
+Resolving deltas: 100% (65/65), done.
+Receiving objects: 100% (2893/2893), 1.09 MiB | 14.49 MiB/s, done.ng deltas:  78% (531733/680830)
+Resolving deltas: 100% (492/492), done.
+Receiving objects: 100% (41556/41556), 38.45 MiB | 54.61 MiB/s, done.:  78% (532501/680830)
+Resolving deltas: 100% (21216/21216), done.29 GiB | 6.12 MiB/s
+Receiving objects: 100% (8818/8818), 50.17 MiB | 34.86 MiB/s, done.
+Receiving objects: 100% (11907/11907), 9.23 MiB | 23.69 MiB/s, done.
+Resolving deltas: 100% (7458/7458), done.1.31 GiB | 4.87 MiB/s
+Resolving deltas: 100% (4184/4184), done.1.32 GiB | 4.25 MiB/s
+Receiving objects: 100% (1553/1553), 498.41 KiB | 24.92 MiB/s, done.
+Resolving deltas: 100% (62/62), done.
+Receiving objects: 100% (2062/2062), 724.33 KiB | 28.97 MiB/s, done.
+Resolving deltas: 100% (326/326), done.
+Receiving objects: 100% (10318/10318), 18.38 MiB | 58.10 MiB/s, done.
+Resolving deltas: 100% (6077/6077), done.
+Receiving objects: 100% (1089/1089), 305.56 KiB | 12.22 MiB/s, done.cts:  88% (137766/155671), 1.33 GiB | 4.57 MiB/s
+Resolving deltas: 100% (109/109), done.
+Receiving objects: 100% (6693/6693), 2.37 MiB | 32.33 MiB/s, done.olving deltas:  86% (3034906/3513044)
+Resolving deltas: 100% (3114/3114), done.
+Receiving objects: 100% (1745/1745), 461.38 KiB | 14.42 MiB/s, done.
+Resolving deltas: 100% (246/246), done.
+Receiving objects: 100% (6454/6454), 2.92 MiB | 22.64 MiB/s, done.eltas:  92% (632326/680830)
+Resolving deltas: 100% (2159/2159), done.
+Receiving objects: 100% (2589/2589), 655.66 KiB | 27.32 MiB/s, done.
+Resolving deltas: 100% (473/473), done.
+Receiving objects: 100% (1588/1588), 715.83 KiB | 10.68 MiB/s, done.ving deltas:  95% (648748/680830)
+Resolving deltas: 100% (204/204), done.
+Receiving objects: 100% (3275/3275), 3.15 MiB | 17.54 MiB/s, done.g deltas:  98% (672240/680830)
+Resolving deltas: 100% (876/876), done., 1.38 GiB | 5.80 MiB/s
+Receiving objects: 100% (13895/13895), 4.81 MiB | 25.14 MiB/s, done.ving objects:  30% (420786/1402618), 100.54 MiB | 33.47 MiB/s
+Resolving deltas: 100% (8873/8873), done. 189.92 MiB | 39.78 MiB/s
+Receiving objects: 100% (1241/1241), 377.21 KiB | 15.72 MiB/s, done.
+Resolving deltas: 100% (47/47), done.
+Receiving objects: 100% (2315/2315), 624.82 KiB | 24.99 MiB/s, done.
+Resolving deltas: 100% (570/570), done.
+Receiving objects: 100% (733/733), 272.89 KiB | 9.75 MiB/s, done./s 90% (3161740/3513044)
+Resolving deltas: 100% (153/153), done.
+Receiving objects: 100% (1504/1504), 371.44 KiB | 26.53 MiB/s, done.
+Resolving deltas: 100% (762/762), done.
+Receiving objects: 100% (4701/4701), 1.57 MiB | 15.18 MiB/s, done.s
+Resolving deltas: 100% (3093/3093), done., 326.18 MiB | 22.14 MiB/s
+Receiving objects: 100% (10606/10606), 2.53 MiB | 22.15 MiB/s, done.eiving objects:  76% (1079130/1402618), 356.65 MiB | 21.43 MiB/s
+Resolving deltas: 100% (7459/7459), done.1.46 GiB | 4.54 MiB/s
+Receiving objects: 100% (21164/21164), 5.10 MiB | 29.32 MiB/s, done.ayReceiving objects:  79% (16720/21164)
+Receiving objects: 100% (10301/10301), 3.06 MiB | 19.82 MiB/s, done.
+Resolving deltas: 100% (7672/7672), done.1.47 GiB | 4.44 MiB/s
+Resolving deltas: 100% (16549/16549), done.418.20 MiB | 20.44 MiB/s
+Receiving objects: 100% (649/649), 193.89 KiB | 21.54 MiB/s, done.s
+Resolving deltas: 100% (63/63), done.
+Receiving objects: 100% (468/468), 140.76 KiB | 7.41 MiB/s, done./s
+Resolving deltas: 100% (18/18), done.
+Resolving deltas: 100% (680830/680830), done.8.86 MiB | 19.17 MiB/sbjects:  82% (1163503/1402618), 471.71 MiB | 17.35 MiB/s
+Receiving objects: 100% (14451/14451), 3.92 MiB | 39.31 MiB/s, done.
+Resolving deltas: 100% (10579/10579), done.642.11 MiB | 27.75 MiB/s
+Receiving objects: 100% (3570/3570), 895.61 KiB | 21.84 MiB/s, done.
+Resolving deltas: 100% (613/613), done.
+Receiving objects: 100% (522/522), 152.74 KiB | 25.46 MiB/s, done.sving objects:  93% (1304435/1402618), 694.14 MiB | 25.97 MiB/s
+Resolving deltas: 100% (75/75), done.
+Receiving objects: 100% (364/364), 111.71 KiB | 5.32 MiB/s, done./s
+Resolving deltas: 100% (13/13), done.
+Receiving objects: 100% (9604/9604), 2.86 MiB | 42.50 MiB/s, done.s
+Resolving deltas: 100% (7243/7243), done.
+Receiving objects: 100% (1892/1892), 762.83 KiB | 20.62 MiB/s, done.Receiving objects:  97% (1360540/1402618), 796.95 MiB | 34.40 MiB/s
+Resolving deltas: 100% (407/407), done.
+Receiving objects: 100% (1402618/1402618), 839.76 MiB | 28.03 MiB/s, done.
+Receiving objects: 100% (1135/1135), 495.20 KiB | 15.97 MiB/s, done.
+Resolving deltas: 100% (176/176), done.
+Receiving objects: 100% (5916/5916), 1.65 MiB | 16.21 MiB/s, done.
+Resolving deltas: 100% (2624/2624), done.1.55 GiB | 5.39 MiB/s
+Receiving objects: 100% (584/584), 200.09 KiB | 20.01 MiB/s, done.s:   4% (45288/1132194)
+Resolving deltas: 100% (27/27), done.
+Receiving objects: 100% (5114/5114), 1.63 MiB | 15.73 MiB/s, done.:  10% (113220/1132194)
+Resolving deltas: 100% (1053/1053), done.
+Receiving objects: 100% (7573/7573), 3.08 MiB | 15.31 MiB/s, done.
+Resolving deltas: 100% (1392/1392), done.
+Receiving objects: 100% (5131/5131), 1.30 MiB | 30.37 MiB/s, done.
+Resolving deltas: 100% (1454/1454), done.
+Receiving objects: 100% (14953/14953), 3.00 MiB | 34.95 MiB/s, done./1132194)
+Resolving deltas: 100% (6111/6111), done.
+Receiving objects: 100% (79388/79388), 19.72 MiB | 39.91 MiB/s, done.
+Resolving deltas: 100% (38678/38678), done.
+Resolving deltas: 100% (3513044/3513044), done.iB | 6.37 MiB/s
+Resolving deltas: 100% (1132194/1132194), done.iB | 5.62 MiB/seInstallerResolving deltas:  97% (1108536/1132194)
+Receiving objects: 100% (787/787), 7.92 MiB | 38.26 MiB/s, done.jects:  89% (138792/155671), 1.82 GiB | 6.59 MiB/s
+Resolving deltas: 100% (46/46), done.
+Receiving objects: 100% (7222/7222), 1.39 MiB | 35.57 MiB/s, done.
+Resolving deltas: 100% (2865/2865), done.
+Receiving objects: 100% (38252/38252), 13.50 MiB | 32.07 MiB/s, done.
+Resolving deltas: 100% (13675/13675), done.85 GiB | 6.41 MiB/s
+Receiving objects: 100% (1137/1137), 363.26 KiB | 25.95 MiB/s, done.ects:   0% (1/1137)
+Resolving deltas: 100% (46/46), done.
+Receiving objects: 100% (589/589), 180.94 KiB | 25.85 MiB/s, done.
+Resolving deltas: 100% (2/2), done.
+Receiving objects: 100% (1966/1966), 447.73 KiB | 27.98 MiB/s, done.
+Resolving deltas: 100% (597/597), done.
+Receiving objects: 100% (30531/30531), 14.60 MiB | 36.55 MiB/s, done.
+Receiving objects: 100% (34561/34561), 12.51 MiB | 31.39 MiB/s, done.
+Resolving deltas: 100% (11357/11357), done.
+Resolving deltas: 100% (20484/20484), done.88 GiB | 6.09 MiB/s
+Receiving objects: 100% (6015/6015), 1.85 MiB | 29.63 MiB/s, done.
+Resolving deltas: 100% (1544/1544), done.
+Receiving objects: 100% (6585/6585), 1.96 MiB | 34.60 MiB/s, done.viceReceiving objects:  89% (138879/155671), 1.89 GiB | 5.88 MiB/s
+Resolving deltas: 100% (1387/1387), done.
+Receiving objects: 100% (452/452), 141.95 KiB | 23.66 MiB/s, done.
+Receiving objects: 100% (768/768), 291.22 KiB | 29.12 MiB/s, done.eiving objects:  89% (138884/155671), 1.90 GiB | 5.92 MiB/s
+Resolving deltas: 100% (16/16), done.
+Receiving objects: 100% (2725/2725), 917.47 KiB | 19.11 MiB/s, done.kProviderReceiving objects:  89% (138984/155671), 1.92 GiB | 6.24 MiB/s
+Resolving deltas: 100% (539/539), done.
+Receiving objects: 100% (4551/4551), 1.47 MiB | 26.89 MiB/s, done.oadProviderReceiving objects:   0% (1/4551)
+Resolving deltas: 100% (853/853), done.
+Receiving objects: 100% (5421/5421), 1.91 MiB | 33.07 MiB/s, done.iving objects:  89% (139006/155671), 1.95 GiB | 6.37 MiB/s
+Resolving deltas: 100% (2210/2210), done.
+Receiving objects: 100% (3887/3887), 705.62 KiB | 32.07 MiB/s, done.
+Resolving deltas: 100% (1604/1604), done.
+Receiving objects: 100% (76464/76464), 23.37 MiB | 30.45 MiB/s, done.
+Resolving deltas: 100% (33506/33506), done.98 GiB | 6.29 MiB/s
+Fetching: 77% (586/759) LineageOS/android_prebuilts_gcc_linux-x86_arm_arm-linux-androideabi-4.9Receiving objects:  89% (139369/155671), 2.13 GiB | 6.31 MiB/Receiving objects: 100% (155671/155671), 2.55 GiB | 5.89 MiB/s, done. (149131/155671), 2.50 GiB | 4.93 MiB/s
+Receiving objects: 100% (140863/140863), 34.57 MiB | 15.06 MiB/s, done.% (73177/110250)
+Resolving deltas: 100% (80097/80097), done.
+Receiving objects: 100% (23244/23244), 89.72 MiB | 26.85 MiB/s, done.250)
+Resolving deltas: 100% (8324/8324), done.
+Receiving objects: 100% (3573/3573), 1.47 MiB | 9.93 MiB/s, done.
+Resolving deltas: 100% (555/555), done.
+Receiving objects: 100% (1028/1028), 350.87 KiB | 9.23 MiB/s, done.
+Resolving deltas: 100% (47/47), done.
+Receiving objects: 100% (2409/2409), 1.49 MiB | 16.04 MiB/s, done.olving deltas:  86% (95864/110250)
+Resolving deltas: 100% (573/573), done.
+Receiving objects: 100% (42085/42085), 9.35 MiB | 26.52 MiB/s, done.  87% (96512/110250)
+Resolving deltas: 100% (23546/23546), done.
+Receiving objects: 100% (5866/5866), 2.00 MiB | 18.94 MiB/s, done.
+Resolving deltas: 100% (2261/2261), done.
+Receiving objects: 100% (1235/1235), 367.05 KiB | 11.84 MiB/s, done.
+Resolving deltas: 100% (212/212), done.
+Receiving objects: 100% (5025/5025), 1.66 MiB | 11.64 MiB/s, done.ving deltas:  88% (97868/110250)
+Resolving deltas: 100% (909/909), done.
+Receiving objects: 100% (2510/2510), 915.74 KiB | 11.89 MiB/s, done.
+Resolving deltas: 100% (295/295), done.
+Receiving objects: 100% (3218/3218), 1.29 MiB | 11.51 MiB/s, done.
+Resolving deltas: 100% (959/959), done.
+Receiving objects: 100% (12323/12323), 5.06 MiB | 14.88 MiB/s, done.(100328/110250)
+Resolving deltas: 100% (5134/5134), done.
+Receiving objects: 100% (728/728), 238.77 KiB | 12.57 MiB/s, done.
+Resolving deltas: 100% (42/42), done.
+Receiving objects: 100% (2855/2855), 1.13 MiB | 14.44 MiB/s, done.
+Resolving deltas: 100% (257/257), done.
+Receiving objects: 100% (11618/11618), 3.76 MiB | 11.53 MiB/s, done.
+Resolving deltas: 100% (3355/3355), done.
+Receiving objects: 100% (7450/7450), 1.99 MiB | 10.76 MiB/s, done.98% (7301/7450)
+Resolving deltas: 100% (2891/2891), done.s/gradle-pluginResolving deltas:  98% (2834/2891)
+Receiving objects: 100% (678/678), 203.12 KiB | 20.31 MiB/s, done.s:  93% (103628/110250)
+Resolving deltas: 100% (57/57), done.
+Receiving objects: 100% (6740/6740), 2.24 MiB | 16.58 MiB/s, done.
+Resolving deltas: 100% (1943/1943), done.
+Receiving objects: 100% (2177/2177), 545.61 KiB | 14.75 MiB/s, done.
+Resolving deltas: 100% (431/431), done.
+Receiving objects: 100% (1235/1235), 389.44 KiB | 13.43 MiB/s, done.
+Resolving deltas: 100% (350/350), done.
+Receiving objects: 100% (2799/2799), 1.39 MiB | 28.56 MiB/s, done.
+Resolving deltas: 100% (698/698), done.
+Receiving objects: 100% (8871/8871), 4.98 MiB | 14.31 MiB/s, done.
+Resolving deltas: 100% (2035/2035), done.
+Receiving objects: 100% (991/991), 293.66 KiB | 11.75 MiB/s, done. 95% (105086/110250)
+Resolving deltas: 100% (173/173), done.
+Receiving objects: 100% (879/879), 271.06 KiB | 8.74 MiB/s, done.ltas:  95% (105106/110250)
+Resolving deltas: 100% (18/18), done.
+Receiving objects: 100% (2209/2209), 924.41 KiB | 10.05 MiB/s, done.
+Resolving deltas: 100% (489/489), done.
+Receiving objects: 100% (1148/1148), 665.41 KiB | 27.72 MiB/s, done.eltas:  95% (105126/110250)
+Resolving deltas: 100% (169/169), done.
+Receiving objects: 100% (990/990), 567.06 KiB | 21.81 MiB/s, done.
+Resolving deltas: 100% (35/35), done.
+Receiving objects: 100% (1777/1777), 713.99 KiB | 15.52 MiB/s, done.
+Resolving deltas: 100% (98/98), done.
+Receiving objects: 100% (25942/25942), 17.73 MiB | 19.72 MiB/s, done.
+Resolving deltas: 100% (8041/8041), done.
+Receiving objects: 100% (19221/19221), 9.08 MiB | 25.91 MiB/s, done.
+Resolving deltas: 100% (7466/7466), done.
+Receiving objects: 100% (1464/1464), 697.61 KiB | 29.07 MiB/s, done.eltas:  95% (105415/110250)
+Resolving deltas: 100% (156/156), done.
+Receiving objects: 100% (2370/2370), 1003.39 KiB | 9.47 MiB/s, done.
+Resolving deltas: 100% (338/338), done.
+Receiving objects: 100% (6480/6480), 1.42 MiB | 30.90 MiB/s, done. deltas:  95% (105475/110250)
+Resolving deltas: 100% (1927/1927), done.
+Receiving objects: 100% (5679/5679), 2.94 MiB | 32.05 MiB/s, done.
+Resolving deltas: 100% (1248/1248), done.
+Receiving objects: 100% (4950/4950), 2.05 MiB | 33.78 MiB/s, done.
+Resolving deltas: 100% (931/931), done.
+Receiving objects: 100% (10620/10620), 2.17 MiB | 23.41 MiB/s, done.lving deltas:  95% (105495/110250)
+Resolving deltas: 100% (4426/4426), done.
+Receiving objects: 100% (20775/20775), 8.65 MiB | 23.18 MiB/s, done.
+Resolving deltas: 100% (6651/6651), done.
+Receiving objects: 100% (4679/4679), 4.57 MiB | 21.65 MiB/s, done.
+Resolving deltas: 100% (493/493), done.
+Receiving objects: 100% (689/689), 214.52 KiB | 17.88 MiB/s, done.ects:   0% (1/689)
+Resolving deltas: 100% (1/1), done.
+Receiving objects: 100% (4418/4418), 1.12 MiB | 28.78 MiB/s, done.ng objects:   0% (1/4418)
+Resolving deltas: 100% (2524/2524), done.
+Receiving objects: 100% (1094/1094), 3.00 MiB | 9.92 MiB/s, done.
+Resolving deltas: 100% (54/54), done.
+Receiving objects: 100% (13796/13796), 4.30 MiB | 19.74 MiB/s, done.
+Resolving deltas: 100% (4009/4009), done..80 MiB | 25.59 MiB/s
+Receiving objects: 100% (82702/82702), 34.30 MiB | 26.65 MiB/s, done.
+Resolving deltas: 100% (41115/41115), done.
+Receiving objects: 100% (841/841), 2.25 MiB | 45.22 MiB/s, done.
+Resolving deltas: 100% (17/17), done.
+Receiving objects: 100% (7173/7173), 1.25 MiB | 25.62 MiB/s, done.
+Resolving deltas: 100% (2215/2215), done.
+Receiving objects: 100% (2379/2379), 1.60 MiB | 45.50 MiB/s, done.
+Resolving deltas: 100% (584/584), done.
+Receiving objects: 100% (33294/33294), 5.81 MiB | 38.88 MiB/s, done.ing objects:  10% (3330/33294)
+Resolving deltas: 100% (14817/14817), done.
+Receiving objects: 100% (2821/2821), 975.00 KiB | 15.23 MiB/s, done.as:  96% (105963/110250)
+Resolving deltas: 100% (379/379), done.
+Receiving objects: 100% (4424/4424), 2.76 MiB | 18.75 MiB/s, done.
+Resolving deltas: 100% (1692/1692), done.
+Receiving objects: 100% (12667/12667), 7.75 MiB | 19.08 MiB/s, done.
+Resolving deltas: 100% (4284/4284), done.
+Receiving objects: 100% (648/648), 197.89 KiB | 9.89 MiB/s, done.
+Resolving deltas: 100% (6/6), done.
+Receiving objects: 100% (8056/8056), 6.52 MiB | 27.37 MiB/s, done.
+Resolving deltas: 100% (1765/1765), done.
+Receiving objects: 100% (3656/3656), 4.98 MiB | 45.92 MiB/s, done.
+Resolving deltas: 100% (1037/1037), done.
+Receiving objects: 100% (17513/17513), 10.95 MiB | 25.19 MiB/s, done. (8444/23453), 98.05 MiB | 39.02 MiB/s
+Resolving deltas: 100% (5644/5644), done.2.19 MiB | 35.43 MiB/s
+Receiving objects: 100% (23453/23453), 147.03 MiB | 34.44 MiB/s, done.
+Resolving deltas: 100% (9155/9155), done.00 MiB | 53.32 MiB/s
+Receiving objects: 100% (638/638), 249.30 KiB | 15.58 MiB/s, done.
+Resolving deltas: 100% (12/12), done.269.18 MiB | 53.85 MiB/s
+Receiving objects: 100% (623/623), 192.13 KiB | 16.01 MiB/s, done.
+Resolving deltas: 100% (6/6), done.
+Receiving objects: 100% (2679/2679), 37.29 MiB | 41.78 MiB/s, done.
+Resolving deltas: 100% (506/506), done.4.10 MiB | 48.55 MiB/s/s
+Receiving objects: 100% (3771/3771), 446.36 MiB | 51.02 MiB/s, done.% (35845/45767), 168.31 MiB | 56.10 MiB/s
+Resolving deltas: 100% (602/602), done.
+Receiving objects: 100% (567/567), 183.75 KiB | 18.37 MiB/s, done.
+Resolving deltas: 100% (1/1), done.
+Receiving objects: 100% (1559/1559), 523.11 KiB | 10.68 MiB/s, done. 79% (36539/45767), 217.38 MiB | 54.10 MiB/s
+Resolving deltas: 100% (37/37), done.
+Receiving objects: 100% (4515/4515), 1.01 MiB | 10.46 MiB/s, done.
+Resolving deltas: 100% (1485/1485), done.
+Receiving objects: 100% (1517/1517), 653.61 KiB | 24.21 MiB/s, done.
+Resolving deltas: 100% (103/103), done.
+Receiving objects: 100% (2060/2060), 106.44 MiB | 15.57 MiB/s, done.
+Resolving deltas: 100% (518/518), done.id_tools_extract-utilsResolving deltas: 100% (518/518)
+Receiving objects: 100% (3192/3192), 2.16 MiB | 15.12 MiB/s, done.0% (1/3192)
+Resolving deltas: 100% (373/373), done.
+Receiving objects: 100% (6647/6647), 1.57 MiB | 15.60 MiB/s, done.
+Resolving deltas: 100% (1860/1860), done.0.88 MiB | 39.28 MiB/s
+Receiving objects: 100% (2389/2389), 773.77 KiB | 7.82 MiB/s, done.
+Resolving deltas: 100% (398/398), done.
+Receiving objects: 100% (1127/1127), 80.54 MiB | 64.43 MiB/s, done.
+Resolving deltas: 100% (130/130), done.
+Receiving objects: 100% (2468/2468), 784.36 KiB | 14.26 MiB/s, done.
+Resolving deltas: 100% (249/249), done.
+Receiving objects: 100% (201718/201718), 70.39 MiB | 22.96 MiB/s, done.98807/201718), 69.84 MiB | 22.99 MiB/s
+Resolving deltas: 100% (83450/83450), done.14 MiB | 38.13 MiB/ss
+Receiving objects: 100% (198672/198672), 62.83 MiB | 18.06 MiB/s, done.
+Receiving objects: 100% (2375/2375), 1.22 MiB | 15.28 MiB/s, done.
+Resolving deltas: 100% (288/288), done.
+Resolving deltas: 100% (125501/125501), done.2 MiB | 44.86 MiB/s
+Receiving objects: 100% (1198/1198), 495.91 KiB | 16.53 MiB/s, done.
+Resolving deltas: 100% (105/105), done.
+Receiving objects: 100% (45767/45767), 1.03 GiB | 41.91 MiB/s, done.cts:  99% (45310/45767), 1.03 GiB | 39.42 MiB/s
+Receiving objects: 100% (3987/3987), 944.21 KiB | 10.38 MiB/s, done.9% (2084/23148)
+Resolving deltas: 100% (794/794), done.
+Resolving deltas: 100% (23148/23148), done./graphicsbenchmarkResolving deltas:  97% (107292/110250)
+Receiving objects: 100% (2014/2014), 716.84 KiB | 17.92 MiB/s, done.
+Resolving deltas: 100% (205/205), done.
+Receiving objects: 100% (3065/3065), 1.51 MiB | 29.20 MiB/s, done.
+Resolving deltas: 100% (561/561), done.
+Receiving objects: 100% (1950121/1950121), 764.76 MiB | 33.76 MiB/s, done.Receiving objects:  97% (1891618/1950121), 720.40 MiB | 36.46 MiB/s
+Resolving deltas: 100% (1473452/1473452), done.sweetResolving deltas:  98% (108152/110250)
+Resolving deltas: 100% (110250/110250), done.ving deltas:  99% (109990/110250)
+Receiving objects: 100% (13913/13913), 5.73 MiB | 23.46 MiB/s, done.:   0% (1/13913)
+Resolving deltas: 100% (6683/6683), done.
+Receiving objects: 100% (5857/5857), 4.15 MiB | 29.95 MiB/s, done.
+Resolving deltas: 100% (1784/1784), done.
+Receiving objects: 100% (10169/10169), 6.94 MiB | 32.16 MiB/s, done.
+Resolving deltas: 100% (3774/3774), done.
+Fetching: 100% (759/759), done in 14m40.978s
+device/qcom/sepolicy: Shared project LineageOS/android_device_qcom_sepolicy found, disabling pruning.
+device/qcom/sepolicy-legacy: Shared project LineageOS/android_device_qcom_sepolicy found, disabling pruning.
+device/qcom/sepolicy-legacy-um: Shared project LineageOS/android_device_qcom_sepolicy found, disabling pruning.
+hardware/qcom-caf/apq8084/audio: Shared project LineageOS/android_hardware_qcom_audio found, disabling pruning.
+hardware/qcom-caf/apq8084/display: Shared project LineageOS/android_hardware_qcom_display found, disabling pruning.
+hardware/qcom-caf/apq8084/media: Shared project LineageOS/android_hardware_qcom_media found, disabling pruning.
+hardware/qcom-caf/msm8916/audio: Shared project LineageOS/android_hardware_qcom_audio found, disabling pruning.
+hardware/qcom-caf/msm8916/display: Shared project LineageOS/android_hardware_qcom_display found, disabling pruning.
+hardware/qcom-caf/msm8916/media: Shared project LineageOS/android_hardware_qcom_media found, disabling pruning.
+hardware/qcom-caf/msm8952/audio: Shared project LineageOS/android_hardware_qcom_audio found, disabling pruning.
+hardware/qcom-caf/msm8952/display: Shared project LineageOS/android_hardware_qcom_display found, disabling pruning.
+hardware/qcom-caf/msm8952/media: Shared project LineageOS/android_hardware_qcom_media found, disabling pruning.
+hardware/qcom-caf/msm8960/audio: Shared project LineageOS/android_hardware_qcom_audio found, disabling pruning.
+hardware/qcom-caf/msm8960/display: Shared project LineageOS/android_hardware_qcom_display found, disabling pruning.
+hardware/qcom-caf/msm8960/media: Shared project LineageOS/android_hardware_qcom_media found, disabling pruning.
+hardware/qcom-caf/msm8974/audio: Shared project LineageOS/android_hardware_qcom_audio found, disabling pruning.
+hardware/qcom-caf/msm8974/display: Shared project LineageOS/android_hardware_qcom_display found, disabling pruning.
+hardware/qcom-caf/msm8974/media: Shared project LineageOS/android_hardware_qcom_media found, disabling pruning.
+hardware/qcom-caf/msm8994/audio: Shared project LineageOS/android_hardware_qcom_audio found, disabling pruning.
+hardware/qcom-caf/msm8994/display: Shared project LineageOS/android_hardware_qcom_display found, disabling pruning.
+hardware/qcom-caf/msm8994/media: Shared project LineageOS/android_hardware_qcom_media found, disabling pruning.
+hardware/qcom-caf/msm8996/audio: Shared project LineageOS/android_hardware_qcom_audio found, disabling pruning.
+hardware/qcom-caf/msm8996/display: Shared project LineageOS/android_hardware_qcom_display found, disabling pruning.
+hardware/qcom-caf/msm8996/media: Shared project LineageOS/android_hardware_qcom_media found, disabling pruning.
+hardware/qcom-caf/msm8998/audio: Shared project LineageOS/android_hardware_qcom_audio found, disabling pruning.
+hardware/qcom-caf/msm8998/display: Shared project LineageOS/android_hardware_qcom_display found, disabling pruning.
+hardware/qcom-caf/msm8998/media: Shared project LineageOS/android_hardware_qcom_media found, disabling pruning.
+hardware/qcom-caf/sdm845/audio: Shared project LineageOS/android_hardware_qcom_audio found, disabling pruning.
+hardware/qcom-caf/sdm845/display: Shared project LineageOS/android_hardware_qcom_display found, disabling pruning.
+hardware/qcom-caf/sdm845/media: Shared project LineageOS/android_hardware_qcom_media found, disabling pruning.
+hardware/qcom-caf/sm8150/audio: Shared project LineageOS/android_hardware_qcom_audio found, disabling pruning.
+hardware/qcom-caf/sm8150/display: Shared project LineageOS/android_hardware_qcom_display found, disabling pruning.
+hardware/qcom-caf/sm8150/media: Shared project LineageOS/android_hardware_qcom_media found, disabling pruning.
+hardware/qcom-caf/sm8250/audio: Shared project LineageOS/android_hardware_qcom_audio found, disabling pruning.
+hardware/qcom-caf/sm8250/display: Shared project LineageOS/android_hardware_qcom_display found, disabling pruning.
+hardware/qcom-caf/sm8250/media: Shared project LineageOS/android_hardware_qcom_media found, disabling pruning.
+hardware/qcom-caf/sm8350/audio: Shared project LineageOS/android_hardware_qcom_audio found, disabling pruning.
+hardware/qcom-caf/sm8350/display: Shared project LineageOS/android_hardware_qcom_display found, disabling pruning.
+hardware/qcom-caf/sm8350/media: Shared project LineageOS/android_hardware_qcom_media found, disabling pruning.
+hardware/qcom/audio: Shared project LineageOS/android_hardware_qcom_audio found, disabling pruning.
+hardware/qcom/display: Shared project LineageOS/android_hardware_qcom_display found, disabling pruning.
+hardware/qcom/media: Shared project LineageOS/android_hardware_qcom_media found, disabling pruning.
+vendor/nxp/opensource/pn5xx/halimpl: Shared project LineageOS/android_vendor_nxp_opensource_halimpl found, disabling pruning.
+vendor/nxp/opensource/pn5xx/hidlimpl: Shared project LineageOS/android_vendor_nxp_opensource_hidlimpl found, disabling pruning.
+vendor/nxp/opensource/sn100x/halimpl: Shared project LineageOS/android_vendor_nxp_opensource_halimpl found, disabling pruning.
+vendor/nxp/opensource/sn100x/hidlimpl: Shared project LineageOS/android_vendor_nxp_opensource_hidlimpl found, disabling pruning.
+Garbage collecting: 100% (759/759), done in 8.021s
+Receiving objects: 100% (3992/3992), 3.43 MiB | 38.18 MiB/s, done.
+Resolving deltas: 100% (2415/2415), done.
+error.GitError: Cannot fetch LineageOS/android_packages_apps_Etar/external/colorpicker update-ref: fatal: ca69f1e26e84490284abab46dd7929613d8cb325^0: not a valid SHA1
+
+error.GitError: Cannot fetch LineageOS/android_packages_apps_Etar/external/timezonepicker update-ref: fatal: c6118dd62b16fb45f991b6c13bfeda8188ca04a9^0: not a valid SHA1
+
+Fetching: 63% (7/11) platform/external/protobuf/third_party/benchmark
+fatal: repository 'https://android.googlesource.com/platform/external/wjakob/clang-cindex-python3/' not found
+
+platform/external/python/pybind11/tools/clang:
+fatal: repository 'https://android.googlesource.com/platform/external/wjakob/clang-cindex-python3/' not found
+platform/external/python/pybind11/tools/clang: sleeping 4.0 seconds before retrying
+fatal: repository 'https://android.googlesource.com/platform/external/wjakob/clang-cindex-python3/' not found
+
+platform/external/python/pybind11/tools/clang:
+fatal: repository 'https://android.googlesource.com/platform/external/wjakob/clang-cindex-python3/' not found
+error: Cannot fetch platform/external/python/pybind11/tools/clang from https://android.googlesource.com/platform/external/wjakob/clang-cindex-python3
+error.GitError: Cannot fetch LineageOS/android_packages_apps_Etar/external/chips update-ref: fatal: ac71a999b01a49ddf03aeba07446f3bd2d47b88e^0: not a valid SHA1
+
+Fetching: 100% (11/11), done in 13.912s
+Garbage collecting: 100% (11/11), done in 0.112s
+Fetching:  0% (0/5) warming uperror.GitError: Cannot fetch LineageOS/android_packages_apps_Etar/external/timezonepicker update-ref: fatal: c6118dd62b16fb45f991b6c13bfeda8188ca04a9^0: not a valid SHA1
+
+Fetching: 20% (1/5) LineageOS/android_packages_apps_Etar/external/timezonepicker
+fatal: repository 'https://android.googlesource.com/platform/external/wjakob/clang-cindex-python3/' not found
+
+platform/external/python/pybind11/tools/clang:
+fatal: repository 'https://android.googlesource.com/platform/external/wjakob/clang-cindex-python3/' not found
+platform/external/python/pybind11/tools/clang: sleeping 4.0 seconds before retrying
+fatal: repository 'https://android.googlesource.com/platform/external/wjakob/clang-cindex-python3/' not found
+
+platform/external/python/pybind11/tools/clang:
+fatal: repository 'https://android.googlesource.com/platform/external/wjakob/clang-cindex-python3/' not found
+error: Cannot fetch platform/external/python/pybind11/tools/clang from https://android.googlesource.com/platform/external/wjakob/clang-cindex-python3
+error.GitError: Cannot fetch LineageOS/android_packages_apps_Etar/external/chips update-ref: fatal: ac71a999b01a49ddf03aeba07446f3bd2d47b88e^0: not a valid SHA1
+
+error.GitError: Cannot fetch LineageOS/android_packages_apps_Etar/external/colorpicker update-ref: fatal: ca69f1e26e84490284abab46dd7929613d8cb325^0: not a valid SHA1
+
+Fetching: 100% (5/5), done in 6.994s
+Garbage collecting: 100% (5/5), done in 0.031s
+Fetching:  0% (0/4) warming up
+fatal: repository 'https://android.googlesource.com/platform/external/wjakob/clang-cindex-python3/' not found
+
+platform/external/python/pybind11/tools/clang:
+fatal: repository 'https://android.googlesource.com/platform/external/wjakob/clang-cindex-python3/' not found
+platform/external/python/pybind11/tools/clang: sleeping 4.0 seconds before retrying
+fatal: repository 'https://android.googlesource.com/platform/external/wjakob/clang-cindex-python3/' not found
+
+platform/external/python/pybind11/tools/clang:
+fatal: repository 'https://android.googlesource.com/platform/external/wjakob/clang-cindex-python3/' not found
+error: Cannot fetch platform/external/python/pybind11/tools/clang from https://android.googlesource.com/platform/external/wjakob/clang-cindex-python3
+error.GitError: Cannot fetch LineageOS/android_packages_apps_Etar/external/chips update-ref: fatal: ac71a999b01a49ddf03aeba07446f3bd2d47b88e^0: not a valid SHA1
+
+error.GitError: Cannot fetch LineageOS/android_packages_apps_Etar/external/colorpicker update-ref: fatal: ca69f1e26e84490284abab46dd7929613d8cb325^0: not a valid SHA1
+
+error.GitError: Cannot fetch LineageOS/android_packages_apps_Etar/external/timezonepicker update-ref: fatal: c6118dd62b16fb45f991b6c13bfeda8188ca04a9^0: not a valid SHA1
+
+Fetching: 100% (4/4), done in 6.706s
+Garbage collecting: 100% (4/4), done in 0.012s
+Updating files: 100% (4699/4699), done.
+Updating files: 100% (11384/11384), done.
+Updating files: 100% (13650/13650), done.
+Updating files: 100% (21682/21682), done.
+Updating files: 100% (20941/20941), done.nal/libnlUpdating files:  57% (11937/20941)
+Updating files: 100% (10189/10189), done.nal/google-fonts/arbutus-slabUpdating files:  96% (9782/10189)
+Updating files: 100% (4775/4775), done.
+Updating files: 100% (7979/7979), done.ternal/imsUpdating files:  68% (5471/7979)
+Updating files: 100% (3136/3136), done.
+Updating files: 100% (2115/2115), done.vayu/droidmediaUpdating files:  96% (2035/2115)
+Updating files: 100% (6822/6822), done.ternal/angleUpdating files:  11% (3947/35875)
+Updating files: 100% (35875/35875), done.rnal/pdfiumUpdating files:  87% (31212/35875)
+fatal: failed to unpack tree object HEAD
+error.GitError: Cannot checkout platform/external/python/pybind11/tools/clang: Cannot initialize work tree for platform/external/python/pybind11/tools/clang
+error: Cannot checkout platform/external/python/pybind11/tools/clang
+Updating files: 100% (358/358), done./android_hardware_qcom_keymasterUpdating files:  63% (154/244)
+Updating files: 100% (6415/6415), done.
+fatal: failed to unpack tree object HEAD
+error.GitError: Cannot checkout LineageOS/android_packages_apps_Etar/external/chips: Cannot initialize work tree for LineageOS/android_packages_apps_Etar/external/chips
+error: Cannot checkout LineageOS/android_packages_apps_Etar/external/chips
+fatal: failed to unpack tree object HEAD
+error.GitError: Cannot checkout LineageOS/android_packages_apps_Etar/external/colorpicker: Cannot initialize work tree for LineageOS/android_packages_apps_Etar/external/colorpicker
+error: Cannot checkout LineageOS/android_packages_apps_Etar/external/colorpicker
+fatal: failed to unpack tree object HEAD
+error.GitError: Cannot checkout LineageOS/android_packages_apps_Etar/external/timezonepicker: Cannot initialize work tree for LineageOS/android_packages_apps_Etar/external/timezonepicker
+error: Cannot checkout LineageOS/android_packages_apps_Etar/external/timezonepicker
+Updating files: 100% (19228/19228), done.
+Updating files: 100% (70761/70761), done.roid_packages_modules_DnsResolverUpdating files:  56% (39627/70761)
+Updating files: 100% (16132/16132), done.
+Updating files: 100% (244/244), done.
+Updating files: 100% (38717/38717), done.el_xiaomi_sweetUpdating files:  55% (2323/4222)
+Updating files: 100% (1778/1778), done.ndor_xiaomi_sweetUpdating files:  94% (1672/1778)
+Updating files: 100% (4222/4222), done.st/suite_harnessUpdating files:  92% (3885/4222)
+Updating files: 100% (163/163), done.frameworks/layoutlibUpdating files:  14% (264/1881)
+Updating files: 100% (1881/1881), done.
+Updating files: 100% (423/423), done.tools/securityUpdating files:  81% (343/423)
+Updating files: 100% (5667/5667), done.ebuilts/android-emulatorUpdating files:  95% (5384/5667)
+Updating files: 100% (7855/7855), done.
+Updating files: 100% (1151/1151), done.
+Updating files: 100% (1898/1898), done.
+Updating files: 100% (2096/2096), done.
+Updating files: 100% (2085/2085), done.
+Updating files: 100% (948/948), done.
+Updating files: 100% (43442/43442), done.em/libsyspropUpdating files:  88% (38630/43442)
+Updating files: 100% (44081/44081), done.
+Updating files: 100% (3624/3624), done.
+Updating files: 100% (3992/3992), done.
+Updating files: 100% (9260/9260), done.
+Updating files: 100% (34285/34285), done.
+Updating files: 100% (952/952), done.
+Updating files: 100% (683/683), done.
+Updating files: 100% (763/763), done.
+Updating files: 100% (16294/16294), done.
+Updating files: 100% (601/601), done.
+Updating files: 100% (2036/2036), done.
+Checking out: 100% (771/771), done in 3m18.822s
+
+error: Unable to fully sync the tree.
+error: Downloading network changes failed.
+error: Checking out local projects failed.
+Failing repos:
+external/python/pybind11/tools/clang
+packages/apps/Etar/external/chips
+packages/apps/Etar/external/colorpicker
+packages/apps/Etar/external/timezonepicker
+Try re-running with "-j1 --fail-fast" to exit at the first error.
+HABUILD_SDK [sweet] ubuntu@ubuntu:~/hadk$ rm -rf external/libhybris
+HABUILD_SDK [sweet] ubuntu@ubuntu:~/hadk$ git clone --recurse-submodules https://github.com/mer-hybris/libhybris.git external/libhybris
+Cloning into 'external/libhybris'...
+remote: Enumerating objects: 1654, done.
+remote: Counting objects: 100% (71/71), done.
+remote: Compressing objects: 100% (45/45), done.
+remote: Total 1654 (delta 23), reused 60 (delta 18), pack-reused 1583
+Receiving objects: 100% (1654/1654), 1.34 MiB | 924.00 KiB/s, done.
+Resolving deltas: 100% (723/723), done.
+Submodule 'libhybris' (https://github.com/sailfishos-mirror/libhybris.git) registered for path 'libhybris'
+Cloning into '/home/ubuntu/hadk/external/libhybris/libhybris'...
+remote: Enumerating objects: 9787, done.
+remote: Counting objects: 100% (9787/9787), done.
+remote: Compressing objects: 100% (3786/3786), done.
+remote: Total 9787 (delta 5928), reused 9787 (delta 5928), pack-reused 0
+Receiving objects: 100% (9787/9787), 3.95 MiB | 2.57 MiB/s, done.
+Resolving deltas: 100% (5928/5928), done.
+Submodule path 'libhybris': checked out '33f1c76ce515879d0c04e5f601806b228e89d829'
+HABUILD_SDK [sweet] ubuntu@ubuntu:~/hadk$ ./hybris-patches/apply-patches.sh --mb
+rm: cannot remove '/home/ubuntu/hadk/packages/apps/Etar/external/chips/Android.bp': No such file or directory
+rm: cannot remove '/home/ubuntu/hadk/packages/apps/Etar/external/chips/tests/Android.bp': No such file or directory
+rm: cannot remove '/home/ubuntu/hadk/packages/apps/Etar/external/chips/sample/Android.bp': No such file or directory
+rm: cannot remove '/home/ubuntu/hadk/packages/apps/Etar/external/timezonepicker/Android.bp': No such file or directory
+rm: cannot remove '/home/ubuntu/hadk/packages/apps/Etar/external/colorpicker/Android.bp': No such file or directory
+Applying: (hybris) Add support for get and list of properties.
+Applying: (hybris) bionic_tls.h: shifting TLS slots to avoid conflicts with libc/hybris
+Applying: (hybris) disable tls usage in locale.cpp, to avoid problems with libhybris
+Applying: (hybris) Fix TLS slots for x86 Aligns with this libhybris patch: https://github.com/libhybris/libhybris/pull/370
+Applying: (hybris) don't fail because of fsetxattr
+Applying: (halium) libdl: neutralize cfi_slowpath_common as it breaks libhybris
+Applying: (hybris) Fix __get_tls and related functions (>=Android 11)
+.git/rebase-apply/patch:31: new blank line at EOF.
++
+warning: 1 line adds whitespace errors.
+Applying: (halium) disable GWP-ASan and use emulated TLS in libc by default
+Applying: (hybris) Reduce vendorimage build size.
+Applying: Add cpio
+Applying: Revert "audiopolicy: Add AudioSessionInfo API"
+Applying: (hybris) AudioService is disabled in hybris adaptations
+Applying: (hybris) Disable some tests to avoid build errors.
+Applying: (hybris) Use mini services and disable starting unneeded services.
+Applying: (hybris) Pick GLES shared objects from appropriate paths (32-bit case)
+Applying: (hybris) Use private __get_tls_hooks from bionic
+Applying: (hybris) Pick GLES shared objects from appropriate paths (64-bit case)
+Applying: (hybris) do not expose EGL_ANGLE_platform_angle, otherwise libhybris clients get confused.
+Applying: (hybris) Add aapcs float handling to audio api headers
+Applying: (hybris) Search for libraries first from /usr/libexec/droid-hybris/system/lib/hw/.
+Applying: (hybris) gps.h Use proper aapcs attribute with functions with float arguments
+Applying: (hybris) Add PATH variable with needed paths. Define 32-bit LD_LIBRARY_PATH for 32-bit devices
+Applying: (hybris) Don't create/mount dev/proc/sys... when booting with Mer
+Applying: (hybris) Mer can specify mis-alignment handling - this is the wrong place to set it
+Applying: (hybris) Mount points are handled by Mer
+Applying: (hybris) Systemd handles control groups
+Applying: (hybris) Mer uses udev
+Applying: (hybris) Add a ready trigger to init to run post boot
+Applying: (hybris) Notify Mer's systemd that we're done
+.git/rebase-apply/patch:27: new blank line at EOF.
++
+warning: 1 line adds whitespace errors.
+Applying: (hybris) Disable usb import
+Applying: (hybris) allow system group to trigger haptics
+Applying: (hybris) trigger late_start on property change
+Applying: (hybris) property_service.c: adding support for getprop and listprop
+Applying: (hybris) reach main init state
+Applying: (hybris) Disable setting hostname and domainname in init.rc.
+Applying: (hybris) Disable all zygote variations
+Applying: (hybris) Disable ueventd service
+Applying: (hybris) Disable SELinux
+Applying: (hybris) Properly handle shutdown from Mer.
+Applying: (hybris) Use services from /usr/libexec/droid-hybris/system/etc/init/.
+Applying: (hybris) don't try to mount since mer handles this
+Applying: (hybris) avoid attempting to mount partitions, mer/systemd handles this
+Applying: (hybris) load services from droid-hybris as early as possible
+Applying: (hybris) disable the usage of libprocessgroup, since it is incompatible.
+Applying: (hybris) ignore "mount" and "mkdir /tmp" commands entirely.
+Applying: (hybris) Fix actdead charging animation. MER#1949
+Applying: (hybris)[system/core] Disable usb config.
+Applying: (hybris) Disable /mnt tmpfs creation
+Applying: (hybris) Disable init_user0 which is not needed on Mer.
+Applying: (hybris) Don't create/mount proc, apex, dev/null, random, ...
+Applying: (hybris) change /system/bin/init to /sbin/droid-hal-init
+Applying: (hybris) Don't bail out if failed to initialize property area
+Applying: (hybris) create /dev/socket during first stage
+Applying: (hybris) execve service
+Applying: (hybris) Do not SetupMountNamespaces()
+Applying: (hybris) Do not launch /system/bin/vdc
+Applying: (hybris) Allow input group to use vibrator.
+Applying: (hybris) Allow input group to use old vibrator.
+Applying: (hybris) Override binding to netlink multicast group from env
+Applying: (hybris) Set ro.cold_boot_done property at end of early init.
+HABUILD_SDK [sweet] ubuntu@ubuntu:~/hadk$ source build/envsetup.sh
+HABUILD_SDK [sweet] ubuntu@ubuntu:~/hadk$ export USE_CCACHE=1
+HABUILD_SDK [sweet] ubuntu@ubuntu:~/hadk$ export TEMPORARY_DISABLE_PATH_RESTRICTIONS=true
+HABUILD_SDK [sweet] ubuntu@ubuntu:~/hadk$ breakfast $DEVICE
+19:55:08 Build sandboxing disabled due to nsjail error.
+Trying dependencies-only mode on a non-existing device tree?
+make: Entering directory '/home/ubuntu/hadk/kernel/xiaomi/sweet'
+make[1]: Entering directory '/home/ubuntu/hadk/out/target/product/sweet/obj/KERNEL_OBJ'
+  INSTALL drivers/char/rdbg.ko
+  INSTALL drivers/media/platform/msm/dvb/adapter/mpq-adapter.ko
+  INSTALL drivers/media/platform/msm/dvb/demux/mpq-dmx-hw-plugin.ko
+  INSTALL drivers/media/rc/msm-geni-ir.ko
+  INSTALL drivers/media/usb/gspca/gspca_main.ko
+  INSTALL drivers/mmc/core/mmc_test.ko
+  INSTALL drivers/net/wireless/ath/wil6210/wil6210.ko
+  INSTALL drivers/platform/msm/msm_11ad/msm_11ad_proxy.ko
+  INSTALL drivers/soc/qcom/llcc_perfmon.ko
+  INSTALL drivers/video/backlight/lcd.ko
+  DEPMOD  4.14.190-perf+
+make[1]: Leaving directory '/home/ubuntu/hadk/out/target/product/sweet/obj/KERNEL_OBJ'
+make: Leaving directory '/home/ubuntu/hadk/kernel/xiaomi/sweet'
+depmod: WARNING: could not open modules.order at /home/ubuntu/hadk/out/target/product/sweet/obj/PACKAGING/depmod_system_intermediates/lib/modules/0.0: No such file or directory
+depmod: WARNING: could not open modules.builtin at /home/ubuntu/hadk/out/target/product/sweet/obj/PACKAGING/depmod_system_intermediates/lib/modules/0.0: No such file or directory
+[ 99% 18264/18347] //libcore/mmodules/intracoreapi:art-module-intra-core-api-stubs-source metalava merged [common]
+metalava detected access to files that are not explicitly specified. See /home/ubuntu/hadk/out/soong/.intermediates/libcore/mmodules/intracoreapi/art-module-intra-core-api-stubs-source/android_common/art-module-intra-core-api-stubs-source-violations.txt for details.
+[ 99% 18268/18347] //libcore:java-current-stubs-source metalava merged [common]
+metalava detected access to files that are not explicitly specified. See /home/ubuntu/hadk/out/soong/.intermediates/libcore/java-current-stubs-source/android_common/java-current-stubs-source-violations.txt for details.
+[ 99% 18284/18347] //libcore:art-module-public-api-stubs-source metalava merged [common]
+metalava detected access to files that are not explicitly specified. See /home/ubuntu/hadk/out/soong/.intermediates/libcore/art-module-public-api-stubs-source/android_common/art-module-public-api-stubs-source-violations.txt for details.
+[100% 18347/18347] Install: out/host/windows-x86/bin/adb.exe
+
+#### build completed successfully (29:46 (mm:ss)) ####
+
+HABUILD_SDK [sweet] ubuntu@ubuntu:~/hadk$ ls out/target/product/sweet/
+apex                   clean_steps.mk  hybris-boot.img           installed-files-ramdisk.json  obj_arm                   symbols
+boot.img               debug_ramdisk   hybris-recovery.img       installed-files-ramdisk.txt   previous_build_config.mk  system
+build_fingerprint.txt  dtb.img         hybris-updater-script     kernel                        ramdisk                   utilities
+build_thumbprint.txt   gen             hybris-updater-unpack.sh  obj                           ramdisk.img
+HABUILD_SDK [sweet] ubuntu@ubuntu:~/hadk$ ls out/target/product/sweet//root
+ls: cannot access 'out/target/product/sweet//root': No such file or directory
+HABUILD_SDK [sweet] ubuntu@ubuntu:~/hadk$ ls out/target/product/sweet/root
+ls: cannot access 'out/target/product/sweet/root': No such file or directory
+HABUILD_SDK [sweet] ubuntu@ubuntu:~/hadk$ ls out/target/product/sweet/*/root
+ls: cannot access 'out/target/product/sweet/*/root': No such file or directory
+HABUILD_SDK [sweet] ubuntu@ubuntu:~/hadk$ ls out/target/product/sweet/*/*/root
+ls: cannot access 'out/target/product/sweet/*/*/root': No such file or directory
+HABUILD_SDK [sweet] ubuntu@ubuntu:~/hadk$ ls out/target/product/sweet/
+apex                   clean_steps.mk  hybris-boot.img           installed-files-ramdisk.json  obj_arm                   symbols
+boot.img               debug_ramdisk   hybris-recovery.img       installed-files-ramdisk.txt   previous_build_config.mk  system
+build_fingerprint.txt  dtb.img         hybris-updater-script     kernel                        ramdisk                   utilities
+build_thumbprint.txt   gen             hybris-updater-unpack.sh  obj                           ramdisk.img
+HABUILD_SDK [sweet] ubuntu@ubuntu:~/hadk$ ls out/target/product/sweet/obj
+CONFIG  DTB_OBJ  ETC  EXECUTABLES  KERNEL_OBJ  NOTICE_FILES  PACKAGING  ROOT  SHARED_LIBRARIES  STATIC_LIBRARIES
+HABUILD_SDK [sweet] ubuntu@ubuntu:~/hadk$ ls out/target/product/sweet/obj/root
+ls: cannot access 'out/target/product/sweet/obj/root': No such file or directory
+HABUILD_SDK [sweet] ubuntu@ubuntu:~/hadk$ ls out/target/product/sweet/obj/ROOT
+hybris-boot_intermediates  hybris-recovery_intermediates  hybris-updater-script_intermediates  hybris-updater-unpack_intermediates
+HABUILD_SDK [sweet] ubuntu@ubuntu:~/hadk$ ls out/target/product/sweet/obj/ROOT
+hybris-boot_intermediates  hybris-recovery_intermediates  hybris-updater-script_intermediates  hybris-updater-unpack_intermediates
+HABUILD_SDK [sweet] ubuntu@ubuntu:~/hadk$
