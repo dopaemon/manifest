@@ -171,3 +171,14 @@ rpm/dhd/helpers/build_packages.sh --gg
 ```
 rpm/dhd/helpers/build_packages.sh --version
 ```
+# Build SailfishOS
+[Version](https://en.wikipedia.org/wiki/Sailfish_OS#Version_history)
+```
+export RELEASE=4.4.0.68
+```
+```
+export EXTRA_NAME=-kernelpanix
+```
+```
+rpm/dhd/helpers/build_packages.sh --mic
+```
