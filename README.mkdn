@@ -145,3 +145,29 @@ breakfast $DEVICE
 make -j$(nproc --all) hybris-hal droidmedia
 ```
 > if you want check kernel defconfig: hybris/mer-kernel-check/mer_verify_kernel_config ./out/target/product/$DEVICE/obj/KERNEL_OBJ/.config
+## Install Tooling $PlatformSDK
+```
+sdk-assistant create SailfishOS-latest https://releases.sailfishos.org/sdk/targets/Sailfish_OS-latest-Sailfish_SDK_Tooling-i486.tar.7z
+```
+```
+sdk-assistant create $VENDOR-$DEVICE-$PORT_ARCH https://releases.sailfishos.org/sdk/targets/Sailfish_OS-latest-Sailfish_SDK_Target-aarch64.tar.7z
+```
+## Build Droid HAL Building the droid-hal-device packages $PlatformSDK
+```
+cd $ANDROID_ROOT
+```
+```
+rpm/dhd/helpers/build_packages.sh --droid-hal
+```
+```
+rpm/dhd/helpers/build_packages.sh --configs
+```
+```
+rpm/dhd/helpers/build_packages.sh --mw
+```
+```
+rpm/dhd/helpers/build_packages.sh --gg
+```
+```
+rpm/dhd/helpers/build_packages.sh --version
+```
