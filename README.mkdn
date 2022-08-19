@@ -172,6 +172,9 @@ rpm/dhd/helpers/build_packages.sh --configs
 rpm/dhd/helpers/build_packages.sh --mw
 ```
 ```
+rpm/dhd/helpers/build_packages.sh --mw=https://github.com/SailfishOS-vayu/parse-android-dynparts
+```
+```
 rpm/dhd/helpers/build_packages.sh --gg
 ```
 ```
